@@ -18,7 +18,7 @@ home = [ "HTML", "RSS", "JSON"]
   
 [Languages]
 [Languages.en]
-title = "Create a new AWS account."
+title = "Internship Report"
 weight = 1
 label = "English"
 
@@ -35,7 +35,7 @@ url = "https://www.facebook.com/groups/awsstudygroupfcj"
 weight = 20
 
 [Languages.vi]
-title = "Tạo mới tài khoản AWS"
+title = "Báo cáo thực tập"
 weight = 2
 label = "Tiếng Việt"
 

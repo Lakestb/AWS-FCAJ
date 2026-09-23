@@ -50,7 +50,7 @@
           <div class="select-style">
             <select id="select-language" onchange="location = this.value;">
           {{ range .Page.AllTranslations }}
-              <option id="{{ .Language }}" value="{{ .Permalink }}" {{ if eq $.Page.Lang .Lang }}selected{{ end }}>{{ .Language.LanguageName }}</option>
+              <option id="{{ .Language }}" value="{{ .Permalink }}" {{ if eq $.Page.Lang .Lang }}selected{{ end }}>{{ .Language.Label }}</option>
           {{ end }}
         </select>
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

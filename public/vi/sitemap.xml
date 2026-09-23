@@ -15,6 +15,19 @@
                 href="/vi/"
                 />
   </url><url>
+    <loc>/vi/5-workshop/5.1-environment-and-architecture/</loc>
+    <lastmod>2024-05-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/5-workshop/5.1-environment-and-architecture/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="/vi/5-workshop/5.1-environment-and-architecture/"
+                />
+  </url><url>
     <loc>/vi/1-worklog/</loc>
     <lastmod>2024-05-15T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -54,6 +67,19 @@
                 href="/vi/2-proposal/"
                 />
   </url><url>
+    <loc>/vi/5-workshop/5.2-networking-vpc/</loc>
+    <lastmod>2024-05-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/5-workshop/5.2-networking-vpc/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="/vi/5-workshop/5.2-networking-vpc/"
+                />
+  </url><url>
     <loc>/vi/1-worklog/1.2-week-2/</loc>
     <lastmod>2024-05-15T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -78,6 +104,19 @@
                 rel="alternate"
                 hreflang="vi"
                 href="/vi/3-blogs-posted/"
+                />
+  </url><url>
+    <loc>/vi/5-workshop/5.3-compute-database-storage/</loc>
+    <lastmod>2024-05-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/5-workshop/5.3-compute-database-storage/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="/vi/5-workshop/5.3-compute-database-storage/"
                 />
   </url><url>
     <loc>/vi/1-worklog/1.3-week-3/</loc>
@@ -106,6 +145,19 @@
                 href="/vi/4-events-participated/"
                 />
   </url><url>
+    <loc>/vi/5-workshop/5.4-monitoring-and-auditing/</loc>
+    <lastmod>2024-05-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/5-workshop/5.4-monitoring-and-auditing/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="/vi/5-workshop/5.4-monitoring-and-auditing/"
+                />
+  </url><url>
     <loc>/vi/1-worklog/1.4-week-4/</loc>
     <lastmod>2024-05-15T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -117,6 +169,19 @@
                 rel="alternate"
                 hreflang="vi"
                 href="/vi/1-worklog/1.4-week-4/"
+                />
+  </url><url>
+    <loc>/vi/5-workshop/5.5-serverless-backend/</loc>
+    <lastmod>2024-05-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/5-workshop/5.5-serverless-backend/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="/vi/5-workshop/5.5-serverless-backend/"
                 />
   </url><url>
     <loc>/vi/1-worklog/1.5-week-5/</loc>
@@ -143,6 +208,19 @@
                 rel="alternate"
                 hreflang="vi"
                 href="/vi/5-workshop/"
+                />
+  </url><url>
+    <loc>/vi/5-workshop/5.6-high-availability-alb-asg/</loc>
+    <lastmod>2024-05-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/5-workshop/5.6-high-availability-alb-asg/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="/vi/5-workshop/5.6-high-availability-alb-asg/"
                 />
   </url><url>
     <loc>/vi/6-self-assessment/</loc>
@@ -184,6 +262,19 @@
                 href="/vi/7-sharing-and-feedback/"
                 />
   </url><url>
+    <loc>/vi/5-workshop/5.7-container-and-automation/</loc>
+    <lastmod>2024-05-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/5-workshop/5.7-container-and-automation/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="/vi/5-workshop/5.7-container-and-automation/"
+                />
+  </url><url>
     <loc>/vi/1-worklog/1.7-week-7/</loc>
     <lastmod>2024-05-15T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -195,6 +286,19 @@
                 rel="alternate"
                 hreflang="vi"
                 href="/vi/1-worklog/1.7-week-7/"
+                />
+  </url><url>
+    <loc>/vi/5-workshop/5.8-resource-cleanup/</loc>
+    <lastmod>2024-05-15T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/5-workshop/5.8-resource-cleanup/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="/vi/5-workshop/5.8-resource-cleanup/"
                 />
   </url><url>
     <loc>/vi/1-worklog/1.8-week-8/</loc>

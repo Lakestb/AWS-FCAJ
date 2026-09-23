@@ -1,5 +1,12 @@
 [
 {
+	"uri": "/5-workshop/5.1-environment-and-architecture/",
+	"title": "Environment Setup &amp; Architectural Overview",
+	"tags": [],
+	"description": "",
+	"content": "5.1. Environment Setup \u0026amp; Architectural Overview 5.1.1. Region Selection \u0026amp; Administrative Setup Region: Asia Pacific (Singapore) — ap-southeast-1. IAM Account: cloud-admin (adhering to best practices avoiding root usage for operational tasks). 📷 Artifact: Console screenshot demonstrating Region selection and logged-in IAM entity.\n5.1.2. Complete Target Architecture A modern decoupled architecture blending 2-tier infrastructure with serverless and container capabilities across 4 pillars:\nCompute \u0026amp; Database: EC2 (WordPress) + RDS (MySQL) + S3 (media/backup storage). High Availability: Application Load Balancer + Auto Scaling Group. Serverless Backend: Lambda + API Gateway + DynamoDB (Guestbook service). Automation \u0026amp; Container: Docker + ECS Fargate + EventBridge Scheduler (scheduled backups). 📷 Artifact: Comprehensive architectural diagram created in draw.io reflecting all 4 functional tiers.\n"
+},
+{
 	"uri": "/",
 	"title": "Internship Report",
 	"tags": [],
@@ -19,6 +26,13 @@
 	"tags": [],
 	"description": "",
 	"content": "Below is my detailed worklog across the 8 weeks of the First Cloud AI Journey internship program:\nWeek 1: Overview of AWS architecture and create a practice account\nWeek 2: Learn about AWS Core Services: EC2, S3, IAM\nWeek 3: Learn about AWS Networking: VPC, Subnet, Internet Gateway\nWeek 4: Learn about AWS Lambda and Serverless model\nWeek 5: Learn about AWS CloudWatch and CloudTrail\nWeek 6: Learn about Elastic Load Balancer (ELB) and Auto Scaling\nWeek 7: Learn about AWS ECS and Docker basics\nWeek 8: Implement a comprehensive project on AWS\n"
+},
+{
+	"uri": "/5-workshop/5.2-networking-vpc/",
+	"title": "Networking Infrastructure (VPC, Subnet, IGW)",
+	"tags": [],
+	"description": "",
+	"content": "5.2. Networking Infrastructure: VPC, Subnet, Internet Gateway 5.2.1. VPC Creation VPC: my-project-vpc (vpc-0b489eb298393e445), CIDR block 10.0.0.0/16. 5.2.2. Multi-Tier Subnet Topology Public Subnet 1: subnet-011686e77c0d42601 — 10.0.0.0/20 — ap-southeast-1a (hosts EC2, ALB, and ECS Tasks). Public Subnet 2: subnet-037a8c50b5e7ec755 — 10.0.16.0/20 — ap-southeast-1b (ALB multi-AZ requirement). Private Subnet 1: subnet-008f0d773c67a3970 — 10.0.128.0/20 — ap-southeast-1a (hosts RDS MySQL). Private Subnet 2: subnet-0a953901b7b370b78 — 10.0.144.0/20 — ap-southeast-1b (DB Subnet Group secondary AZ). 📷 Artifact: VPC Subnets console view detailing configured CIDRs and Availability Zones.\n5.2.3. Internet Gateway \u0026amp; Routing Tables Internet Gateway associated with VPC; Public Route Table routes 0.0.0.0/0 via IGW. Private Route Table restricted exclusively to local routes, isolating database instances. 📷 Artifact: Route table rules for both Public and Private subnets.\n5.2.4. Security Groups ec2-web-sg (sg-043b5223abc256608): Ingress HTTP (80) \u0026amp; HTTPS (443) from 0.0.0.0/0, SSH (22) strictly whitelisted to administrative /32 IP. RDS-SG: Restricts MySQL port 3306 ingress strictly from ec2-web-sg. 📷 Artifact: Inbound security group rules showing locked-down SSH and database permissions.\n"
 },
 {
 	"uri": "/2-proposal/",
@@ -42,6 +56,13 @@
 	"content": "Blogs Posted "
 },
 {
+	"uri": "/5-workshop/5.3-compute-database-storage/",
+	"title": "Compute, Database &amp; Storage (EC2, RDS, S3, IAM)",
+	"tags": [],
+	"description": "",
+	"content": "5.3. Compute, Database \u0026amp; Storage: EC2, RDS, S3, IAM 5.3.1. Web/Application Tier (Amazon EC2) OS: Ubuntu Server 24.04 LTS, Instance type: t3.micro. LAMP Stack: Apache 2.4, PHP 8.3, WordPress. Attached IAM Instance Profile for passwordless, credential-free S3 media synchronization. 📷 Artifact: WordPress administrative home page resolving via EC2 public IP.\n5.3.2. Database Tier (Amazon RDS for MySQL) Engine: MySQL Community, Instance class: db.t4g.micro. Endpoint: wordpress-db.cnwgwiseq95o.ap-southeast-1.rds.amazonaws.com, Database: wordpress. Hosted strictly within Private Subnets without Public IP assignment. 📷 Artifact: RDS Configuration and Connectivity dashboard showing Available status.\n5.3.3. Static Asset Storage (Amazon S3) Bucket: my-portfolio-blog-media-635176221447-ap-southeast-1-an. Synchronized through WP Offload Media Lite plugin. 📷 Artifact: S3 bucket object list containing offloaded WordPress media files.\n5.3.4. Access Security \u0026amp; IAM Roles EC2 IAM Role scoped according to Least Privilege principles. 📷 Artifact: IAM Role permissions policy configuration attached to EC2.\n"
+},
+{
 	"uri": "/1-worklog/1.3-week-3/",
 	"title": "Week 3 Worklog",
 	"tags": [],
@@ -56,11 +77,25 @@
 	"content": "Events Participated "
 },
 {
+	"uri": "/5-workshop/5.4-monitoring-and-auditing/",
+	"title": "Observability &amp; Auditing (CloudWatch, SNS, CloudTrail)",
+	"tags": [],
+	"description": "",
+	"content": "5.4. Observability \u0026amp; Auditing: CloudWatch, SNS, CloudTrail 5.4.1. CloudWatch Dashboard \u0026amp; Metric Alarms Dashboard: WordPress-Production-Dashboard, tracking CPUUtilization and DatabaseConnections. Alarm: EC2-High-CPU-Utilization, configured at CPUUtilization \u0026gt;= 80%. 📷 Artifact: CloudWatch dashboard metrics graphs and alarm configuration.\n5.4.2. SNS Alerting Notification Topic: ec2-high-cpu-alert with active Email subscription delivery. 📷 Artifact: SNS topic subscriptions and sample email notification.\n5.4.3. Governance \u0026amp; Auditing with AWS CloudTrail Utilized CloudTrail Event History for zero-cost compliance:\nModifySecurityGroupRules: captures security group SSH hardening events (section 5.2.4) with origin IP metadata. PutMetricAlarm, CreateTopic, Subscribe: tracks monitoring infrastructure setup (sections 5.4.1–5.4.2). 📷 Artifact: JSON event records for key management events in CloudTrail.\n"
+},
+{
 	"uri": "/1-worklog/1.4-week-4/",
 	"title": "Week 4 Worklog",
 	"tags": [],
 	"description": "",
 	"content": "Week 4 Objectives: Learn AWS Lambda and the Serverless paradigm. Practice writing event-driven Lambda functions. Tasks to be carried out this week: Day Task Start Date End Date References Mon Explore Serverless principles and AWS Lambda execution model 26/05/2026 27/05/2026 AWS Cloud Journey Tue Create Lambda functions with designated IAM execution roles 28/05/2026 29/05/2026 AWS Lambda Guide Wed Integrate Lambda with S3 and API Gateway triggers 30/05/2026 01/06/2026 AWS Serverless Achievements for Week 4: Mastered key advantages of serverless architecture regarding cost and scalability. Successfully implemented automated event-driven Lambda workflows. "
+},
+{
+	"uri": "/5-workshop/5.5-serverless-backend/",
+	"title": "Serverless Backend (Lambda, API Gateway, DynamoDB)",
+	"tags": [],
+	"description": "",
+	"content": "5.5. Serverless Backend: Lambda, API Gateway, DynamoDB Independent serverless Guestbook pipeline deployed alongside WordPress.\n5.5.1. DynamoDB Table Provisioning Table: GuestbookMessages, Partition key: id (String), Capacity mode: Provisioned 5 RCU / 5 WCU. 📷 Artifact: DynamoDB table configuration dashboard.\n5.5.2. Scoped IAM Roles for Lambda Policy GuestbookLambdaPolicy: dynamodb:PutItem, sns:Publish, CloudWatch logging. Role: GuestbookLambdaRole. 📷 Artifact: Lambda execution role JSON policy.\n5.5.3. AWS Lambda Function Implementation Function: GuestbookHandler, Runtime Python 3.12. Flow: Parses input payload, validates fields, writes item to DynamoDB, triggers SNS notification. 📷 Artifact: Lambda code console and CloudWatch log execution stream.\n5.5.4. Amazon API Gateway Integration API: GuestbookAPI (REST), resource /guestbook, method POST with CORS enabled. Stage: prod. 📷 Artifact: Method execution overview and API deployment stage URL.\n5.5.5. WordPress Frontend Form Embed Integrated via Custom HTML block calling backend endpoint via JavaScript fetch(). 📷 Artifact: Rendered guestbook submission interface on WordPress frontend.\n5.5.6. End-to-End Validation Form submission verification in DynamoDB table explorer and inbox receipt of SNS alert. 📷 Artifact: DynamoDB item explorer console and delivery notification.\n"
 },
 {
 	"uri": "/1-worklog/1.5-week-5/",
@@ -74,14 +109,21 @@
 	"title": "Workshop",
 	"tags": [],
 	"description": "",
-	"content": "Workshop "
+	"content": "TECHNICAL REPORT End-to-End WordPress Infrastructure on AWS: From 2-Tier Baseline to Serverless, High Availability, and Containerization This document records the entire project implementation sequence chronologically, from foundational infrastructure provisioning to advanced cloud integrations. Each section contains designated artifact placeholders (📷) for attaching implementation evidence.\nWorkshop Chapters: 5.1. Environment Setup \u0026amp; Architectural Overview 5.2. Networking Infrastructure: VPC, Subnets, Internet Gateway 5.3. Compute, Database \u0026amp; Storage: EC2, RDS, S3, IAM 5.4. Observability \u0026amp; Auditing: CloudWatch, SNS, CloudTrail 5.5. Serverless Backend: Lambda, API Gateway, DynamoDB 5.6. High Availability: Application Load Balancer \u0026amp; Auto Scaling 5.7. Containerization \u0026amp; Automation: Docker, ECS Fargate, EventBridge 5.8. Resource Cleanup "
+},
+{
+	"uri": "/5-workshop/5.6-high-availability-alb-asg/",
+	"title": "High Availability (ALB &amp; Auto Scaling)",
+	"tags": [],
+	"description": "",
+	"content": "5.6. High Availability: Application Load Balancer \u0026amp; Auto Scaling 5.6.1. Golden AMI Packaging AMI: wordpress-app-ami-v1, created from the functional baseline EC2 instance. 📷 Artifact: AMI management console with Available state.\n5.6.2. EC2 Launch Template Configuration Template: wordpress-launch-template configured with t3.micro, ec2-web-sg, and designated key pair. 📷 Artifact: Launch Template configuration details.\n5.6.3. ALB \u0026amp; Target Group Topology ALB: wordpress-alb, Internet-facing, dual Availability Zones. Target Group: wordpress-tg, HTTP:80, Health check path /. 📷 Artifact: ALB DNS name and Target Group health check configurations.\n5.6.4. Auto Scaling Group Deployment ASG: wordpress-asg, Desired: 1, Min: 1, Max: 2. Policy: Target tracking scaling at 70% average CPU utilization. 📷 Artifact: ASG capacity metrics and target tracking policies.\n5.6.5. Real-World Troubleshooting \u0026amp; Root Cause Analysis During integration testing, Target Group registered 0 active targets despite healthy instance execution within ASG. Inspection of Activity History pinpointed missing Target Group associations in ASG Load Balancing integrations. Resolved by attaching wordpress-tg directly under ASG Integrations, immediately registering healthy targets.\n📷 Artifact: Target Group status before (0 targets) vs after remediation (1 Healthy), alongside WordPress resolution over ALB DNS.\n"
 },
 {
 	"uri": "/6-self-assessment/",
 	"title": "Self-Assessment",
 	"tags": [],
 	"description": "",
-	"content": "Self-Assessment "
+	"content": "Throughout my internship at Amazon Web Services Vietnam Company Limited (AWS Vietnam) from May 5, 2026 to July 30, 2026, I had the opportunity to learn, develop, and apply academic knowledge in Cybersecurity from Ho Chi Minh City University of Technology (HUTECH) to real-world environments.\nDuring this period, I participated in the Workforce Bootcamp - First Cloud AI Journey program, completing a comprehensive curriculum of cloud infrastructure training and hands-on labs (including EC2, S3, IAM, VPC, RDS, Lambda, CloudWatch, Auto Scaling, CloudFormation, Docker/ECS, and CI/CD). Through these experiences, I significantly reinforced my capabilities in secure system configuration, cloud resource management, technical report writing, and team collaboration.\nTo reflect objectively on my learning and development process, I provide my self-assessment based on the criteria below:\nInternship Self-Assessment Matrix No. Criteria Description Good Fair Average 1 Professional Knowledge \u0026amp; Skills Understanding of AWS services, security baseline implementation, hands-on lab quality ☐ ✅ ☐ 2 Learning Agility Speed of grasping new cloud technologies and developer tooling ✅ ☐ ☐ 3 Proactiveness Conducting self-directed research and delivering assignments without supervision ☐ ✅ ☐ 4 Sense of Responsibility Delivering assigned tasks and worklogs reliably within established deadlines ✅ ☐ ☐ 5 Discipline Punctual attendance at workshop sessions and adherence to program regulations ✅ ☐ ☐ 6 Growth Mindset Actively incorporating mentor feedback to refine and enhance deliverables ✅ ☐ ☐ 7 Communication Ability to articulate technical perspectives and ideas with clarity ☐ ✅ ☐ 8 Team Collaboration Sharing resources, co-working, and assisting peers within study groups ✅ ☐ ☐ 9 Professionalism Respectful conduct towards instructors and peers with a rigorous work ethic ✅ ☐ ☐ 10 Problem Solving \u0026amp; Troubleshooting Identifying configuration issues and systematically discovering resolutions ☐ ✅ ☐ 11 Project Contribution Scope of contribution and fulfillment of milestones in the final capstone project ☐ ✅ ☐ 12 Overall Evaluation Comprehensive assessment of professional growth throughout the internship ☐ ✅ ☐ Personal Development Goals Domain Expertise: Acquire deeper real-world experience in advanced security baselines (Security Best Practices) and complex network troubleshooting on AWS. Troubleshooting Proficiency: Hone patience in analyzing system telemetry (CloudWatch logs) to identify root causes independently before requesting assistance. Communication \u0026amp; Presentation: Deliver technical summaries and project reports in an increasingly structured, concise, and impactful manner. "
 },
 {
 	"uri": "/1-worklog/1.6-week-6/",
@@ -91,11 +133,18 @@
 	"content": "Week 6 Objectives: Learn Elastic Load Balancing (ELB) and Auto Scaling. Architect high-availability and auto-scaling infrastructure. Tasks to be carried out this week: Day Task Start Date End Date References Mon Explore ALB/NLB architectures and Target Groups 09/06/2026 10/06/2026 AWS Cloud Journey Tue Deploy Application Load Balancer distributing traffic to EC2 11/06/2026 12/06/2026 AWS ELB Guide Wed Set up Auto Scaling Groups with dynamic scaling policies 13/06/2026 15/06/2026 AWS Auto Scaling Guide Achievements for Week 6: Mastered traffic distribution and fault tolerance concepts on AWS. Successfully verified dynamic instance scaling under simulated workloads. "
 },
 {
+	"uri": "/5-workshop/5.7-container-and-automation/",
+	"title": "Containerization &amp; Automation (Docker, ECS, EventBridge)",
+	"tags": [],
+	"description": "",
+	"content": "5.7. Containerization \u0026amp; Automation: Docker, ECS Fargate, EventBridge Scheduler Decoupled database backup routine packaged as a Docker container running on-demand via ECS Fargate.\n5.7.1. Docker Container Packaging Base image: debian:bookworm-slim with default-mysql-client, awscli, and gzip. Execution Script: Parameterized via environment variables without hardcoded secrets. 📷 Artifact: Dockerfile specification and successful build transcript.\n5.7.2. Image Distribution to Amazon ECR Repository: wordpress-backup. aws ecr get-login-password | docker login --username AWS --password-stdin \u0026lt;account\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com docker build -t wordpress-backup . docker tag wordpress-backup:latest \u0026lt;account\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com/wordpress-backup:latest docker push \u0026lt;account\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com/wordpress-backup:latest 📷 Artifact: ECR repository dashboard exhibiting latest image tag.\n5.7.3. Scoped Task Execution Roles ecsTaskExecutionRole: Managed policy for ECR authentication and log ingestion. EcsBackupTaskRole: Dedicated policy granting s3:PutObject strictly to backups/ prefix. 📷 Artifact: IAM role permissions attached to container tasks.\n5.7.4. ECS Task Definition on AWS Fargate Cluster: wordpress-cluster (Serverless Fargate launch type). Task Definition: wordpress-backup-task, 0.25 vCPU, 0.5 GB memory. 📷 Artifact: Task Definition specification showing container and environment variables.\n5.7.5. Testing \u0026amp; Debugging MariaDB/MySQL Client Flags Initial execution failed with Exit code 7 (mysqldump: unknown variable 'set-gtid-purged=OFF') stemming from MariaDB client conventions on Debian. Removed the redundant flag, rebuilt image, and re-pushed to ECR, resulting in Exit code 0 success.\n📷 Artifact: Failed task log vs successful completion with S3 object archive creation.\n5.7.6. Scheduled Execution with Amazon EventBridge Schedule: wordpress-daily-backup, Cron expression: 0 2 * * ? * (2:00 AM daily). Target: ECS RunTask on Fargate (using roles from section 5.7.3). 📷 Artifact: Enabled EventBridge schedule and automated ECS task trigger logs.\n"
+},
+{
 	"uri": "/7-sharing-and-feedback/",
 	"title": "Sharing and Feedback",
 	"tags": [],
 	"description": "",
-	"content": "Sharing and Feedback "
+	"content": "Having concluded a rewarding and fulfilling internship with the First Cloud AI Journey program, I would like to share my reflections, feedback, and recommendations to help continuously enhance the program for future cohorts:\nOverall Program Evaluation 1. Learning \u0026amp; Working Environment The program is organized with exceptional professionalism and structure. Clear technical documentation, detailed roadmaps, and step-by-step milestones enable interns to easily track their learning progression week by week. The balanced blend of self-directed research and interactive workshops ensures maximum flexibility.\n2. Support from Mentors \u0026amp; Administrative Team The mentors are knowledgeable, experienced, and deeply supportive. Whenever I encountered complex configuration roadblocks or troubleshooting challenges, mentors guided me through systematic root-cause analysis and log inspection rather than providing immediate answers, fostering critical problem-solving skills. The administration team was also prompt in technical assistance and AWS Free Tier provisioning.\n3. Alignment with Academic Major As a Cybersecurity student at HUTECH, the hands-on labs closely reflected modern industry practices. Directly designing VPC network isolation, Public/Private subnets, configuring Security Groups, Network ACLs, and applying Least Privilege IAM policies provided profound insights into cloud infrastructure security.\n4. Skill Development \u0026amp; Modern Cloud Technologies The bootcamp provided an outstanding platform to gain practical exposure to modern cloud paradigms including Serverless (Lambda, API Gateway), Containerization (Docker, ECS), and Infrastructure as Code (Terraform, CloudFormation). In addition to technical proficiencies, my professional documentation and technical reporting skills have progressed significantly.\n5. Culture \u0026amp; Peer Collaboration The knowledge-sharing culture within the AWS Study Group is vibrant and welcoming. Peers and mentors actively discuss challenges, share reference materials, and collaboratively solve intricate lab hurdles.\nSurvey Responses What did you find most rewarding during your internship?\nHaving direct hands-on access to live AWS resources and services, translating abstract theoretical architectures into functional, production-ready cloud solutions.\nWhat areas do you recommend for future improvement?\nIncorporating periodic weekly study-group check-ins where interns can interact directly and share common configuration pitfalls.\nWould you recommend this program to peers?\nAbsolutely. This is one of the most comprehensive cloud bootcamps available for students seeking to bridge academic theory with real-world enterprise engineering.\nProposals \u0026amp; Aspirations Proposal: Organize dedicated Deep Dive sessions exploring real-world cloud security incident responses and post-mortems to offer specialized security perspectives. Aspiration: Continue actively participating in AWS Study Group community events and initiatives to stay at the forefront of emerging cloud innovations. "
 },
 {
 	"uri": "/1-worklog/1.7-week-7/",
@@ -103,6 +152,13 @@
 	"tags": [],
 	"description": "",
 	"content": "Week 7 Objectives: Learn AWS ECS and core Docker containerization concepts. Build Docker containers, push to Amazon ECR, and deploy via ECS Fargate. Tasks to be carried out this week: Day Task Start Date End Date References Mon Review Docker fundamentals (Dockerfile, image build, container run) 16/06/2026 17/06/2026 Docker Documentation Tue Push Docker container image to Amazon ECR repository 18/06/2026 19/06/2026 AWS ECR Guide Wed Create ECS Cluster, Task Definition, and Service on AWS Fargate 20/06/2026 22/06/2026 AWS ECS Guide Achievements for Week 7: Successfully containerized a web application using Docker. Deployed serverless containerized services on AWS ECS Fargate. "
+},
+{
+	"uri": "/5-workshop/5.8-resource-cleanup/",
+	"title": "Resource Cleanup",
+	"tags": [],
+	"description": "",
+	"content": "5.8. Resource Cleanup Conducted in reverse sequence of provisioning (Modules 5.7 → 5.1) to release all allocated AWS resources post-grading and avoid recurring costs.\n5.8.1. Delete EventBridge Schedules Delete wordpress-daily-backup schedule to prevent recurring container executions. 5.8.2. Teardown ECS Tasks, Clusters, and ECR Repositories Deregister wordpress-backup-task Task Definition. Delete wordpress-cluster ECS cluster. Remove wordpress-backup ECR repository along with all container tags. 5.8.3. Dismantle High Availability Infrastructure Delete Auto Scaling Group wordpress-asg (set Desired to 0 first, wait for termination, then delete). Remove ALB wordpress-alb and Target Group wordpress-tg. Delete Launch Template and deregister wordpress-app-ami-v1 AMI (including backing EBS snapshots). 5.8.4. Remove Serverless Stack Delete API Gateway GuestbookAPI. Delete Lambda Function GuestbookHandler. Delete DynamoDB table GuestbookMessages. Delete SNS Topic guestbook-new-message (if configured). 5.8.5. Teardown Observability Resources Delete CloudWatch Alarm EC2-High-CPU-Utilization and Dashboard WordPress-Production-Dashboard. Delete SNS Topic ec2-high-cpu-alert. 5.8.6. Delete Database Tier Create final snapshot of RDS wordpress-db (optional) and delete RDS instance. 5.8.7. Terminate Compute \u0026amp; Clear Storage Terminate all remaining EC2 instances. Delete Security Groups: ec2-web-sg, RDS-SG, ALB-SG. Empty and delete S3 bucket my-portfolio-blog-media-.... 5.8.8. Teardown Networking (VPC) Delete Subnets, Route Tables, and detach/delete Internet Gateway. Delete VPC my-project-vpc. 5.8.9. Delete IAM Roles \u0026amp; Policies (Final Step) Delete IAM Roles (EventBridgeSchedulerECSRole, ecsTaskExecutionRole, EcsBackupTaskRole, GuestbookLambdaRole, EC2 Role). Delete corresponding customer-managed policies. "
 },
 {
 	"uri": "/1-worklog/1.8-week-8/",

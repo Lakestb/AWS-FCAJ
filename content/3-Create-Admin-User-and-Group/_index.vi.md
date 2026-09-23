@@ -1,6 +1,6 @@
 ---
 title : "Tạo Admin Group và Admin User"
-date :  "`r Sys.Date()`" 
+date :  "2024-05-15" 
 weight : 3
 chapter : false
 pre : " <b> 3. </b> "

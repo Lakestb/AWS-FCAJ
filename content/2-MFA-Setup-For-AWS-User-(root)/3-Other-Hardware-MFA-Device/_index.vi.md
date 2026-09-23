@@ -1,6 +1,6 @@
 ---
 title : "Thiết bị MFA cứng"
-date :  "`r Sys.Date()`" 
+date :  "2024-05-15" 
 weight : 3
 chapter : false
 pre : " <b> 2.3 </b> "

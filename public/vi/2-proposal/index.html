@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi" class="js csstransforms3d">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.166.0">
@@ -12,21 +12,21 @@
     <title>Bản đề xuất :: Báo cáo thực tập</title>
 
     
-    <link href="/css/nucleus.css?1790170510" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1790170510" rel="stylesheet">
-    <link href="/css/hybrid.css?1790170510" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1790170510" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1790170510" rel="stylesheet">
-    <link href="/css/auto-complete.css?1790170510" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1790170510" rel="stylesheet">
-    <link href="/css/theme.css?1790170510" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1790170510" rel="stylesheet">
+    <link href="/css/nucleus.css?1790175418" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1790175418" rel="stylesheet">
+    <link href="/css/hybrid.css?1790175418" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1790175418" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1790175418" rel="stylesheet">
+    <link href="/css/auto-complete.css?1790175418" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1790175418" rel="stylesheet">
+    <link href="/css/theme.css?1790175418" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1790175418" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1790170510" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1790175418" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1790170510"></script>
+    <script src="/js/jquery-3.3.1.min.js?1790175418"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1790170510"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1790170510"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1790175418"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1790175418"></script>
 <script type="text/javascript">
     
-        var baseurl = "\/\/vi";
+        var baseurl = "\/\/localhost:1313\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1790170510"></script>
+<script type="text/javascript" src="/js/search.js?1790175418"></script>
 
     
   </div>
@@ -524,9 +524,9 @@
           <div class="select-style">
             <select id="select-language" onchange="location = this.value;">
           
-              <option id="en" value="/2-proposal/" >English</option>
+              <option id="en" value="//localhost:1313/2-proposal/" >English</option>
           
-              <option id="vi" value="/vi/2-proposal/" selected>Tiếng Việt</option>
+              <option id="vi" value="//localhost:1313/vi/2-proposal/" selected>Tiếng Việt</option>
           
         </select>
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -620,7 +620,23 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#đề-xuất-dự-án-hạ-tầng-wordpress-toàn-diện-trên-aws-từ-2-tier-đến-serverless-high-availability-và-container-hóa">Đề xuất Dự án: Hạ tầng WordPress toàn diện trên AWS: Từ 2-Tier đến Serverless, High Availability và Container hóa</a></li>
+        <li><a href="#1-tóm-tắt-điều-hành">1. Tóm tắt điều hành</a></li>
+        <li><a href="#2-tuyên-bố-vấn-đề">2. Tuyên bố vấn đề</a></li>
+        <li><a href="#3-kiến-trúc-giải-pháp">3. Kiến trúc giải pháp</a></li>
+        <li><a href="#4-triển-khai-kỹ-thuật">4. Triển khai kỹ thuật</a></li>
+        <li><a href="#5-lộ-trình--mốc-triển-khai">5. Lộ trình &amp; Mốc triển khai</a></li>
+        <li><a href="#6-ước-tính-ngân-sách">6. Ước tính ngân sách</a></li>
+        <li><a href="#7-đánh-giá-rủi-ro">7. Đánh giá rủi ro</a></li>
+        <li><a href="#8-kết-quả-kỳ-vọng">8. Kết quả kỳ vọng</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -644,7 +660,260 @@
 
 
 
-	<h1 id="bản-đề-xuất">Bản đề xuất</h1>
+	<h3 id="đề-xuất-dự-án-hạ-tầng-wordpress-toàn-diện-trên-aws-từ-2-tier-đến-serverless-high-availability-và-container-hóa">Đề xuất Dự án: Hạ tầng WordPress toàn diện trên AWS: Từ 2-Tier đến Serverless, High Availability và Container hóa</h3>
+<hr>
+<h3 id="1-tóm-tắt-điều-hành">1. Tóm tắt điều hành</h3>
+<p>Đề xuất này trình bày giải pháp hiện đại hóa hệ thống web WordPress trên nền tảng AWS. Thay vì triển khai đơn khối (all-in-one) trên một máy chủ duy nhất gây rủi ro mất an toàn thông tin và gián đoạn dịch vụ, dự án xây dựng hạ tầng phân tầng theo chuẩn AWS Well-Architected:</p>
+<ul>
+<li><strong>Tách biệt dữ liệu &amp; lưu trữ (Decoupled 2-Tier)</strong>: Tách web server (EC2) khỏi cơ sở dữ liệu (RDS MySQL) và đẩy toàn bộ media tĩnh lên Amazon S3.</li>
+<li><strong>Mở rộng linh hoạt (High Availability)</strong>: Thiết lập Application Load Balancer (ALB) và Auto Scaling Group (ASG) để tự động cân bằng tải và co giãn theo nhu cầu.</li>
+<li><strong>Backend Serverless</strong>: Xây dựng tính năng Guestbook độc lập chạy bằng API Gateway, Lambda và DynamoDB.</li>
+<li><strong>Tự động hóa bằng Container</strong>: Đóng gói tác vụ sao lưu định kỳ bằng Docker, chạy serverless trên ECS Fargate qua EventBridge Scheduler thay thế cron truyền thống trên EC2.</li>
+</ul>
+<hr>
+<h3 id="2-tuyên-bố-vấn-đề">2. Tuyên bố vấn đề</h3>
+<h4 id="vấn-đề-hiện-tại">Vấn đề hiện tại</h4>
+<ul>
+<li><strong>Đơn điểm lỗi (SPOF)</strong>: Chạy cả web server và database trên cùng một máy chủ khiến hệ thống sập toàn bộ nếu ứng dụng gặp sự cố tràn RAM hoặc nghẽn CPU.</li>
+<li><strong>Rủi ro bảo mật</strong>: Cổng cơ sở dữ liệu và SSH thường mở rộng ra ngoài Internet; lưu trữ access key tĩnh trong mã nguồn tiềm ẩn nguy cơ lộ credential.</li>
+<li><strong>Thiếu khả năng tự động co giãn</strong>: Máy chủ đơn lẻ không thể tự mở rộng khi lượng truy cập tăng vọt, gây nghẽn mạng hoặc chết dịch vụ.</li>
+<li><strong>Sao lưu phụ thuộc cục bộ</strong>: Tác vụ backup chạy bằng cron job trên chính EC2; nếu instance bị lỗi hoặc bị xóa, quy trình sao lưu và dữ liệu backup cục bộ cũng biến mất.</li>
+</ul>
+<h4 id="giải-pháp-đề-xuất">Giải pháp đề xuất</h4>
+<p>Hệ thống kết hợp giữa mô hình phân tầng truyền thống và các công nghệ Serverless / Container hiện đại:</p>
+<ul>
+<li><strong>Flow Core (2-Tier &amp; Storage)</strong>: Tách web server sang EC2 (Public Subnet) và database sang RDS (Private Subnet); dùng IAM Role để phân quyền đọc/ghi S3 không cần access key.</li>
+<li><strong>Flow HA (Load Balancing &amp; Auto Scaling)</strong>: ALB phân phối lưu lượng vào Auto Scaling Group; tự động tăng giảm instance theo ngưỡng CPU.</li>
+<li><strong>Flow Serverless (Guestbook Service)</strong>: Tách module gửi phản hồi khách hàng ra một backend phi máy chủ độc lập (API Gateway → Lambda → DynamoDB).</li>
+<li><strong>Flow Container (Automated Scheduled Backup)</strong>: Container hóa script backup database bằng Docker, lưu trên Amazon ECR, chạy tự động theo lịch trên ECS Fargate kích hoạt bởi EventBridge.</li>
+</ul>
+<hr>
+<h3 id="3-kiến-trúc-giải-pháp">3. Kiến trúc giải pháp</h3>
+<h4 id="sơ-đồ-kiến-trúc-tổng-thể">Sơ đồ kiến trúc tổng thể</h4>
+<p><em>(Vị trí chèn ảnh sơ đồ kiến trúc draw.io)</em></p>
+<h4 id="chi-tiết-4-luồng-xử-lý-chính-trong-kiến-trúc">Chi tiết 4 luồng xử lý chính trong kiến trúc:</h4>
+<ol>
+<li>
+<p><strong>Flow Web &amp; Decoupled Data (EC2 + RDS + S3)</strong></p>
+<ul>
+<li>Người dùng truy cập WordPress qua IP/DNS của Web Server trên EC2.</li>
+<li>EC2 đọc/ghi dữ liệu có cấu trúc sang Amazon RDS MySQL đặt cô lập trong Private Subnet qua cổng 3306.</li>
+<li>Toàn bộ media và ảnh tải lên được plugin đồng bộ trực tiếp lên Amazon S3 qua IAM Instance Profile.</li>
+</ul>
+</li>
+<li>
+<p><strong>Flow High Availability (ALB + ASG)</strong></p>
+<ul>
+<li>Application Load Balancer tiếp nhận lưu lượng HTTP/HTTPS tại tầng biên công khai, phân phối đều tới các instance EC2 trong Target Group.</li>
+<li>Auto Scaling Group tự động thay thế instance lỗi thông qua Health Check và tự động kích hoạt tạo thêm máy chủ khi CPU trung bình vượt ngưỡng 70%.</li>
+</ul>
+</li>
+<li>
+<p><strong>Flow Serverless Guestbook (API Gateway + Lambda + DynamoDB)</strong></p>
+<ul>
+<li>Giao diện form nhúng trên WordPress gửi request POST tới Amazon API Gateway.</li>
+<li>API Gateway kích hoạt AWS Lambda (Python 3.12) để xác thực dữ liệu và ghi bản ghi vào bảng DynamoDB.</li>
+<li>Lambda phát thông báo email tức thời qua Amazon SNS khi có lời nhắn mới.</li>
+</ul>
+</li>
+<li>
+<p><strong>Flow Containerized Scheduled Backup (Docker + ECS Fargate + EventBridge)</strong></p>
+<ul>
+<li>Amazon EventBridge Scheduler kích hoạt tác vụ sao lưu vào 02:00 AM hàng ngày.</li>
+<li>ECS Fargate kéo Docker Image từ Amazon ECR, khởi chạy container thực thi tác vụ dump dữ liệu từ RDS, nén tệp và tải lên thư mục <code>backups/</code> trên S3.</li>
+</ul>
+</li>
+</ol>
+<h4 id="dịch-vụ-aws-sử-dụng">Dịch vụ AWS sử dụng</h4>
+<ul>
+<li><strong>Amazon VPC</strong>: Phân chia mạng cô lập với 2 Public Subnets và 2 Private Subnets trên 2 AZs.</li>
+<li><strong>Amazon EC2 &amp; Auto Scaling</strong>: Cung cấp năng lực tính toán linh hoạt.</li>
+<li><strong>Amazon RDS (MySQL)</strong>: Quản trị cơ sở dữ liệu quan hệ độc lập.</li>
+<li><strong>Amazon S3</strong>: Lưu trữ đối tượng phân tán cho media và các bản backup.</li>
+<li><strong>Application Load Balancer</strong>: Cân bằng tải ứng dụng đa vùng.</li>
+<li><strong>API Gateway, Lambda, DynamoDB</strong>: Xây dựng backend serverless cho form phản hồi.</li>
+<li><strong>Amazon ECR &amp; ECS Fargate</strong>: Lưu trữ image và vận hành container không máy chủ.</li>
+<li><strong>CloudWatch, SNS &amp; CloudTrail</strong>: Giám sát chỉ số, cảnh báo tức thì và kiểm toán thao tác quản trị.</li>
+</ul>
+<hr>
+<h3 id="4-triển-khai-kỹ-thuật">4. Triển khai kỹ thuật</h3>
+<h4 id="các-giai-đoạn-triển-khai">Các giai đoạn triển khai</h4>
+<ul>
+<li><strong>Giai đoạn 1: Mạng VPC &amp; Cấu hình bảo mật</strong>
+<ul>
+<li>Khởi tạo VPC <code>10.0.0.0/16</code>, tạo 2 Public Subnets và 2 Private Subnets phân bổ trên 2 Availability Zones (<code>ap-southeast-1a</code>, <code>ap-southeast-1b</code>).</li>
+<li>Gắn Internet Gateway cho Public Subnet; Private Subnet chỉ định tuyến local. Siết chặt Security Group SSH theo IP quản trị.</li>
+</ul>
+</li>
+<li><strong>Giai đoạn 2: Nền tảng 2-Tier &amp; Dỡ tải Media</strong>
+<ul>
+<li>Cài đặt LAMP stack và WordPress trên EC2.</li>
+<li>Khởi tạo Amazon RDS MySQL trong DB Subnet Group private.</li>
+<li>Cấu hình S3 Bucket, gắn IAM Role cho EC2 để dỡ tải media lên S3.</li>
+</ul>
+</li>
+<li><strong>Giai đoạn 3: Giám sát, Cảnh báo &amp; Kiểm toán</strong>
+<ul>
+<li>Tạo CloudWatch Dashboard theo dõi <code>CPUUtilization</code> và <code>DatabaseConnections</code>.</li>
+<li>Thiết lập Alarm kích hoạt gửi email qua SNS khi tải CPU $\ge$ 80%.</li>
+<li>Rà soát nhật ký kiểm toán trên CloudTrail Event History.</li>
+</ul>
+</li>
+<li><strong>Giai đoạn 4: Mở rộng tính năng Serverless (Guestbook)</strong>
+<ul>
+<li>Tạo bảng DynamoDB <code>GuestbookMessages</code> ở chế độ Provisioned.</li>
+<li>Viết hàm AWS Lambda (Python 3.12) và tạo REST API trên API Gateway có bật CORS.</li>
+<li>Nhúng mã form vào giao diện WordPress để gọi API.</li>
+</ul>
+</li>
+<li><strong>Giai đoạn 5: Cấu hình Khả dụng cao (ALB + ASG)</strong>
+<ul>
+<li>Đóng gói EC2 thành AMI và tạo Launch Template.</li>
+<li>Thiết lập ALB kèm Target Group (Health Check path <code>/</code>) và liên kết vào Auto Scaling Group.</li>
+</ul>
+</li>
+<li><strong>Giai đoạn 6: Tự động hóa Backup bằng Container &amp; Lập lịch</strong>
+<ul>
+<li>Viết Dockerfile đóng gói script backup, đẩy image lên Amazon ECR.</li>
+<li>Tạo ECS Fargate Task Definition và cấu hình EventBridge Scheduler chạy định kỳ lúc 02:00 AM.</li>
+</ul>
+</li>
+</ul>
+<h4 id="yêu-cầu-kỹ-thuật--bảo-mật">Yêu cầu kỹ thuật &amp; Bảo mật</h4>
+<ul>
+<li><strong>Phân tầng mạng nghiêm ngặt</strong>: Database nằm hoàn toàn trong Private Subnet, không gán Public IP.</li>
+<li><strong>Bảo mật không dùng khóa tĩnh</strong>: Sử dụng IAM Instance Profile và ECS Task Role, tuyệt đối không lưu access key trên mã nguồn.</li>
+<li><strong>Nguyên tắc đặc quyền tối thiểu (Least Privilege)</strong>: Mỗi dịch vụ (Lambda, ECS, EventBridge) chỉ được cấp đúng quyền tài nguyên cần thao tác.</li>
+</ul>
+<hr>
+<h3 id="5-lộ-trình--mốc-triển-khai">5. Lộ trình &amp; Mốc triển khai</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>+-----------------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| Tuần 1 - 3: Thiết kế mạng VPC &amp; Triển khai nền tảng 2-Tier                        |
+</span></span><span style="display:flex;"><span>|   - Thiết kế VPC, Subnet, Route Table, siết Security Group SSH                   |
+</span></span><span style="display:flex;"><span>|   - Triển khai EC2 (LAMP), kết nối RDS MySQL và cấu hình S3 Media Offload         |
+</span></span><span style="display:flex;"><span>+-----------------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>                                  │
+</span></span><span style="display:flex;"><span>                                  ▼
+</span></span><span style="display:flex;"><span>+-----------------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| Tuần 4 - 5: Serverless Backend &amp; Giám sát vận hành                                |
+</span></span><span style="display:flex;"><span>|   - Phát triển API Gateway + Lambda + DynamoDB cho tính năng Guestbook            |
+</span></span><span style="display:flex;"><span>|   - Thiết lập CloudWatch Dashboard, SNS Email Alarm và kiểm toán CloudTrail       |
+</span></span><span style="display:flex;"><span>+-----------------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>                                  │
+</span></span><span style="display:flex;"><span>                                  ▼
+</span></span><span style="display:flex;"><span>+-----------------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| Tuần 6 - 8: High Availability, Container hóa tác vụ &amp; Tổng kết                    |
+</span></span><span style="display:flex;"><span>|   - Đóng gói AMI, cấu hình Application Load Balancer và Auto Scaling Group        |
+</span></span><span style="display:flex;"><span>|   - Đóng gói Docker backup, đẩy lên ECR, lập lịch chạy trên ECS Fargate           |
+</span></span><span style="display:flex;"><span>|   - Kiểm thử tích hợp toàn diện, nghiệm thu và thực hiện dọn dẹp tài nguyên       |
+</span></span><span style="display:flex;"><span>+-----------------------------------------------------------------------------------+
+</span></span></code></pre></div><hr>
+<h3 id="6-ước-tính-ngân-sách">6. Ước tính ngân sách</h3>
+<p>Dự án được cấu hình bám sát giới hạn của AWS Free Tier và định mức Always Free:</p>
+<table>
+	<thead>
+			<tr>
+					<th style="text-align: left">Dịch vụ AWS</th>
+					<th style="text-align: left">Cấu hình / Quy mô sử dụng</th>
+					<th style="text-align: left">Chi phí ước tính / Tháng (USD)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>Amazon EC2</strong></td>
+					<td style="text-align: left">1 instance t3.micro (750 giờ/tháng)</td>
+					<td style="text-align: left">$0.00 (Free Tier)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Amazon RDS</strong></td>
+					<td style="text-align: left">1 instance db.t4g.micro, 20GB SSD</td>
+					<td style="text-align: left">$0.00 (Free Tier)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Amazon S3</strong></td>
+					<td style="text-align: left">Lưu trữ media và backup (&lt; 5GB)</td>
+					<td style="text-align: left">$0.00 (Free Tier)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>AWS Lambda</strong></td>
+					<td style="text-align: left">&lt; 10,000 requests/tháng</td>
+					<td style="text-align: left">$0.00 (Always Free)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Amazon DynamoDB</strong></td>
+					<td style="text-align: left">Chế độ Provisioned: 5 RCU / 5 WCU</td>
+					<td style="text-align: left">$0.00 (Always Free)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Amazon ECS Fargate</strong></td>
+					<td style="text-align: left">0.25 vCPU / 0.5 GB RAM, chạy ~2 phút/ngày</td>
+					<td style="text-align: left">&lt; $0.05</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>CloudWatch &amp; CloudTrail</strong></td>
+					<td style="text-align: left">1 Dashboard, 1 Alarm, Event History 90 ngày</td>
+					<td style="text-align: left">$0.00 (Free Tier)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Application Load Balancer</strong></td>
+					<td style="text-align: left">Chạy kiểm thử ngắn hạn và chụp minh chứng</td>
+					<td style="text-align: left">~$0.50 - $1.00</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Tổng chi phí ước tính</strong></td>
+					<td style="text-align: left"><strong>Toàn bộ môi trường thực hành và kiểm thử</strong></td>
+					<td style="text-align: left"><strong>&lt; $1.50 USD / Tháng</strong></td>
+			</tr>
+	</tbody>
+</table>
+<blockquote>
+<p><strong>Điểm tối ưu chi phí</strong>: Không duy trì Load Balancer hay NAT Gateway chạy ngầm liên tục cả tháng. Tận dụng triệt để định mức miễn phí của RDS, DynamoDB và Lambda để đưa chi phí thực tế về gần mức $0.</p>
+</blockquote>
+<hr>
+<h3 id="7-đánh-giá-rủi-ro">7. Đánh giá rủi ro</h3>
+<table>
+	<thead>
+			<tr>
+					<th style="text-align: left">Rủi ro tiềm ẩn</th>
+					<th style="text-align: left">Mức độ ảnh hưởng</th>
+					<th style="text-align: left">Xác suất</th>
+					<th style="text-align: left">Chiến lược giảm thiểu</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>Phát sinh phí duy trì tài nguyên</strong></td>
+					<td style="text-align: left">Cao</td>
+					<td style="text-align: left">Trung bình</td>
+					<td style="text-align: left">Thiết lập AWS Budget cảnh báo ngưỡng $5.00/tháng. Xóa ALB và dọn dẹp tài nguyên theo quy trình ngay sau khi hoàn thành nghiệm thu.</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Lỗi Target Group trên ALB (0 targets)</strong></td>
+					<td style="text-align: left">Trung bình</td>
+					<td style="text-align: left">Trung bình</td>
+					<td style="text-align: left">Kiểm tra mục Load Balancing trong Integrations của ASG để đảm bảo đã gắn đúng Target Group.</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Xung đột client công cụ backup</strong></td>
+					<td style="text-align: left">Thấp</td>
+					<td style="text-align: left">Thấp</td>
+					<td style="text-align: left">Tinh chỉnh lệnh <code>mysqldump</code> trong Docker container cho phù hợp với đặc tính của Debian/MariaDB client khi giao tiếp với RDS MySQL.</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Lỗi phân quyền IAM (AccessDenied)</strong></td>
+					<td style="text-align: left">Trung bình</td>
+					<td style="text-align: left">Thấp</td>
+					<td style="text-align: left">Cấu hình đúng Trust Policy cho <code>scheduler.amazonaws.com</code> và gắn policy tối thiểu theo nguyên tắc Least Privilege.</td>
+			</tr>
+	</tbody>
+</table>
+<hr>
+<h3 id="8-kết-quả-kỳ-vọng">8. Kết quả kỳ vọng</h3>
+<ul>
+<li><strong>Hạ tầng hoàn chỉnh, hoạt động thực tế</strong>: Triển khai thành công ứng dụng WordPress phân tầng ổn định, có khả năng tự phục hồi, co giãn tự động và tách biệt hoàn toàn dữ liệu.</li>
+<li><strong>Làm chủ công nghệ Cloud đa dạng</strong>: Chứng minh năng lực ứng dụng thực tế các mảng kiến thức cốt lõi: Mạng VPC, Máy chủ EC2, Cơ sở dữ liệu RDS, Lưu trữ S3, Phi máy chủ (Lambda/DynamoDB) và Container (Docker/ECS Fargate).</li>
+<li><strong>Sẵn sàng cho báo cáo và kiểm toán</strong>: Hồ sơ thực tập đầy đủ gồm báo cáo kỹ thuật minh chứng thực tế, mã nguồn Git rõ ràng và quy trình quản trị hạ tầng an toàn, tối ưu chi phí.</li>
+</ul>
 
 
 
@@ -951,19 +1220,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1790170510"></script>
-    <script src="/js/perfect-scrollbar.min.js?1790170510"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1790170510"></script>
-    <script src="/js/jquery.sticky.js?1790170510"></script>
-    <script src="/js/featherlight.min.js?1790170510"></script>
-    <script src="/js/highlight.pack.js?1790170510"></script>
+    <script src="/js/clipboard.min.js?1790175418"></script>
+    <script src="/js/perfect-scrollbar.min.js?1790175418"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1790175418"></script>
+    <script src="/js/jquery.sticky.js?1790175418"></script>
+    <script src="/js/featherlight.min.js?1790175418"></script>
+    <script src="/js/highlight.pack.js?1790175418"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1790170510"></script>
-    <script src="/js/learn.js?1790170510"></script>
-    <script src="/js/hugo-learn.js?1790170510"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1790175418"></script>
+    <script src="/js/learn.js?1790175418"></script>
+    <script src="/js/hugo-learn.js?1790175418"></script>
 
-    <link href="/mermaid/mermaid.css?1790170510" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1790170510"></script>
+    <link href="/mermaid/mermaid.css?1790175418" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1790175418"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

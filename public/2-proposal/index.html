@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="js csstransforms3d">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.166.0">
@@ -12,21 +12,21 @@
     <title>Proposal :: Internship Report</title>
 
     
-    <link href="/css/nucleus.css?1790170510" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1790170510" rel="stylesheet">
-    <link href="/css/hybrid.css?1790170510" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1790170510" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1790170510" rel="stylesheet">
-    <link href="/css/auto-complete.css?1790170510" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1790170510" rel="stylesheet">
-    <link href="/css/theme.css?1790170510" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1790170510" rel="stylesheet">
+    <link href="/css/nucleus.css?1790175418" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1790175418" rel="stylesheet">
+    <link href="/css/hybrid.css?1790175418" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1790175418" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1790175418" rel="stylesheet">
+    <link href="/css/auto-complete.css?1790175418" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1790175418" rel="stylesheet">
+    <link href="/css/theme.css?1790175418" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1790175418" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1790170510" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1790175418" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1790170510"></script>
+    <script src="/js/jquery-3.3.1.min.js?1790175418"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1790170510"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1790170510"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1790175418"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1790175418"></script>
 <script type="text/javascript">
     
-        var baseurl = "\/";
+        var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1790170510"></script>
+<script type="text/javascript" src="/js/search.js?1790175418"></script>
 
     
   </div>
@@ -524,9 +524,9 @@
           <div class="select-style">
             <select id="select-language" onchange="location = this.value;">
           
-              <option id="en" value="/2-proposal/" selected>English</option>
+              <option id="en" value="//localhost:1313/2-proposal/" selected>English</option>
           
-              <option id="vi" value="/vi/2-proposal/" >Tiếng Việt</option>
+              <option id="vi" value="//localhost:1313/vi/2-proposal/" >Tiếng Việt</option>
           
         </select>
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -620,7 +620,23 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#project-proposal-comprehensive-wordpress-infrastructure-on-aws-from-2-tier-to-serverless-high-availability-and-containerization">Project Proposal: Comprehensive WordPress Infrastructure on AWS: From 2-Tier to Serverless, High Availability, and Containerization</a></li>
+        <li><a href="#1-executive-summary">1. Executive Summary</a></li>
+        <li><a href="#2-problem-statement">2. Problem Statement</a></li>
+        <li><a href="#3-solution-architecture">3. Solution Architecture</a></li>
+        <li><a href="#4-technical-implementation">4. Technical Implementation</a></li>
+        <li><a href="#5-roadmap--milestones">5. Roadmap &amp; Milestones</a></li>
+        <li><a href="#6-budget--cost-estimation">6. Budget &amp; Cost Estimation</a></li>
+        <li><a href="#7-risk-assessment--mitigation">7. Risk Assessment &amp; Mitigation</a></li>
+        <li><a href="#8-expected-outcomes">8. Expected Outcomes</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -644,7 +660,251 @@
 
 
 
-	<h1 id="proposal">Proposal</h1>
+	<h3 id="project-proposal-comprehensive-wordpress-infrastructure-on-aws-from-2-tier-to-serverless-high-availability-and-containerization">Project Proposal: Comprehensive WordPress Infrastructure on AWS: From 2-Tier to Serverless, High Availability, and Containerization</h3>
+<hr>
+<h3 id="1-executive-summary">1. Executive Summary</h3>
+<p>This proposal presents a solution for modernizing WordPress web systems on the AWS cloud platform. Instead of an all-in-one monolith deployment on a single instance that poses security risks and single points of failure, this project designs a layered architecture following the AWS Well-Architected Framework:</p>
+<ul>
+<li><strong>Decoupled 2-Tier &amp; Storage</strong>: Decouple the web server (EC2) from the database (RDS MySQL) and offload static media to Amazon S3.</li>
+<li><strong>Elastic Scalability (High Availability)</strong>: Implement an Application Load Balancer (ALB) and Auto Scaling Group (ASG) to dynamically balance load and scale based on traffic.</li>
+<li><strong>Serverless Backend</strong>: Build a standalone Guestbook service using API Gateway, Lambda, and DynamoDB.</li>
+<li><strong>Container Automation</strong>: Package automated database backups into Docker containers executed serverless on ECS Fargate via EventBridge Scheduler, replacing legacy local crons.</li>
+</ul>
+<hr>
+<h3 id="2-problem-statement">2. Problem Statement</h3>
+<h4 id="current-pain-points">Current Pain Points</h4>
+<ul>
+<li><strong>Single Point of Failure (SPOF)</strong>: Hosting both web server and database on a single instance leads to complete downtime during memory exhaustion or CPU spikes.</li>
+<li><strong>Security Vulnerabilities</strong>: Direct exposure of database and SSH ports to the public internet; hardcoding static access keys inside application source code poses credential leakage risks.</li>
+<li><strong>Lack of Elasticity</strong>: Monolithic instances cannot automatically scale during traffic surges, causing network bottlenecks or service outages.</li>
+<li><strong>Brittle Local Backups</strong>: Backup cron jobs running directly on EC2 instances mean that instance termination or disk failure destroys both backup routines and local archive files.</li>
+</ul>
+<h4 id="proposed-solution">Proposed Solution</h4>
+<p>A modern hybrid architecture combining decoupled multi-tier topology with Serverless and Container technologies:</p>
+<ul>
+<li><strong>Core Flow (2-Tier &amp; Storage)</strong>: Place web servers on EC2 in Public Subnets and databases on RDS in isolated Private Subnets; attach IAM Roles for seamless S3 media offloading without static keys.</li>
+<li><strong>High Availability Flow (ALB &amp; ASG)</strong>: ALB distributes incoming traffic across an Auto Scaling Group, dynamically provisioning or terminating instances based on CPU metrics.</li>
+<li><strong>Serverless Flow (Guestbook Service)</strong>: Decouple feedback workflows into a fully serverless pipeline (API Gateway → Lambda → DynamoDB).</li>
+<li><strong>Container Flow (Automated Scheduled Backup)</strong>: Containerize database backup routines with Docker, push images to Amazon ECR, and execute on-demand via ECS Fargate triggered by EventBridge.</li>
+</ul>
+<hr>
+<h3 id="3-solution-architecture">3. Solution Architecture</h3>
+<h4 id="overall-architecture-diagram">Overall Architecture Diagram</h4>
+<p><em>(Architecture diagram placeholder)</em></p>
+<h4 id="4-core-processing-flows">4 Core Processing Flows:</h4>
+<ol>
+<li>
+<p><strong>Web &amp; Decoupled Data Flow (EC2 + RDS + S3)</strong></p>
+<ul>
+<li>End-users access WordPress via the public DNS/IP of the EC2 Web Server.</li>
+<li>EC2 reads and writes structured data to an isolated Amazon RDS MySQL instance in the Private Subnet over port 3306.</li>
+<li>All media uploads are automatically offloaded directly to Amazon S3 through an attached IAM Instance Profile.</li>
+</ul>
+</li>
+<li>
+<p><strong>High Availability Flow (ALB + ASG)</strong></p>
+<ul>
+<li>Application Load Balancer terminates HTTP/HTTPS traffic at the edge and forwards requests across healthy EC2 targets.</li>
+<li>Auto Scaling Group replaces unhealthy instances automatically and scales out when average CPU utilization exceeds 70%.</li>
+</ul>
+</li>
+<li>
+<p><strong>Serverless Guestbook Flow (API Gateway + Lambda + DynamoDB)</strong></p>
+<ul>
+<li>Embedded frontend forms submit POST requests to Amazon API Gateway.</li>
+<li>API Gateway invokes AWS Lambda (Python 3.12) to validate data and persist records into Amazon DynamoDB.</li>
+<li>Lambda triggers real-time email notifications via Amazon SNS upon receiving new entries.</li>
+</ul>
+</li>
+<li>
+<p><strong>Containerized Scheduled Backup Flow (Docker + ECS Fargate + EventBridge)</strong></p>
+<ul>
+<li>Amazon EventBridge Scheduler fires scheduled backup events daily at 02:00 AM.</li>
+<li>ECS Fargate pulls the backup container image from Amazon ECR, executes <code>mysqldump</code>, compresses files, and uploads archives to the <code>backups/</code> prefix on S3.</li>
+</ul>
+</li>
+</ol>
+<h4 id="aws-services-utilized">AWS Services Utilized</h4>
+<ul>
+<li><strong>Amazon VPC</strong>: Isolated networking with 2 Public Subnets and 2 Private Subnets spanning 2 Availability Zones.</li>
+<li><strong>Amazon EC2 &amp; Auto Scaling</strong>: Elastic compute infrastructure.</li>
+<li><strong>Amazon RDS (MySQL)</strong>: Managed relational database tier.</li>
+<li><strong>Amazon S3</strong>: Scalable object storage for media and automated database backups.</li>
+<li><strong>Application Load Balancer</strong>: Layer 7 load balancing across multiple AZs.</li>
+<li><strong>API Gateway, Lambda, DynamoDB</strong>: Event-driven serverless feedback backend.</li>
+<li><strong>Amazon ECR &amp; ECS Fargate</strong>: Serverless container hosting and task orchestration.</li>
+<li><strong>CloudWatch, SNS &amp; CloudTrail</strong>: Monitoring metrics, alerting, and governance auditing.</li>
+</ul>
+<hr>
+<h3 id="4-technical-implementation">4. Technical Implementation</h3>
+<h4 id="implementation-phases">Implementation Phases</h4>
+<ul>
+<li><strong>Phase 1: VPC Networking &amp; Security Baseline</strong>
+<ul>
+<li>Provision VPC <code>10.0.0.0/16</code> with dual Public and Private Subnets across <code>ap-southeast-1a</code> and <code>ap-southeast-1b</code>.</li>
+<li>Attach Internet Gateway to Public Subnets; restrict Private Subnets to local routing. Harden SSH security group ingress rules.</li>
+</ul>
+</li>
+<li><strong>Phase 2: 2-Tier Foundation &amp; Media Offloading</strong>
+<ul>
+<li>Install LAMP stack and WordPress on EC2.</li>
+<li>Launch Amazon RDS MySQL within a private DB Subnet Group.</li>
+<li>Create Amazon S3 bucket and attach IAM Instance Profile to EC2 for media offloading.</li>
+</ul>
+</li>
+<li><strong>Phase 3: Observability, Alerting &amp; Auditing</strong>
+<ul>
+<li>Build CloudWatch Dashboard monitoring <code>CPUUtilization</code> and <code>DatabaseConnections</code>.</li>
+<li>Configure SNS-backed alarms triggering alerts when CPU utilization reaches $\ge$ 80%.</li>
+<li>Audit control-plane operations via CloudTrail Event History.</li>
+</ul>
+</li>
+<li><strong>Phase 4: Serverless Feature Extension (Guestbook)</strong>
+<ul>
+<li>Create <code>GuestbookMessages</code> table in DynamoDB (Provisioned mode).</li>
+<li>Develop AWS Lambda handler (Python 3.12) and expose via CORS-enabled REST API Gateway.</li>
+<li>Embed frontend form into WordPress theme to consume backend endpoints.</li>
+</ul>
+</li>
+<li><strong>Phase 5: High Availability (ALB + ASG)</strong>
+<ul>
+<li>Create customized AMI from EC2 instance and formulate Launch Template.</li>
+<li>Provision ALB, configure Target Group health checks (<code>/</code>), and register with Auto Scaling Group.</li>
+</ul>
+</li>
+<li><strong>Phase 6: Containerized Backup Automation</strong>
+<ul>
+<li>Craft Dockerfile packaging database backup scripts and push image to Amazon ECR.</li>
+<li>Configure ECS Fargate Task Definition and schedule automated cron execution via EventBridge.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="5-roadmap--milestones">5. Roadmap &amp; Milestones</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>+-----------------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| Weeks 1 - 3: VPC Architecture &amp; 2-Tier Foundation                                 |
+</span></span><span style="display:flex;"><span>|   - Design VPC, Subnets, Routing, and secure Security Groups                     |
+</span></span><span style="display:flex;"><span>|   - Deploy EC2 (LAMP), establish RDS MySQL connectivity, configure S3 Offload    |
+</span></span><span style="display:flex;"><span>+-----------------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>                                  │
+</span></span><span style="display:flex;"><span>                                  ▼
+</span></span><span style="display:flex;"><span>+-----------------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| Weeks 4 - 5: Serverless Backend &amp; Operational Observability                       |
+</span></span><span style="display:flex;"><span>|   - Develop API Gateway + Lambda + DynamoDB for Guestbook service                |
+</span></span><span style="display:flex;"><span>|   - Build CloudWatch Dashboards, SNS Alarms, and configure CloudTrail audits      |
+</span></span><span style="display:flex;"><span>+-----------------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>                                  │
+</span></span><span style="display:flex;"><span>                                  ▼
+</span></span><span style="display:flex;"><span>+-----------------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| Weeks 6 - 8: High Availability, Container Automation &amp; Final Wrap-up              |
+</span></span><span style="display:flex;"><span>|   - Create AMI, deploy Application Load Balancer and Auto Scaling Group           |
+</span></span><span style="display:flex;"><span>|   - Containerize backup scripts, deploy on ECR/ECS Fargate with EventBridge       |
+</span></span><span style="display:flex;"><span>|   - End-to-end integration testing, evaluation, and resource cleanup              |
+</span></span><span style="display:flex;"><span>+-----------------------------------------------------------------------------------+
+</span></span></code></pre></div><hr>
+<h3 id="6-budget--cost-estimation">6. Budget &amp; Cost Estimation</h3>
+<p>The project is aligned with AWS Free Tier and Always Free allowances:</p>
+<table>
+	<thead>
+			<tr>
+					<th style="text-align: left">AWS Service</th>
+					<th style="text-align: left">Configuration / Usage Scale</th>
+					<th style="text-align: left">Estimated Monthly Cost (USD)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>Amazon EC2</strong></td>
+					<td style="text-align: left">1 instance t3.micro (750 hours/month)</td>
+					<td style="text-align: left">$0.00 (Free Tier)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Amazon RDS</strong></td>
+					<td style="text-align: left">1 instance db.t4g.micro, 20GB SSD</td>
+					<td style="text-align: left">$0.00 (Free Tier)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Amazon S3</strong></td>
+					<td style="text-align: left">Media and backup storage (&lt; 5GB)</td>
+					<td style="text-align: left">$0.00 (Free Tier)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>AWS Lambda</strong></td>
+					<td style="text-align: left">&lt; 10,000 requests/month</td>
+					<td style="text-align: left">$0.00 (Always Free)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Amazon DynamoDB</strong></td>
+					<td style="text-align: left">Provisioned mode: 5 RCU / 5 WCU</td>
+					<td style="text-align: left">$0.00 (Always Free)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Amazon ECS Fargate</strong></td>
+					<td style="text-align: left">0.25 vCPU / 0.5 GB RAM, ~2 mins/day</td>
+					<td style="text-align: left">&lt; $0.05</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>CloudWatch &amp; CloudTrail</strong></td>
+					<td style="text-align: left">1 Dashboard, 1 Alarm, 90-day Event History</td>
+					<td style="text-align: left">$0.00 (Free Tier)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Application Load Balancer</strong></td>
+					<td style="text-align: left">Short-term testing and artifact verification</td>
+					<td style="text-align: left">~$0.50 - $1.00</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Estimated Total</strong></td>
+					<td style="text-align: left"><strong>Full development and testing environment</strong></td>
+					<td style="text-align: left"><strong>&lt; $1.50 USD / Month</strong></td>
+			</tr>
+	</tbody>
+</table>
+<hr>
+<h3 id="7-risk-assessment--mitigation">7. Risk Assessment &amp; Mitigation</h3>
+<table>
+	<thead>
+			<tr>
+					<th style="text-align: left">Potential Risk</th>
+					<th style="text-align: left">Impact</th>
+					<th style="text-align: left">Probability</th>
+					<th style="text-align: left">Mitigation Strategy</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>Unexpected AWS Charges</strong></td>
+					<td style="text-align: left">High</td>
+					<td style="text-align: left">Medium</td>
+					<td style="text-align: left">Configure AWS Budget alerts at $5.00/month. Delete ALBs and teardown testing workloads immediately after review.</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>ALB Target Group Empty (0 targets)</strong></td>
+					<td style="text-align: left">Medium</td>
+					<td style="text-align: left">Medium</td>
+					<td style="text-align: left">Verify Load Balancing integrations in ASG settings to ensure proper Target Group association.</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>Database Client Version Mismatch</strong></td>
+					<td style="text-align: left">Low</td>
+					<td style="text-align: left">Low</td>
+					<td style="text-align: left">Tailor <code>mysqldump</code> flags in Docker container to maintain compatibility with MySQL 8.0 / MariaDB.</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>IAM Permission Denied Errors</strong></td>
+					<td style="text-align: left">Medium</td>
+					<td style="text-align: left">Low</td>
+					<td style="text-align: left">Maintain correct Trust Policies for <code>scheduler.amazonaws.com</code> and enforce Least Privilege.</td>
+			</tr>
+	</tbody>
+</table>
+<hr>
+<h3 id="8-expected-outcomes">8. Expected Outcomes</h3>
+<ul>
+<li><strong>Robust, Production-Grade Architecture</strong>: Successfully operationalize a resilient, self-healing, decoupled WordPress deployment on AWS.</li>
+<li><strong>Demonstrated Multi-Domain Competency</strong>: Proven hands-on proficiency across VPC networking, EC2 compute, RDS databases, S3 object storage, Serverless functions, and Container orchestration.</li>
+<li><strong>Audit-Ready Internship Deliverables</strong>: Comprehensive technical documentation, version-controlled infrastructure code, and rigorous cost-optimization strategies.</li>
+</ul>
 
 
 
@@ -951,19 +1211,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1790170510"></script>
-    <script src="/js/perfect-scrollbar.min.js?1790170510"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1790170510"></script>
-    <script src="/js/jquery.sticky.js?1790170510"></script>
-    <script src="/js/featherlight.min.js?1790170510"></script>
-    <script src="/js/highlight.pack.js?1790170510"></script>
+    <script src="/js/clipboard.min.js?1790175418"></script>
+    <script src="/js/perfect-scrollbar.min.js?1790175418"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1790175418"></script>
+    <script src="/js/jquery.sticky.js?1790175418"></script>
+    <script src="/js/featherlight.min.js?1790175418"></script>
+    <script src="/js/highlight.pack.js?1790175418"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1790170510"></script>
-    <script src="/js/learn.js?1790170510"></script>
-    <script src="/js/hugo-learn.js?1790170510"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1790175418"></script>
+    <script src="/js/learn.js?1790175418"></script>
+    <script src="/js/hugo-learn.js?1790175418"></script>
 
-    <link href="/mermaid/mermaid.css?1790170510" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1790170510"></script>
+    <link href="/mermaid/mermaid.css?1790175418" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1790175418"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

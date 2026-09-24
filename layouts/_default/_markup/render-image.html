@@ -1,0 +1,23 @@
+{{- $destination := .Destination -}}
+{{- $classes := "" -}}
+
+{{- /* Tách phần query string (?classes=...) ra khỏi đường dẫn ảnh */ -}}
+{{- if strings.Contains $destination "?" -}}
+  {{- $parts := split $destination "?" -}}
+  {{- $destination = index $parts 0 -}}
+  {{- $query := index $parts 1 -}}
+  {{- range (split $query "&") -}}
+    {{- $kv := split . "=" -}}
+    {{- if and (ge (len $kv) 2) (eq (index $kv 0) "classes") -}}
+      {{- $classes = index $kv 1 | replaceRE "," " " -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Nếu là link ngoài (http/https) thì giữ nguyên, nếu là link nội bộ thì cho qua relURL để tự cộng đúng baseURL/subpath */ -}}
+{{- $url := $destination -}}
+{{- if not (or (strings.HasPrefix $destination "http://") (strings.HasPrefix $destination "https://")) -}}
+  {{- $url = $destination | relURL -}}
+{{- end -}}
+
+<img src="{{ $url }}" alt="{{ .Text }}"{{ with $classes }} class="{{ . }}"{{ end }}{{ with .Title }} title="{{ . }}"{{ end }} />

@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Serverless Backend (Lambda, API Gateway, DynamoDB) :: Internship Report</title>
+    <title>Serverless Backend: Lambda, API Gateway, DynamoDB :: Internship Report</title>
 
     
-    <link href="/css/nucleus.css?1790181345" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1790181345" rel="stylesheet">
-    <link href="/css/hybrid.css?1790181345" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1790181345" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1790181345" rel="stylesheet">
-    <link href="/css/auto-complete.css?1790181345" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1790181345" rel="stylesheet">
-    <link href="/css/theme.css?1790181345" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1790181345" rel="stylesheet">
+    <link href="/css/nucleus.css?1790240289" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1790240289" rel="stylesheet">
+    <link href="/css/hybrid.css?1790240289" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1790240289" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1790240289" rel="stylesheet">
+    <link href="/css/auto-complete.css?1790240289" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1790240289" rel="stylesheet">
+    <link href="/css/theme.css?1790240289" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1790240289" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1790181345" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1790240289" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1790181345"></script>
+    <script src="/js/jquery-3.3.1.min.js?1790240289"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1790181345"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1790181345"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1790240289"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1790240289"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1790181345"></script>
+<script type="text/javascript" src="/js/search.js?1790240289"></script>
 
     
   </div>
@@ -453,13 +453,13 @@
  
   
     
-    <li data-nav-id="/5-workshop/5.1-environment-and-architecture/" title="Environment Setup &amp; Architectural Overview" class="dd-item 
+    <li data-nav-id="/5-workshop/5.1-environment-and-region/" title="Environment Setup &amp; Region Selection" class="dd-item 
         
         
         
         ">
-      <a href="/5-workshop/5.1-environment-and-architecture/">
-           <b> 5.1. </b> Environment Setup &amp; Architectural Overview
+      <a href="/5-workshop/5.1-environment-and-region/">
+           <b> 5.1. </b> Environment Setup &amp; Region Selection
           
             <i class="fas fa-check read-icon"></i>
           
@@ -481,24 +481,27 @@
  
   
     
-    <li data-nav-id="/5-workshop/5.2-networking-vpc/" title="Networking Infrastructure (VPC, Subnet, IGW)" class="dd-item 
+    <li data-nav-id="/5-workshop/5.2-networking-vpc/" title="Networking Infrastructure (VPC, Subnets, Internet Gateway)" class="dd-item 
         
         
         
         ">
       <a href="/5-workshop/5.2-networking-vpc/">
-           <b> 5.2. </b> Networking Infrastructure (VPC, Subnet, IGW)
+           <b> 5.2. </b> Networking Infrastructure (VPC, Subnets, Internet Gateway)
           
             <i class="fas fa-check read-icon"></i>
           
       </a>
       
-              
-    </li>
-  
- 
-
+      
+        <ul>
+          
+          
             
+          
+          
+          
+        
           
             
             
@@ -509,13 +512,13 @@
  
   
     
-    <li data-nav-id="/5-workshop/5.3-compute-database-storage/" title="Compute, Database &amp; Storage (EC2, RDS, S3, IAM)" class="dd-item 
+    <li data-nav-id="/5-workshop/5.2-networking-vpc/5.2.1-create-vpc/" title="Create VPC" class="dd-item 
         
         
         
         ">
-      <a href="/5-workshop/5.3-compute-database-storage/">
-           <b> 5.3. </b> Compute, Database &amp; Storage (EC2, RDS, S3, IAM)
+      <a href="/5-workshop/5.2-networking-vpc/5.2.1-create-vpc/">
+           <b> 5.2.1. </b> Create VPC
           
             <i class="fas fa-check read-icon"></i>
           
@@ -537,13 +540,13 @@
  
   
     
-    <li data-nav-id="/5-workshop/5.4-monitoring-and-auditing/" title="Observability &amp; Auditing (CloudWatch, SNS, CloudTrail)" class="dd-item 
+    <li data-nav-id="/5-workshop/5.2-networking-vpc/5.2.2-create-subnets/" title="Create 4 Subnets" class="dd-item 
         
         
         
         ">
-      <a href="/5-workshop/5.4-monitoring-and-auditing/">
-           <b> 5.4. </b> Observability &amp; Auditing (CloudWatch, SNS, CloudTrail)
+      <a href="/5-workshop/5.2-networking-vpc/5.2.2-create-subnets/">
+           <b> 5.2.2. </b> Create 4 Subnets
           
             <i class="fas fa-check read-icon"></i>
           
@@ -565,13 +568,385 @@
  
   
     
-    <li data-nav-id="/5-workshop/5.5-serverless-backend/" title="Serverless Backend (Lambda, API Gateway, DynamoDB)" class="dd-item 
+    <li data-nav-id="/5-workshop/5.2-networking-vpc/5.2.3-internet-gateway-route-table/" title="Internet Gateway &amp; Route Table" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.2-networking-vpc/5.2.3-internet-gateway-route-table/">
+           <b> 5.2.3. </b> Internet Gateway &amp; Route Table
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.2-networking-vpc/5.2.4-security-groups/" title="Security Groups" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.2-networking-vpc/5.2.4-security-groups/">
+           <b> 5.2.4. </b> Security Groups
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.3-wordpress-ec2-rds-s3-iam/" title="WordPress Deployment: EC2, RDS, S3, IAM" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.3-wordpress-ec2-rds-s3-iam/">
+           <b> 5.3. </b> WordPress Deployment: EC2, RDS, S3, IAM
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.1-create-rds-mysql/" title="Create Amazon RDS for MySQL" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.1-create-rds-mysql/">
+           <b> 5.3.1. </b> Create Amazon RDS for MySQL
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.2-create-ec2-install-wordpress/" title="Launch EC2 &amp; Install WordPress" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.2-create-ec2-install-wordpress/">
+           <b> 5.3.2. </b> Launch EC2 &amp; Install WordPress
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.3-iam-role-for-ec2/" title="IAM Role for EC2 (Least Privilege)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.3-iam-role-for-ec2/">
+           <b> 5.3.3. </b> IAM Role for EC2 (Least Privilege)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.4-s3-offload-media/" title="Amazon S3 &amp; Offload Media" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.4-s3-offload-media/">
+           <b> 5.3.4. </b> Amazon S3 &amp; Offload Media
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/" title="Monitoring &amp; Auditing: CloudWatch, SNS, CloudTrail" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/">
+           <b> 5.4. </b> Monitoring &amp; Auditing: CloudWatch, SNS, CloudTrail
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.1-cloudwatch-dashboard-alarm/" title="CloudWatch Dashboard &amp; Alarm" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.1-cloudwatch-dashboard-alarm/">
+           <b> 5.4.1. </b> CloudWatch Dashboard &amp; Alarm
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.2-amazon-sns/" title="Amazon SNS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.2-amazon-sns/">
+           <b> 5.4.2. </b> Amazon SNS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.3-aws-cloudtrail/" title="AWS CloudTrail" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.3-aws-cloudtrail/">
+           <b> 5.4.3. </b> AWS CloudTrail
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.5-serverless-backend/" title="Serverless Backend: Lambda, API Gateway, DynamoDB" class="dd-item 
         
         active
         
         ">
       <a href="/5-workshop/5.5-serverless-backend/">
-           <b> 5.5. </b> Serverless Backend (Lambda, API Gateway, DynamoDB)
+           <b> 5.5. </b> Serverless Backend: Lambda, API Gateway, DynamoDB
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.5-serverless-backend/5.5.1-create-dynamodb-table/" title="Create DynamoDB Table" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.5-serverless-backend/5.5.1-create-dynamodb-table/">
+           <b> 5.5.1. </b> Create DynamoDB Table
           
             <i class="fas fa-check read-icon"></i>
           
@@ -593,13 +968,137 @@
  
   
     
-    <li data-nav-id="/5-workshop/5.6-high-availability-alb-asg/" title="High Availability (ALB &amp; Auto Scaling)" class="dd-item 
+    <li data-nav-id="/5-workshop/5.5-serverless-backend/5.5.2-iam-role-lambda-function/" title="IAM Role &amp; AWS Lambda Function" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.5-serverless-backend/5.5.2-iam-role-lambda-function/">
+           <b> 5.5.2. </b> IAM Role &amp; AWS Lambda Function
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.5-serverless-backend/5.5.3-api-gateway-rest-api/" title="Amazon API Gateway (REST API)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.5-serverless-backend/5.5.3-api-gateway-rest-api/">
+           <b> 5.5.3. </b> Amazon API Gateway (REST API)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.5-serverless-backend/5.5.4-embed-form-wordpress/" title="Embed Form into WordPress" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.5-serverless-backend/5.5.4-embed-form-wordpress/">
+           <b> 5.5.4. </b> Embed Form into WordPress
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.6-high-availability-alb-asg/" title="High Availability: Load Balancer &amp; Auto Scaling" class="dd-item 
         
         
         
         ">
       <a href="/5-workshop/5.6-high-availability-alb-asg/">
-           <b> 5.6. </b> High Availability (ALB &amp; Auto Scaling)
+           <b> 5.6. </b> High Availability: Load Balancer &amp; Auto Scaling
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.6-high-availability-alb-asg/5.6.1-package-ec2-to-ami/" title="Package EC2 into AMI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.6-high-availability-alb-asg/5.6.1-package-ec2-to-ami/">
+           <b> 5.6.1. </b> Package EC2 into AMI
           
             <i class="fas fa-check read-icon"></i>
           
@@ -621,18 +1120,235 @@
  
   
     
-    <li data-nav-id="/5-workshop/5.7-container-and-automation/" title="Containerization &amp; Automation (Docker, ECS, EventBridge)" class="dd-item 
+    <li data-nav-id="/5-workshop/5.6-high-availability-alb-asg/5.6.2-launch-template/" title="Launch Template" class="dd-item 
         
         
         
         ">
-      <a href="/5-workshop/5.7-container-and-automation/">
-           <b> 5.7. </b> Containerization &amp; Automation (Docker, ECS, EventBridge)
+      <a href="/5-workshop/5.6-high-availability-alb-asg/5.6.2-launch-template/">
+           <b> 5.6.2. </b> Launch Template
           
             <i class="fas fa-check read-icon"></i>
           
       </a>
       
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.6-high-availability-alb-asg/5.6.3-alb-target-group/" title="Application Load Balancer &amp; Target Group" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.6-high-availability-alb-asg/5.6.3-alb-target-group/">
+           <b> 5.6.3. </b> Application Load Balancer &amp; Target Group
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.6-high-availability-alb-asg/5.6.4-auto-scaling-group/" title="Auto Scaling Group" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.6-high-availability-alb-asg/5.6.4-auto-scaling-group/">
+           <b> 5.6.4. </b> Auto Scaling Group
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.7-container-ecs-eventbridge/" title="Containerization &amp; Automation: Docker, ECS Fargate, EventBridge" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.7-container-ecs-eventbridge/">
+           <b> 5.7. </b> Containerization &amp; Automation: Docker, ECS Fargate, EventBridge
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.7-container-ecs-eventbridge/5.7.1-docker-image-packaging/" title="Docker Image Packaging" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.7-container-ecs-eventbridge/5.7.1-docker-image-packaging/">
+           <b> 5.7.1. </b> Docker Image Packaging
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.7-container-ecs-eventbridge/5.7.2-push-image-to-ecr/" title="Push Image to Amazon ECR" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.7-container-ecs-eventbridge/5.7.2-push-image-to-ecr/">
+           <b> 5.7.2. </b> Push Image to Amazon ECR
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.7-container-ecs-eventbridge/5.7.3-iam-roles-ecs-task-definition/" title="IAM Roles &amp; ECS Task Definition" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.7-container-ecs-eventbridge/5.7.3-iam-roles-ecs-task-definition/">
+           <b> 5.7.3. </b> IAM Roles &amp; ECS Task Definition
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.7-container-ecs-eventbridge/5.7.4-manual-test-eventbridge-scheduler/" title="Manual Run &amp; EventBridge Scheduler" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.7-container-ecs-eventbridge/5.7.4-manual-test-eventbridge-scheduler/">
+           <b> 5.7.4. </b> Manual Run &amp; EventBridge Scheduler
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
               
     </li>
   
@@ -661,6 +1377,186 @@
           
       </a>
       
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.8-resource-cleanup/5.8.1-delete-eventbridge-ecs/" title="Delete EventBridge Scheduler &amp; ECS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.8-resource-cleanup/5.8.1-delete-eventbridge-ecs/">
+           <b> 5.8.1. </b> Delete EventBridge Scheduler &amp; ECS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.8-resource-cleanup/5.8.2-delete-high-availability/" title="Teardown High Availability Stack" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.8-resource-cleanup/5.8.2-delete-high-availability/">
+           <b> 5.8.2. </b> Teardown High Availability Stack
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.8-resource-cleanup/5.8.3-delete-serverless/" title="Remove Serverless Stack" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.8-resource-cleanup/5.8.3-delete-serverless/">
+           <b> 5.8.3. </b> Remove Serverless Stack
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.8-resource-cleanup/5.8.4-delete-monitoring/" title="Delete Monitoring Configuration" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.8-resource-cleanup/5.8.4-delete-monitoring/">
+           <b> 5.8.4. </b> Delete Monitoring Configuration
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.8-resource-cleanup/5.8.5-delete-database-compute-storage/" title="Delete Database, Compute &amp; Storage" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.8-resource-cleanup/5.8.5-delete-database-compute-storage/">
+           <b> 5.8.5. </b> Delete Database, Compute &amp; Storage
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/5-workshop/5.8-resource-cleanup/5.8.6-delete-networking-iam/" title="Delete Networking &amp; IAM" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/5-workshop/5.8-resource-cleanup/5.8.6-delete-networking-iam/">
+           <b> 5.8.6. </b> Delete Networking &amp; IAM
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
               
     </li>
   
@@ -849,7 +1745,7 @@
             
           
           
-            <a href='/'>Internship Report</a> > <a href='/5-workshop/'>Workshop</a> > Serverless Backend (Lambda, API Gateway, DynamoDB)
+            <a href='/'>Internship Report</a> > <a href='/5-workshop/'>Workshop</a> > Serverless Backend: Lambda, API Gateway, DynamoDB
           
         
           
@@ -862,15 +1758,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#55-serverless-backend-lambda-api-gateway-dynamodb">5.5. Serverless Backend: Lambda, API Gateway, DynamoDB</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
     </div>
 </div>
 
@@ -886,7 +1774,7 @@
           
             <h1>
               
-              Serverless Backend (Lambda, API Gateway, DynamoDB)
+              Serverless Backend: Lambda, API Gateway, DynamoDB
             </h1>
           
 
@@ -894,53 +1782,13 @@
 
 
 
-	<h3 id="55-serverless-backend-lambda-api-gateway-dynamodb">5.5. Serverless Backend: Lambda, API Gateway, DynamoDB</h3>
-<p>Independent serverless Guestbook pipeline deployed alongside WordPress.</p>
-<h4 id="551-dynamodb-table-provisioning">5.5.1. DynamoDB Table Provisioning</h4>
+	<p>Build an independent serverless Guestbook feature running decoupled alongside WordPress:</p>
 <ul>
-<li><strong>Table</strong>: <code>GuestbookMessages</code>, Partition key: <code>id</code> (String), Capacity mode: Provisioned 5 RCU / 5 WCU.</li>
+<li><a href="/5-workshop/5.5-serverless-backend/5.5.1-create-dynamodb-table/">5.5.1. DynamoDB Table Creation</a></li>
+<li><a href="/5-workshop/5.5-serverless-backend/5.5.2-iam-role-lambda-function/">5.5.2. IAM Role &amp; Lambda Function</a></li>
+<li><a href="/5-workshop/5.5-serverless-backend/5.5.3-api-gateway-rest-api/">5.5.3. Amazon API Gateway (REST API)</a></li>
+<li><a href="/5-workshop/5.5-serverless-backend/5.5.4-embed-form-wordpress/">5.5.4. WordPress Frontend Form Embed</a></li>
 </ul>
-<blockquote>
-<p>📷 <strong>Artifact</strong>: DynamoDB table configuration dashboard.</p>
-</blockquote>
-<h4 id="552-scoped-iam-roles-for-lambda">5.5.2. Scoped IAM Roles for Lambda</h4>
-<ul>
-<li><strong>Policy <code>GuestbookLambdaPolicy</code></strong>: <code>dynamodb:PutItem</code>, <code>sns:Publish</code>, CloudWatch logging.</li>
-<li><strong>Role</strong>: <code>GuestbookLambdaRole</code>.</li>
-</ul>
-<blockquote>
-<p>📷 <strong>Artifact</strong>: Lambda execution role JSON policy.</p>
-</blockquote>
-<h4 id="553-aws-lambda-function-implementation">5.5.3. AWS Lambda Function Implementation</h4>
-<ul>
-<li><strong>Function</strong>: <code>GuestbookHandler</code>, Runtime Python 3.12.</li>
-<li><strong>Flow</strong>: Parses input payload, validates fields, writes item to DynamoDB, triggers SNS notification.</li>
-</ul>
-<blockquote>
-<p>📷 <strong>Artifact</strong>: Lambda code console and CloudWatch log execution stream.</p>
-</blockquote>
-<h4 id="554-amazon-api-gateway-integration">5.5.4. Amazon API Gateway Integration</h4>
-<ul>
-<li><strong>API</strong>: <code>GuestbookAPI</code> (REST), resource <code>/guestbook</code>, method POST with CORS enabled.</li>
-<li><strong>Stage</strong>: <code>prod</code>.</li>
-</ul>
-<blockquote>
-<p>📷 <strong>Artifact</strong>: Method execution overview and API deployment stage URL.</p>
-</blockquote>
-<h4 id="555-wordpress-frontend-form-embed">5.5.5. WordPress Frontend Form Embed</h4>
-<ul>
-<li>Integrated via Custom HTML block calling backend endpoint via JavaScript <code>fetch()</code>.</li>
-</ul>
-<blockquote>
-<p>📷 <strong>Artifact</strong>: Rendered guestbook submission interface on WordPress frontend.</p>
-</blockquote>
-<h4 id="556-end-to-end-validation">5.5.6. End-to-End Validation</h4>
-<ul>
-<li>Form submission verification in DynamoDB table explorer and inbox receipt of SNS alert.</li>
-</ul>
-<blockquote>
-<p>📷 <strong>Artifact</strong>: DynamoDB item explorer console and delivery notification.</p>
-</blockquote>
 
 
 
@@ -1218,6 +2066,103 @@
 
                     
                     
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
                     
 
                     
@@ -1261,6 +2206,39 @@
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1278,6 +2256,57 @@
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
                         
                         
                     
@@ -1320,6 +2349,303 @@
                     
                     
 
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
                     
             
         
@@ -1368,10 +2694,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/5-workshop/5.4-monitoring-and-auditing/" title="Observability &amp; Auditing (CloudWatch, SNS, CloudTrail)"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.3-aws-cloudtrail/" title="AWS CloudTrail"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/5-workshop/5.6-high-availability-alb-asg/" title="High Availability (ALB &amp; Auto Scaling)" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/5-workshop/5.5-serverless-backend/5.5.1-create-dynamodb-table/" title="Create DynamoDB Table" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1381,19 +2707,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1790181345"></script>
-    <script src="/js/perfect-scrollbar.min.js?1790181345"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1790181345"></script>
-    <script src="/js/jquery.sticky.js?1790181345"></script>
-    <script src="/js/featherlight.min.js?1790181345"></script>
-    <script src="/js/highlight.pack.js?1790181345"></script>
+    <script src="/js/clipboard.min.js?1790240289"></script>
+    <script src="/js/perfect-scrollbar.min.js?1790240289"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1790240289"></script>
+    <script src="/js/jquery.sticky.js?1790240289"></script>
+    <script src="/js/featherlight.min.js?1790240289"></script>
+    <script src="/js/highlight.pack.js?1790240289"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1790181345"></script>
-    <script src="/js/learn.js?1790181345"></script>
-    <script src="/js/hugo-learn.js?1790181345"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1790240289"></script>
+    <script src="/js/learn.js?1790240289"></script>
+    <script src="/js/hugo-learn.js?1790240289"></script>
 
-    <link href="/mermaid/mermaid.css?1790181345" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1790181345"></script>
+    <link href="/mermaid/mermaid.css?1790240289" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1790240289"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

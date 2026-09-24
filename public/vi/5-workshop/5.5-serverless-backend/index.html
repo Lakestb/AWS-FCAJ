@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Backend Serverless: Lambda, API Gateway, DynamoDB :: Báo cáo thực tập</title>
+    <title>Serverless Backend: Lambda, API Gateway, DynamoDB :: Báo cáo thực tập</title>
 
     
-    <link href="/css/nucleus.css?1790181346" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1790181346" rel="stylesheet">
-    <link href="/css/hybrid.css?1790181346" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1790181346" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1790181346" rel="stylesheet">
-    <link href="/css/auto-complete.css?1790181346" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1790181346" rel="stylesheet">
-    <link href="/css/theme.css?1790181346" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1790181346" rel="stylesheet">
+    <link href="/css/nucleus.css?1790240290" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1790240290" rel="stylesheet">
+    <link href="/css/hybrid.css?1790240290" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1790240290" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1790240290" rel="stylesheet">
+    <link href="/css/auto-complete.css?1790240290" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1790240290" rel="stylesheet">
+    <link href="/css/theme.css?1790240290" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1790240290" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1790181346" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1790240290" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1790181346"></script>
+    <script src="/js/jquery-3.3.1.min.js?1790240290"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1790181346"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1790181346"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1790240290"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1790240290"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/vi";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1790181346"></script>
+<script type="text/javascript" src="/js/search.js?1790240290"></script>
 
     
   </div>
@@ -453,13 +453,13 @@
  
   
     
-    <li data-nav-id="/vi/5-workshop/5.1-environment-and-architecture/" title="Chuẩn bị môi trường &amp; Kiến trúc tổng quan" class="dd-item 
+    <li data-nav-id="/vi/5-workshop/5.1-environment-and-region/" title="Chuẩn bị môi trường &amp; Chọn Region" class="dd-item 
         
         
         
         ">
-      <a href="/vi/5-workshop/5.1-environment-and-architecture/">
-           <b> 5.1. </b> Chuẩn bị môi trường &amp; Kiến trúc tổng quan
+      <a href="/vi/5-workshop/5.1-environment-and-region/">
+           <b> 5.1. </b> Chuẩn bị môi trường &amp; Chọn Region
           
             <i class="fas fa-check read-icon"></i>
           
@@ -481,13 +481,44 @@
  
   
     
-    <li data-nav-id="/vi/5-workshop/5.2-networking-vpc/" title="Hạ tầng mạng (VPC, Subnet, IGW)" class="dd-item 
+    <li data-nav-id="/vi/5-workshop/5.2-networking-vpc/" title="Hạ tầng mạng (VPC, Subnet, Internet Gateway)" class="dd-item 
         
         
         
         ">
       <a href="/vi/5-workshop/5.2-networking-vpc/">
-           <b> 5.2. </b> Hạ tầng mạng (VPC, Subnet, IGW)
+           <b> 5.2. </b> Hạ tầng mạng (VPC, Subnet, Internet Gateway)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.2-networking-vpc/5.2.1-create-vpc/" title="Khởi tạo VPC" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.2-networking-vpc/5.2.1-create-vpc/">
+           <b> 5.2.1. </b> Khởi tạo VPC
           
             <i class="fas fa-check read-icon"></i>
           
@@ -509,13 +540,13 @@
  
   
     
-    <li data-nav-id="/vi/5-workshop/5.3-compute-database-storage/" title="Nền tảng Compute, Database &amp; Storage" class="dd-item 
+    <li data-nav-id="/vi/5-workshop/5.2-networking-vpc/5.2.2-create-subnets/" title="Tạo 4 Subnet" class="dd-item 
         
         
         
         ">
-      <a href="/vi/5-workshop/5.3-compute-database-storage/">
-           <b> 5.3. </b> Nền tảng Compute, Database &amp; Storage
+      <a href="/vi/5-workshop/5.2-networking-vpc/5.2.2-create-subnets/">
+           <b> 5.2.2. </b> Tạo 4 Subnet
           
             <i class="fas fa-check read-icon"></i>
           
@@ -537,18 +568,266 @@
  
   
     
-    <li data-nav-id="/vi/5-workshop/5.4-monitoring-and-auditing/" title="Giám sát &amp; Kiểm toán: CloudWatch, SNS, CloudTrail" class="dd-item 
+    <li data-nav-id="/vi/5-workshop/5.2-networking-vpc/5.2.3-internet-gateway-route-table/" title="Internet Gateway &amp; Route Table" class="dd-item 
         
         
         
         ">
-      <a href="/vi/5-workshop/5.4-monitoring-and-auditing/">
+      <a href="/vi/5-workshop/5.2-networking-vpc/5.2.3-internet-gateway-route-table/">
+           <b> 5.2.3. </b> Internet Gateway &amp; Route Table
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.2-networking-vpc/5.2.4-security-groups/" title="Security Groups" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.2-networking-vpc/5.2.4-security-groups/">
+           <b> 5.2.4. </b> Security Groups
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/" title="Triển khai WordPress: EC2, RDS, S3, IAM" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/">
+           <b> 5.3. </b> Triển khai WordPress: EC2, RDS, S3, IAM
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.1-create-rds-mysql/" title="Khởi tạo Amazon RDS for MySQL" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.1-create-rds-mysql/">
+           <b> 5.3.1. </b> Khởi tạo Amazon RDS for MySQL
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.2-create-ec2-install-wordpress/" title="Khởi tạo EC2 và cài đặt WordPress" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.2-create-ec2-install-wordpress/">
+           <b> 5.3.2. </b> Khởi tạo EC2 và cài đặt WordPress
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.3-iam-role-for-ec2/" title="IAM Role cho EC2 (Least Privilege)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.3-iam-role-for-ec2/">
+           <b> 5.3.3. </b> IAM Role cho EC2 (Least Privilege)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.4-s3-offload-media/" title="Amazon S3 &amp; Offload Media" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.4-s3-offload-media/">
+           <b> 5.3.4. </b> Amazon S3 &amp; Offload Media
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/" title="Giám sát &amp; Kiểm toán: CloudWatch, SNS, CloudTrail" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/">
            <b> 5.4. </b> Giám sát &amp; Kiểm toán: CloudWatch, SNS, CloudTrail
           
             <i class="fas fa-check read-icon"></i>
           
       </a>
       
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.1-cloudwatch-dashboard-alarm/" title="CloudWatch Dashboard &amp; Alarm" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.1-cloudwatch-dashboard-alarm/">
+           <b> 5.4.1. </b> CloudWatch Dashboard &amp; Alarm
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
               
     </li>
   
@@ -565,13 +844,109 @@
  
   
     
-    <li data-nav-id="/vi/5-workshop/5.5-serverless-backend/" title="Backend Serverless: Lambda, API Gateway, DynamoDB" class="dd-item 
+    <li data-nav-id="/vi/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.2-amazon-sns/" title="Amazon SNS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.2-amazon-sns/">
+           <b> 5.4.2. </b> Amazon SNS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.3-aws-cloudtrail/" title="AWS CloudTrail" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.3-aws-cloudtrail/">
+           <b> 5.4.3. </b> AWS CloudTrail
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.5-serverless-backend/" title="Serverless Backend: Lambda, API Gateway, DynamoDB" class="dd-item 
         
         active
         
         ">
       <a href="/vi/5-workshop/5.5-serverless-backend/">
-           <b> 5.5. </b> Backend Serverless: Lambda, API Gateway, DynamoDB
+           <b> 5.5. </b> Serverless Backend: Lambda, API Gateway, DynamoDB
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.5-serverless-backend/5.5.1-create-dynamodb-table/" title="Khởi tạo bảng DynamoDB" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.5-serverless-backend/5.5.1-create-dynamodb-table/">
+           <b> 5.5.1. </b> Khởi tạo bảng DynamoDB
           
             <i class="fas fa-check read-icon"></i>
           
@@ -593,24 +968,120 @@
  
   
     
-    <li data-nav-id="/vi/5-workshop/5.6-high-availability-alb-asg/" title="Khả dụng cao: ALB &amp; Auto Scaling" class="dd-item 
+    <li data-nav-id="/vi/5-workshop/5.5-serverless-backend/5.5.2-iam-role-lambda-function/" title="IAM Role &amp; Hàm AWS Lambda" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.5-serverless-backend/5.5.2-iam-role-lambda-function/">
+           <b> 5.5.2. </b> IAM Role &amp; Hàm AWS Lambda
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.5-serverless-backend/5.5.3-api-gateway-rest-api/" title="Amazon API Gateway (REST API)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.5-serverless-backend/5.5.3-api-gateway-rest-api/">
+           <b> 5.5.3. </b> Amazon API Gateway (REST API)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.5-serverless-backend/5.5.4-embed-form-wordpress/" title="Nhúng Form vào WordPress" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.5-serverless-backend/5.5.4-embed-form-wordpress/">
+           <b> 5.5.4. </b> Nhúng Form vào WordPress
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.6-high-availability-alb-asg/" title="Khả dụng cao: Load Balancer &amp; Auto Scaling" class="dd-item 
         
         
         
         ">
       <a href="/vi/5-workshop/5.6-high-availability-alb-asg/">
-           <b> 5.6. </b> Khả dụng cao: ALB &amp; Auto Scaling
+           <b> 5.6. </b> Khả dụng cao: Load Balancer &amp; Auto Scaling
           
             <i class="fas fa-check read-icon"></i>
           
       </a>
       
-              
-    </li>
-  
- 
-
+      
+        <ul>
+          
+          
             
+          
+          
+          
+        
           
             
             
@@ -621,13 +1092,13 @@
  
   
     
-    <li data-nav-id="/vi/5-workshop/5.7-container-and-automation/" title="Container hóa &amp; Tự động hóa: Docker, ECS, EventBridge" class="dd-item 
+    <li data-nav-id="/vi/5-workshop/5.6-high-availability-alb-asg/5.6.1-package-ec2-to-ami/" title="Đóng gói EC2 thành AMI" class="dd-item 
         
         
         
         ">
-      <a href="/vi/5-workshop/5.7-container-and-automation/">
-           <b> 5.7. </b> Container hóa &amp; Tự động hóa: Docker, ECS, EventBridge
+      <a href="/vi/5-workshop/5.6-high-availability-alb-asg/5.6.1-package-ec2-to-ami/">
+           <b> 5.6.1. </b> Đóng gói EC2 thành AMI
           
             <i class="fas fa-check read-icon"></i>
           
@@ -649,18 +1120,443 @@
  
   
     
-    <li data-nav-id="/vi/5-workshop/5.8-resource-cleanup/" title="Dọn dẹp tài nguyên (Resource Cleanup)" class="dd-item 
+    <li data-nav-id="/vi/5-workshop/5.6-high-availability-alb-asg/5.6.2-launch-template/" title="Launch Template" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.6-high-availability-alb-asg/5.6.2-launch-template/">
+           <b> 5.6.2. </b> Launch Template
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.6-high-availability-alb-asg/5.6.3-alb-target-group/" title="Application Load Balancer &amp; Target Group" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.6-high-availability-alb-asg/5.6.3-alb-target-group/">
+           <b> 5.6.3. </b> Application Load Balancer &amp; Target Group
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.6-high-availability-alb-asg/5.6.4-auto-scaling-group/" title="Auto Scaling Group" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.6-high-availability-alb-asg/5.6.4-auto-scaling-group/">
+           <b> 5.6.4. </b> Auto Scaling Group
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.7-container-ecs-eventbridge/" title="Container hóa &amp; Tự động hóa: Docker, ECS Fargate, EventBridge" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.7-container-ecs-eventbridge/">
+           <b> 5.7. </b> Container hóa &amp; Tự động hóa: Docker, ECS Fargate, EventBridge
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.7-container-ecs-eventbridge/5.7.1-docker-image-packaging/" title="Đóng gói Docker Image" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.7-container-ecs-eventbridge/5.7.1-docker-image-packaging/">
+           <b> 5.7.1. </b> Đóng gói Docker Image
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.7-container-ecs-eventbridge/5.7.2-push-image-to-ecr/" title="Đẩy Image lên Amazon ECR" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.7-container-ecs-eventbridge/5.7.2-push-image-to-ecr/">
+           <b> 5.7.2. </b> Đẩy Image lên Amazon ECR
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.7-container-ecs-eventbridge/5.7.3-iam-roles-ecs-task-definition/" title="IAM Roles &amp; ECS Task Definition" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.7-container-ecs-eventbridge/5.7.3-iam-roles-ecs-task-definition/">
+           <b> 5.7.3. </b> IAM Roles &amp; ECS Task Definition
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.7-container-ecs-eventbridge/5.7.4-manual-test-eventbridge-scheduler/" title="Chạy thử và Amazon EventBridge Scheduler" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.7-container-ecs-eventbridge/5.7.4-manual-test-eventbridge-scheduler/">
+           <b> 5.7.4. </b> Chạy thử và Amazon EventBridge Scheduler
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.8-resource-cleanup/" title="Dọn dẹp tài nguyên" class="dd-item 
         
         
         
         ">
       <a href="/vi/5-workshop/5.8-resource-cleanup/">
-           <b> 5.8. </b> Dọn dẹp tài nguyên (Resource Cleanup)
+           <b> 5.8. </b> Dọn dẹp tài nguyên
           
             <i class="fas fa-check read-icon"></i>
           
       </a>
       
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.8-resource-cleanup/5.8.1-delete-eventbridge-ecs/" title="Xóa EventBridge Scheduler &amp; ECS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.8-resource-cleanup/5.8.1-delete-eventbridge-ecs/">
+           <b> 5.8.1. </b> Xóa EventBridge Scheduler &amp; ECS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.8-resource-cleanup/5.8.2-delete-high-availability/" title="Xóa hạ tầng Khả dụng cao" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.8-resource-cleanup/5.8.2-delete-high-availability/">
+           <b> 5.8.2. </b> Xóa hạ tầng Khả dụng cao
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.8-resource-cleanup/5.8.3-delete-serverless/" title="Xóa hạ tầng Serverless" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.8-resource-cleanup/5.8.3-delete-serverless/">
+           <b> 5.8.3. </b> Xóa hạ tầng Serverless
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.8-resource-cleanup/5.8.4-delete-monitoring/" title="Xóa cấu hình Giám sát" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.8-resource-cleanup/5.8.4-delete-monitoring/">
+           <b> 5.8.4. </b> Xóa cấu hình Giám sát
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.8-resource-cleanup/5.8.5-delete-database-compute-storage/" title="Xóa Database, Compute &amp; Storage" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.8-resource-cleanup/5.8.5-delete-database-compute-storage/">
+           <b> 5.8.5. </b> Xóa Database, Compute &amp; Storage
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/vi/5-workshop/5.8-resource-cleanup/5.8.6-delete-networking-iam/" title="Xóa hạ tầng mạng &amp; IAM" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vi/5-workshop/5.8-resource-cleanup/5.8.6-delete-networking-iam/">
+           <b> 5.8.6. </b> Xóa hạ tầng mạng &amp; IAM
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
               
     </li>
   
@@ -849,7 +1745,7 @@
             
           
           
-            <a href='/vi/'>Báo cáo thực tập</a> > <a href='/vi/5-workshop/'>Workshop</a> > Backend Serverless: Lambda, API Gateway, DynamoDB
+            <a href='/vi/'>Báo cáo thực tập</a> > <a href='/vi/5-workshop/'>Workshop</a> > Serverless Backend: Lambda, API Gateway, DynamoDB
           
         
           
@@ -862,15 +1758,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#55-backend-serverless-lambda-api-gateway-dynamodb">5.5. Backend Serverless: Lambda, API Gateway, DynamoDB</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
     </div>
 </div>
 
@@ -886,7 +1774,7 @@
           
             <h1>
               
-              Backend Serverless: Lambda, API Gateway, DynamoDB
+              Serverless Backend: Lambda, API Gateway, DynamoDB
             </h1>
           
 
@@ -894,55 +1782,13 @@
 
 
 
-	<h3 id="55-backend-serverless-lambda-api-gateway-dynamodb">5.5. Backend Serverless: Lambda, API Gateway, DynamoDB</h3>
-<p>Xây dựng thêm tính năng Guestbook (lời nhắn khách) — một backend serverless độc lập, chạy song song với WordPress, không ảnh hưởng tới kiến trúc chính.</p>
-<h4 id="551-khởi-tạo-bảng-dynamodb">5.5.1. Khởi tạo bảng DynamoDB</h4>
+	<p>Xây dựng thêm tính năng Guestbook (lời nhắn khách) — một backend serverless độc lập, chạy song song với WordPress, không ảnh hưởng tới kiến trúc chính:</p>
 <ul>
-<li><strong>Bảng</strong>: <code>GuestbookMessages</code>, Partition key: <code>id</code> (String), Capacity mode: Provisioned 5 RCU / 5 WCU (nằm trong Free Tier).</li>
+<li><a href="/vi/5-workshop/5.5-serverless-backend/5.5.1-create-dynamodb-table/">5.5.1. Khởi tạo bảng DynamoDB</a></li>
+<li><a href="/vi/5-workshop/5.5-serverless-backend/5.5.2-iam-role-lambda-function/">5.5.2. IAM Role &amp; Hàm AWS Lambda</a></li>
+<li><a href="/vi/5-workshop/5.5-serverless-backend/5.5.3-api-gateway-rest-api/">5.5.3. Amazon API Gateway (REST API)</a></li>
+<li><a href="/vi/5-workshop/5.5-serverless-backend/5.5.4-embed-form-wordpress/">5.5.4. Nhúng Form vào WordPress</a></li>
 </ul>
-<blockquote>
-<p>📷 <strong>Ảnh minh chứng</strong>: Cấu hình bảng DynamoDB GuestbookMessages.</p>
-</blockquote>
-<h4 id="552-iam-role-cho-lambda-least-privilege">5.5.2. IAM Role cho Lambda (Least Privilege)</h4>
-<ul>
-<li><strong>Policy <code>GuestbookLambdaPolicy</code></strong>: chỉ cấp quyền <code>dynamodb:PutItem</code> trên đúng bảng <code>GuestbookMessages</code>, <code>sns:Publish</code> trên đúng topic, và quyền ghi CloudWatch Logs.</li>
-<li><strong>Role</strong>: <code>GuestbookLambdaRole</code>, gắn policy trên.</li>
-</ul>
-<blockquote>
-<p>📷 <strong>Ảnh minh chứng</strong>: Nội dung Policy JSON và Role đã tạo.</p>
-</blockquote>
-<h4 id="553-hàm-aws-lambda-xử-lý-guestbook">5.5.3. Hàm AWS Lambda xử lý Guestbook</h4>
-<ul>
-<li><strong>Function</strong>: <code>GuestbookHandler</code>, Runtime Python 3.12.</li>
-<li><strong>Logic</strong>: nhận request POST, validate dữ liệu (tên, email, nội dung), ghi vào DynamoDB, gửi thông báo qua SNS (tùy chọn).</li>
-</ul>
-<blockquote>
-<p>📷 <strong>Ảnh minh chứng</strong>: Code Lambda trong Console và kết quả log CloudWatch của lần chạy thành công (dòng REPORT RequestId).</p>
-</blockquote>
-<h4 id="554-amazon-api-gateway-rest-api">5.5.4. Amazon API Gateway (REST API)</h4>
-<ul>
-<li><strong>API</strong>: <code>GuestbookAPI</code>, resource <code>/guestbook</code>, method POST, tích hợp Lambda Proxy.</li>
-<li>Bật CORS để WordPress (khác domain) có thể gọi API.</li>
-<li><strong>Stage triển khai</strong>: <code>prod</code>, Invoke URL: <code>https://f1atpevw96.execute-api.ap-southeast-1.amazonaws.com/prod/guestbook</code>.</li>
-</ul>
-<blockquote>
-<p>📷 <strong>Ảnh minh chứng</strong>: Cấu hình method POST, CORS đã bật, và màn hình Deploy API với Invoke URL.</p>
-</blockquote>
-<h4 id="555-nhúng-giao-diện-vào-wordpress">5.5.5. Nhúng giao diện vào WordPress</h4>
-<ul>
-<li>Sử dụng khối Custom HTML (không dùng khối Code, tránh bị hiển thị dạng văn bản thô) trong trình soạn thảo WordPress.</li>
-<li>Form gồm: Tên, Email (không bắt buộc), Lời nhắn — gọi API qua JavaScript <code>fetch()</code>.</li>
-</ul>
-<blockquote>
-<p>📷 <strong>Ảnh minh chứng</strong>: Form Guestbook hiển thị đúng trên trang WordPress công khai.</p>
-</blockquote>
-<h4 id="556-kiểm-thử-end-to-end">5.5.6. Kiểm thử end-to-end</h4>
-<ul>
-<li>Gửi thử form → xác nhận dữ liệu xuất hiện trong DynamoDB → xác nhận nhận được email SNS.</li>
-</ul>
-<blockquote>
-<p>📷 <strong>Ảnh minh chứng</strong>: Dữ liệu trong DynamoDB (Explore table items) và email cảnh báo nhận được.</p>
-</blockquote>
 
 
 
@@ -1220,6 +2066,103 @@
 
                     
                     
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
                     
 
                     
@@ -1263,6 +2206,39 @@
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1280,6 +2256,57 @@
             
                 
                     
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
                         
                         
                     
@@ -1322,6 +2349,303 @@
                     
                     
 
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
                     
             
         
@@ -1370,10 +2694,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vi/5-workshop/5.4-monitoring-and-auditing/" title="Giám sát &amp; Kiểm toán: CloudWatch, SNS, CloudTrail"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/vi/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.3-aws-cloudtrail/" title="AWS CloudTrail"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/vi/5-workshop/5.6-high-availability-alb-asg/" title="Khả dụng cao: ALB &amp; Auto Scaling" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/vi/5-workshop/5.5-serverless-backend/5.5.1-create-dynamodb-table/" title="Khởi tạo bảng DynamoDB" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1383,19 +2707,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1790181346"></script>
-    <script src="/js/perfect-scrollbar.min.js?1790181346"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1790181346"></script>
-    <script src="/js/jquery.sticky.js?1790181346"></script>
-    <script src="/js/featherlight.min.js?1790181346"></script>
-    <script src="/js/highlight.pack.js?1790181346"></script>
+    <script src="/js/clipboard.min.js?1790240290"></script>
+    <script src="/js/perfect-scrollbar.min.js?1790240290"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1790240290"></script>
+    <script src="/js/jquery.sticky.js?1790240290"></script>
+    <script src="/js/featherlight.min.js?1790240290"></script>
+    <script src="/js/highlight.pack.js?1790240290"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1790181346"></script>
-    <script src="/js/learn.js?1790181346"></script>
-    <script src="/js/hugo-learn.js?1790181346"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1790240290"></script>
+    <script src="/js/learn.js?1790240290"></script>
+    <script src="/js/hugo-learn.js?1790240290"></script>
 
-    <link href="/mermaid/mermaid.css?1790181346" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1790181346"></script>
+    <link href="/mermaid/mermaid.css?1790240290" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1790240290"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

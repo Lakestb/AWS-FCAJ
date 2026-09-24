@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Networking Infrastructure (VPC, Subnet, IGW) on Internship Report</title>
+		<title>Networking Infrastructure (VPC, Subnets, Internet Gateway) on Internship Report</title>
 		<link>/5-workshop/5.2-networking-vpc/</link>
-		<description>Recent content in Networking Infrastructure (VPC, Subnet, IGW) on Internship Report</description>
+		<description>Recent content in Networking Infrastructure (VPC, Subnets, Internet Gateway) on Internship Report</description>
 		<generator>Hugo</generator>
 		<language>en</language>
 		

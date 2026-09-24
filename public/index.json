@@ -1,10 +1,52 @@
 [
 {
-	"uri": "/5-workshop/5.1-environment-and-architecture/",
-	"title": "Environment Setup &amp; Architectural Overview",
+	"uri": "/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.1-cloudwatch-dashboard-alarm/",
+	"title": "CloudWatch Dashboard &amp; Alarm",
 	"tags": [],
 	"description": "",
-	"content": "5.1. Environment Setup \u0026amp; Architectural Overview 5.1.1. Region Selection \u0026amp; Administrative Setup Region: Asia Pacific (Singapore) — ap-southeast-1. IAM Account: cloud-admin (adhering to best practices avoiding root usage for operational tasks). 📷 Artifact: Console screenshot demonstrating Region selection and logged-in IAM entity.\n5.1.2. Complete Target Architecture A modern decoupled architecture blending 2-tier infrastructure with serverless and container capabilities across 4 pillars:\nCompute \u0026amp; Database: EC2 (WordPress) + RDS (MySQL) + S3 (media/backup storage). High Availability: Application Load Balancer + Auto Scaling Group. Serverless Backend: Lambda + API Gateway + DynamoDB (Guestbook service). Automation \u0026amp; Container: Docker + ECS Fargate + EventBridge Scheduler (scheduled backups). 📷 Artifact: Comprehensive architectural diagram created in draw.io reflecting all 4 functional tiers.\n"
+	"content": " Navigate to CloudWatch → Dashboards → Create dashboard, name it WordPress-Production-Dashboard.\nAdd monitoring widgets for EC2 CPUUtilization and RDS DatabaseConnections.\nNavigate to Alarms → Create alarm, select EC2 CPUUtilization metric, threshold \u0026gt;= 80%, name it EC2-High-CPU-Utilization.\n"
+},
+{
+	"uri": "/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.1-create-rds-mysql/",
+	"title": "Create Amazon RDS for MySQL",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to RDS → Create database, choose engine MySQL, template Free tier.\nDB instance identifier: wordpress-db. Set Master username and Master password.\nSelect VPC my-project-vpc, DB Subnet Group consisting of 2 Private Subnets, Public access: No.\nSecurity group: select RDS-SG.\nResult: Endpoint wordpress-db.cnwgwiseq95o.ap-southeast-1.rds.amazonaws.com, status Available. "
+},
+{
+	"uri": "/5-workshop/5.5-serverless-backend/5.5.1-create-dynamodb-table/",
+	"title": "Create DynamoDB Table",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to DynamoDB → Create table, Table name GuestbookMessages, Partition key id (String).\nCapacity mode: Provisioned, set Read/Write capacity to 5.\n"
+},
+{
+	"uri": "/5-workshop/5.2-networking-vpc/5.2.1-create-vpc/",
+	"title": "Create VPC",
+	"tags": [],
+	"description": "",
+	"content": " In the search bar, type VPC and select Your VPCs → Create VPC.\nSelect VPC only, name it my-project-vpc, IPv4 CIDR: 10.0.0.0/16.\nResult: VPC ID vpc-0b489eb298393e445. "
+},
+{
+	"uri": "/5-workshop/5.8-resource-cleanup/5.8.1-delete-eventbridge-ecs/",
+	"title": "Delete EventBridge Scheduler &amp; ECS",
+	"tags": [],
+	"description": "",
+	"content": " Delete Schedule wordpress-daily-backup. Deregister Task Definition wordpress-backup-task, delete ECS cluster wordpress-cluster. Delete ECR repository wordpress-backup. "
+},
+{
+	"uri": "/5-workshop/5.7-container-ecs-eventbridge/5.7.1-docker-image-packaging/",
+	"title": "Docker Image Packaging",
+	"tags": [],
+	"description": "",
+	"content": " Create Dockerfile based on debian:bookworm-slim, install default-mysql-client, awscli, gzip.\nCreate backup_db.sh reading runtime environment variables (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, S3_BUCKET), executing mysqldump, compressing and streaming backup to S3.\n"
+},
+{
+	"uri": "/5-workshop/5.1-environment-and-region/",
+	"title": "Environment Setup &amp; Region Selection",
+	"tags": [],
+	"description": "",
+	"content": " Sign in to AWS Console using IAM account cloud-admin (avoid root account for daily operations).\nAt the top-right corner, select Region Asia Pacific (Singapore) — ap-southeast-1.\nCreate a new Key Pair: navigate to EC2 → Key Pairs → Create key pair, name it my-ec2-key, format .pem, download file for SSH access.\n"
 },
 {
 	"uri": "/",
@@ -12,6 +54,13 @@
 	"tags": [],
 	"description": "",
 	"content": "INTERNSHIP REPORT "
+},
+{
+	"uri": "/5-workshop/5.6-high-availability-alb-asg/5.6.1-package-ec2-to-ami/",
+	"title": "Package EC2 into AMI",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to EC2 → select WordPress instance → Actions → Image and templates → Create image, name it wordpress-app-ami-v1.\n"
 },
 {
 	"uri": "/1-worklog/1.1-week-1/",
@@ -28,18 +77,67 @@
 	"content": "Below is my detailed worklog across the 8 weeks of the First Cloud AI Journey internship program:\nWeek 1: Overview of AWS architecture and create a practice account\nWeek 2: Learn about AWS Core Services: EC2, S3, IAM\nWeek 3: Learn about AWS Networking: VPC, Subnet, Internet Gateway\nWeek 4: Learn about AWS Lambda and Serverless model\nWeek 5: Learn about AWS CloudWatch and CloudTrail\nWeek 6: Learn about Elastic Load Balancer (ELB) and Auto Scaling\nWeek 7: Learn about AWS ECS and Docker basics\nWeek 8: Implement a comprehensive project on AWS\n"
 },
 {
-	"uri": "/5-workshop/5.2-networking-vpc/",
-	"title": "Networking Infrastructure (VPC, Subnet, IGW)",
+	"uri": "/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.2-amazon-sns/",
+	"title": "Amazon SNS",
 	"tags": [],
 	"description": "",
-	"content": "5.2. Networking Infrastructure: VPC, Subnet, Internet Gateway 5.2.1. VPC Creation VPC: my-project-vpc (vpc-0b489eb298393e445), CIDR block 10.0.0.0/16. 5.2.2. Multi-Tier Subnet Topology Public Subnet 1: subnet-011686e77c0d42601 — 10.0.0.0/20 — ap-southeast-1a (hosts EC2, ALB, and ECS Tasks). Public Subnet 2: subnet-037a8c50b5e7ec755 — 10.0.16.0/20 — ap-southeast-1b (ALB multi-AZ requirement). Private Subnet 1: subnet-008f0d773c67a3970 — 10.0.128.0/20 — ap-southeast-1a (hosts RDS MySQL). Private Subnet 2: subnet-0a953901b7b370b78 — 10.0.144.0/20 — ap-southeast-1b (DB Subnet Group secondary AZ). 📷 Artifact: VPC Subnets console view detailing configured CIDRs and Availability Zones.\n5.2.3. Internet Gateway \u0026amp; Routing Tables Internet Gateway associated with VPC; Public Route Table routes 0.0.0.0/0 via IGW. Private Route Table restricted exclusively to local routes, isolating database instances. 📷 Artifact: Route table rules for both Public and Private subnets.\n5.2.4. Security Groups ec2-web-sg (sg-043b5223abc256608): Ingress HTTP (80) \u0026amp; HTTPS (443) from 0.0.0.0/0, SSH (22) strictly whitelisted to administrative /32 IP. RDS-SG: Restricts MySQL port 3306 ingress strictly from ec2-web-sg. 📷 Artifact: Inbound security group rules showing locked-down SSH and database permissions.\n"
+	"content": " Navigate to SNS → Topics → Create topic, Standard type, name it ec2-high-cpu-alert.\nCreate Email Subscription, enter administrator email, confirm via verification link.\nReturn to Alarm in section 5.4.1, attach action to publish to this SNS Topic on ALARM state trigger.\n"
+},
+{
+	"uri": "/5-workshop/5.2-networking-vpc/5.2.2-create-subnets/",
+	"title": "Create 4 Subnets",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to Subnets → Create subnet, select the created VPC.\nCreate 4 subnets sequentially:\nmy-project-subnet-public1-ap-southeast-1a — AZ ap-southeast-1a — CIDR 10.0.0.0/20. my-project-subnet-public2-ap-southeast-1b — AZ ap-southeast-1b — CIDR 10.0.16.0/20. my-project-subnet-private1-ap-southeast-1a — AZ ap-southeast-1a — CIDR 10.0.128.0/20. my-project-subnet-private2-ap-southeast-1b — AZ ap-southeast-1b — CIDR 10.0.144.0/20. "
+},
+{
+	"uri": "/5-workshop/5.5-serverless-backend/5.5.2-iam-role-lambda-function/",
+	"title": "IAM Role &amp; AWS Lambda Function",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to IAM → Policies → Create policy, grant dynamodb:PutItem on GuestbookMessages, sns:Publish on notification topic, and CloudWatch Logs write access. Name it GuestbookLambdaPolicy.\nCreate Role GuestbookLambdaRole, Trusted entity: Lambda, attach policy.\nNavigate to Lambda → Create function, name GuestbookHandler, Runtime Python 3.12, select created execution role.\nPaste handler code: parse POST body, validate fields, persist to DynamoDB, optionally publish SNS alert.\n"
+},
+{
+	"uri": "/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.2-create-ec2-install-wordpress/",
+	"title": "Launch EC2 &amp; Install WordPress",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to EC2 → Launch instance, choose AMI Ubuntu Server 24.04 LTS, Instance type t3.micro.\nNetwork: select my-project-vpc, Public Subnet 1, Auto-assign public IP: Enable.\nKey pair: my-ec2-key. Security group: ec2-web-sg.\nOnce Instance status changes to Running, SSH in using user ubuntu, install LAMP stack (Apache 2.4, PHP 8.3, modules php-mysql, php-curl, php-gd, php-xml, php-mbstring).\nDownload WordPress, extract to /var/www/html, create wp-config.php pointing to RDS endpoint from step 5.3.1.\n"
+},
+{
+	"uri": "/5-workshop/5.6-high-availability-alb-asg/5.6.2-launch-template/",
+	"title": "Launch Template",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to Launch Templates → Create launch template, name it wordpress-launch-template.\nSelect newly created AMI (My AMIs tab), Instance type t3.micro, Key pair my-ec2-key, Security group ec2-web-sg.\n"
+},
+{
+	"uri": "/5-workshop/5.2-networking-vpc/",
+	"title": "Networking Infrastructure (VPC, Subnets, Internet Gateway)",
+	"tags": [],
+	"description": "",
+	"content": "In this module, we will design and deploy an isolated network infrastructure on AWS including VPC, 4 Subnets across 2 AZs, Internet Gateway, Route Tables, and Security Groups:\n5.2.1. VPC Creation 5.2.2. Subnet Configuration 5.2.3. Internet Gateway \u0026amp; Route Tables 5.2.4. Security Groups "
 },
 {
 	"uri": "/2-proposal/",
 	"title": "Proposal",
 	"tags": [],
 	"description": "",
-	"content": "Project Proposal: Comprehensive WordPress Infrastructure on AWS: From 2-Tier to Serverless, High Availability, and Containerization 1. Executive Summary This proposal presents a solution for modernizing WordPress web systems on the AWS cloud platform. Instead of an all-in-one monolith deployment on a single instance that poses security risks and single points of failure, this project designs a layered architecture following the AWS Well-Architected Framework:\nDecoupled 2-Tier \u0026amp; Storage: Decouple the web server (EC2) from the database (RDS MySQL) and offload static media to Amazon S3. Elastic Scalability (High Availability): Implement an Application Load Balancer (ALB) and Auto Scaling Group (ASG) to dynamically balance load and scale based on traffic. Serverless Backend: Build a standalone Guestbook service using API Gateway, Lambda, and DynamoDB. Container Automation: Package automated database backups into Docker containers executed serverless on ECS Fargate via EventBridge Scheduler, replacing legacy local crons. 2. Problem Statement Current Pain Points Single Point of Failure (SPOF): Hosting both web server and database on a single instance leads to complete downtime during memory exhaustion or CPU spikes. Security Vulnerabilities: Direct exposure of database and SSH ports to the public internet; hardcoding static access keys inside application source code poses credential leakage risks. Lack of Elasticity: Monolithic instances cannot automatically scale during traffic surges, causing network bottlenecks or service outages. Brittle Local Backups: Backup cron jobs running directly on EC2 instances mean that instance termination or disk failure destroys both backup routines and local archive files. Proposed Solution A modern hybrid architecture combining decoupled multi-tier topology with Serverless and Container technologies:\nCore Flow (2-Tier \u0026amp; Storage): Place web servers on EC2 in Public Subnets and databases on RDS in isolated Private Subnets; attach IAM Roles for seamless S3 media offloading without static keys. High Availability Flow (ALB \u0026amp; ASG): ALB distributes incoming traffic across an Auto Scaling Group, dynamically provisioning or terminating instances based on CPU metrics. Serverless Flow (Guestbook Service): Decouple feedback workflows into a fully serverless pipeline (API Gateway → Lambda → DynamoDB). Container Flow (Automated Scheduled Backup): Containerize database backup routines with Docker, push images to Amazon ECR, and execute on-demand via ECS Fargate triggered by EventBridge. 3. Solution Architecture Overall Architecture Diagram (Architecture diagram placeholder)\n4 Core Processing Flows: Web \u0026amp; Decoupled Data Flow (EC2 + RDS + S3)\nEnd-users access WordPress via the public DNS/IP of the EC2 Web Server. EC2 reads and writes structured data to an isolated Amazon RDS MySQL instance in the Private Subnet over port 3306. All media uploads are automatically offloaded directly to Amazon S3 through an attached IAM Instance Profile. High Availability Flow (ALB + ASG)\nApplication Load Balancer terminates HTTP/HTTPS traffic at the edge and forwards requests across healthy EC2 targets. Auto Scaling Group replaces unhealthy instances automatically and scales out when average CPU utilization exceeds 70%. Serverless Guestbook Flow (API Gateway + Lambda + DynamoDB)\nEmbedded frontend forms submit POST requests to Amazon API Gateway. API Gateway invokes AWS Lambda (Python 3.12) to validate data and persist records into Amazon DynamoDB. Lambda triggers real-time email notifications via Amazon SNS upon receiving new entries. Containerized Scheduled Backup Flow (Docker + ECS Fargate + EventBridge)\nAmazon EventBridge Scheduler fires scheduled backup events daily at 02:00 AM. ECS Fargate pulls the backup container image from Amazon ECR, executes mysqldump, compresses files, and uploads archives to the backups/ prefix on S3. AWS Services Utilized Amazon VPC: Isolated networking with 2 Public Subnets and 2 Private Subnets spanning 2 Availability Zones. Amazon EC2 \u0026amp; Auto Scaling: Elastic compute infrastructure. Amazon RDS (MySQL): Managed relational database tier. Amazon S3: Scalable object storage for media and automated database backups. Application Load Balancer: Layer 7 load balancing across multiple AZs. API Gateway, Lambda, DynamoDB: Event-driven serverless feedback backend. Amazon ECR \u0026amp; ECS Fargate: Serverless container hosting and task orchestration. CloudWatch, SNS \u0026amp; CloudTrail: Monitoring metrics, alerting, and governance auditing. 4. Technical Implementation Implementation Phases Phase 1: VPC Networking \u0026amp; Security Baseline Provision VPC 10.0.0.0/16 with dual Public and Private Subnets across ap-southeast-1a and ap-southeast-1b. Attach Internet Gateway to Public Subnets; restrict Private Subnets to local routing. Harden SSH security group ingress rules. Phase 2: 2-Tier Foundation \u0026amp; Media Offloading Install LAMP stack and WordPress on EC2. Launch Amazon RDS MySQL within a private DB Subnet Group. Create Amazon S3 bucket and attach IAM Instance Profile to EC2 for media offloading. Phase 3: Observability, Alerting \u0026amp; Auditing Build CloudWatch Dashboard monitoring CPUUtilization and DatabaseConnections. Configure SNS-backed alarms triggering alerts when CPU utilization reaches $\\ge$ 80%. Audit control-plane operations via CloudTrail Event History. Phase 4: Serverless Feature Extension (Guestbook) Create GuestbookMessages table in DynamoDB (Provisioned mode). Develop AWS Lambda handler (Python 3.12) and expose via CORS-enabled REST API Gateway. Embed frontend form into WordPress theme to consume backend endpoints. Phase 5: High Availability (ALB + ASG) Create customized AMI from EC2 instance and formulate Launch Template. Provision ALB, configure Target Group health checks (/), and register with Auto Scaling Group. Phase 6: Containerized Backup Automation Craft Dockerfile packaging database backup scripts and push image to Amazon ECR. Configure ECS Fargate Task Definition and schedule automated cron execution via EventBridge. 5. Roadmap \u0026amp; Milestones +-----------------------------------------------------------------------------------+ | Weeks 1 - 3: VPC Architecture \u0026amp; 2-Tier Foundation | | - Design VPC, Subnets, Routing, and secure Security Groups | | - Deploy EC2 (LAMP), establish RDS MySQL connectivity, configure S3 Offload | +-----------------------------------------------------------------------------------+ │ ▼ +-----------------------------------------------------------------------------------+ | Weeks 4 - 5: Serverless Backend \u0026amp; Operational Observability | | - Develop API Gateway + Lambda + DynamoDB for Guestbook service | | - Build CloudWatch Dashboards, SNS Alarms, and configure CloudTrail audits | +-----------------------------------------------------------------------------------+ │ ▼ +-----------------------------------------------------------------------------------+ | Weeks 6 - 8: High Availability, Container Automation \u0026amp; Final Wrap-up | | - Create AMI, deploy Application Load Balancer and Auto Scaling Group | | - Containerize backup scripts, deploy on ECR/ECS Fargate with EventBridge | | - End-to-end integration testing, evaluation, and resource cleanup | +-----------------------------------------------------------------------------------+ 6. Budget \u0026amp; Cost Estimation The project is aligned with AWS Free Tier and Always Free allowances:\nAWS Service Configuration / Usage Scale Estimated Monthly Cost (USD) Amazon EC2 1 instance t3.micro (750 hours/month) $0.00 (Free Tier) Amazon RDS 1 instance db.t4g.micro, 20GB SSD $0.00 (Free Tier) Amazon S3 Media and backup storage (\u0026lt; 5GB) $0.00 (Free Tier) AWS Lambda \u0026lt; 10,000 requests/month $0.00 (Always Free) Amazon DynamoDB Provisioned mode: 5 RCU / 5 WCU $0.00 (Always Free) Amazon ECS Fargate 0.25 vCPU / 0.5 GB RAM, ~2 mins/day \u0026lt; $0.05 CloudWatch \u0026amp; CloudTrail 1 Dashboard, 1 Alarm, 90-day Event History $0.00 (Free Tier) Application Load Balancer Short-term testing and artifact verification ~$0.50 - $1.00 Estimated Total Full development and testing environment \u0026lt; $1.50 USD / Month 7. Risk Assessment \u0026amp; Mitigation Potential Risk Impact Probability Mitigation Strategy Unexpected AWS Charges High Medium Configure AWS Budget alerts at $5.00/month. Delete ALBs and teardown testing workloads immediately after review. ALB Target Group Empty (0 targets) Medium Medium Verify Load Balancing integrations in ASG settings to ensure proper Target Group association. Database Client Version Mismatch Low Low Tailor mysqldump flags in Docker container to maintain compatibility with MySQL 8.0 / MariaDB. IAM Permission Denied Errors Medium Low Maintain correct Trust Policies for scheduler.amazonaws.com and enforce Least Privilege. 8. Expected Outcomes Robust, Production-Grade Architecture: Successfully operationalize a resilient, self-healing, decoupled WordPress deployment on AWS. Demonstrated Multi-Domain Competency: Proven hands-on proficiency across VPC networking, EC2 compute, RDS databases, S3 object storage, Serverless functions, and Container orchestration. Audit-Ready Internship Deliverables: Comprehensive technical documentation, version-controlled infrastructure code, and rigorous cost-optimization strategies. "
+	"content": "Project Proposal: Comprehensive WordPress Infrastructure on AWS: From 2-Tier to Serverless, High Availability, and Containerization 1. Executive Summary This proposal presents a solution for modernizing WordPress web systems on the AWS cloud platform. Instead of an all-in-one monolith deployment on a single instance that poses security risks and single points of failure, this project designs a layered architecture following the AWS Well-Architected Framework:\nDecoupled 2-Tier \u0026amp; Storage: Decouple the web server (EC2) from the database (RDS MySQL) and offload static media to Amazon S3. Elastic Scalability (High Availability): Implement an Application Load Balancer (ALB) and Auto Scaling Group (ASG) to dynamically balance load and scale based on traffic. Serverless Backend: Build a standalone Guestbook service using API Gateway, Lambda, and DynamoDB. Container Automation: Package automated database backups into Docker containers executed serverless on ECS Fargate via EventBridge Scheduler, replacing legacy local crons. 2. Problem Statement Current Pain Points Single Point of Failure (SPOF): Hosting both web server and database on a single instance leads to complete downtime during memory exhaustion or CPU spikes. Security Vulnerabilities: Direct exposure of database and SSH ports to the public internet; hardcoding static access keys inside application source code poses credential leakage risks. Lack of Elasticity: Monolithic instances cannot automatically scale during traffic surges, causing network bottlenecks or service outages. Brittle Local Backups: Backup cron jobs running directly on EC2 instances mean that instance termination or disk failure destroys both backup routines and local archive files. Proposed Solution A modern hybrid architecture combining decoupled multi-tier topology with Serverless and Container technologies:\nCore Flow (2-Tier \u0026amp; Storage): Place web servers on EC2 in Public Subnets and databases on RDS in isolated Private Subnets; attach IAM Roles for seamless S3 media offloading without static keys. High Availability Flow (ALB \u0026amp; ASG): ALB distributes incoming traffic across an Auto Scaling Group, dynamically provisioning or terminating instances based on CPU metrics. Serverless Flow (Guestbook Service): Decouple feedback workflows into a fully serverless pipeline (API Gateway → Lambda → DynamoDB). Container Flow (Automated Scheduled Backup): Containerize database backup routines with Docker, push images to Amazon ECR, and execute on-demand via ECS Fargate triggered by EventBridge. 3. Solution Architecture Overall Architecture Diagram 4 Core Processing Flows: Web \u0026amp; Decoupled Data Flow (EC2 + RDS + S3)\nEnd-users access WordPress via the public DNS/IP of the EC2 Web Server. EC2 reads and writes structured data to an isolated Amazon RDS MySQL instance in the Private Subnet over port 3306. All media uploads are automatically offloaded directly to Amazon S3 through an attached IAM Instance Profile. High Availability Flow (ALB + ASG)\nApplication Load Balancer terminates HTTP/HTTPS traffic at the edge and forwards requests across healthy EC2 targets. Auto Scaling Group replaces unhealthy instances automatically and scales out when average CPU utilization exceeds 70%. Serverless Guestbook Flow (API Gateway + Lambda + DynamoDB)\nEmbedded frontend forms submit POST requests to Amazon API Gateway. API Gateway invokes AWS Lambda (Python 3.12) to validate data and persist records into Amazon DynamoDB. Lambda triggers real-time email notifications via Amazon SNS upon receiving new entries. Containerized Scheduled Backup Flow (Docker + ECS Fargate + EventBridge)\nAmazon EventBridge Scheduler fires scheduled backup events daily at 02:00 AM. ECS Fargate pulls the backup container image from Amazon ECR, executes mysqldump, compresses files, and uploads archives to the backups/ prefix on S3. AWS Services Utilized Amazon VPC: Isolated networking with 2 Public Subnets and 2 Private Subnets spanning 2 Availability Zones. Amazon EC2 \u0026amp; Auto Scaling: Elastic compute infrastructure. Amazon RDS (MySQL): Managed relational database tier. Amazon S3: Scalable object storage for media and automated database backups. Application Load Balancer: Layer 7 load balancing across multiple AZs. API Gateway, Lambda, DynamoDB: Event-driven serverless feedback backend. Amazon ECR \u0026amp; ECS Fargate: Serverless container hosting and task orchestration. CloudWatch, SNS \u0026amp; CloudTrail: Monitoring metrics, alerting, and governance auditing. 4. Technical Implementation Implementation Phases Phase 1: VPC Networking \u0026amp; Security Baseline Provision VPC 10.0.0.0/16 with dual Public and Private Subnets across ap-southeast-1a and ap-southeast-1b. Attach Internet Gateway to Public Subnets; restrict Private Subnets to local routing. Harden SSH security group ingress rules. Phase 2: 2-Tier Foundation \u0026amp; Media Offloading Install LAMP stack and WordPress on EC2. Launch Amazon RDS MySQL within a private DB Subnet Group. Create Amazon S3 bucket and attach IAM Instance Profile to EC2 for media offloading. Phase 3: Observability, Alerting \u0026amp; Auditing Build CloudWatch Dashboard monitoring CPUUtilization and DatabaseConnections. Configure SNS-backed alarms triggering alerts when CPU utilization reaches $\\ge$ 80%. Audit control-plane operations via CloudTrail Event History. Phase 4: Serverless Feature Extension (Guestbook) Create GuestbookMessages table in DynamoDB (Provisioned mode). Develop AWS Lambda handler (Python 3.12) and expose via CORS-enabled REST API Gateway. Embed frontend form into WordPress theme to consume backend endpoints. Phase 5: High Availability (ALB + ASG) Create customized AMI from EC2 instance and formulate Launch Template. Provision ALB, configure Target Group health checks (/), and register with Auto Scaling Group. Phase 6: Containerized Backup Automation Craft Dockerfile packaging database backup scripts and push image to Amazon ECR. Configure ECS Fargate Task Definition and schedule automated cron execution via EventBridge. 5. Roadmap \u0026amp; Milestones +-----------------------------------------------------------------------------------+ | Weeks 1 - 3: VPC Architecture \u0026amp; 2-Tier Foundation | | - Design VPC, Subnets, Routing, and secure Security Groups | | - Deploy EC2 (LAMP), establish RDS MySQL connectivity, configure S3 Offload | +-----------------------------------------------------------------------------------+ │ ▼ +-----------------------------------------------------------------------------------+ | Weeks 4 - 5: Serverless Backend \u0026amp; Operational Observability | | - Develop API Gateway + Lambda + DynamoDB for Guestbook service | | - Build CloudWatch Dashboards, SNS Alarms, and configure CloudTrail audits | +-----------------------------------------------------------------------------------+ │ ▼ +-----------------------------------------------------------------------------------+ | Weeks 6 - 8: High Availability, Container Automation \u0026amp; Final Wrap-up | | - Create AMI, deploy Application Load Balancer and Auto Scaling Group | | - Containerize backup scripts, deploy on ECR/ECS Fargate with EventBridge | | - End-to-end integration testing, evaluation, and resource cleanup | +-----------------------------------------------------------------------------------+ 6. Budget \u0026amp; Cost Estimation The project is aligned with AWS Free Tier and Always Free allowances:\nAWS Service Configuration / Usage Scale Estimated Monthly Cost (USD) Amazon EC2 1 instance t3.micro (750 hours/month) $0.00 (Free Tier) Amazon RDS 1 instance db.t4g.micro, 20GB SSD $0.00 (Free Tier) Amazon S3 Media and backup storage (\u0026lt; 5GB) $0.00 (Free Tier) AWS Lambda \u0026lt; 10,000 requests/month $0.00 (Always Free) Amazon DynamoDB Provisioned mode: 5 RCU / 5 WCU $0.00 (Always Free) Amazon ECS Fargate 0.25 vCPU / 0.5 GB RAM, ~2 mins/day \u0026lt; $0.05 CloudWatch \u0026amp; CloudTrail 1 Dashboard, 1 Alarm, 90-day Event History $0.00 (Free Tier) Application Load Balancer Short-term testing and artifact verification ~$0.50 - $1.00 Estimated Total Full development and testing environment \u0026lt; $1.50 USD / Month 7. Risk Assessment \u0026amp; Mitigation Potential Risk Impact Probability Mitigation Strategy Unexpected AWS Charges High Medium Configure AWS Budget alerts at $5.00/month. Delete ALBs and teardown testing workloads immediately after review. ALB Target Group Empty (0 targets) Medium Medium Verify Load Balancing integrations in ASG settings to ensure proper Target Group association. Database Client Version Mismatch Low Low Tailor mysqldump flags in Docker container to maintain compatibility with MySQL 8.0 / MariaDB. IAM Permission Denied Errors Medium Low Maintain correct Trust Policies for scheduler.amazonaws.com and enforce Least Privilege. 8. Expected Outcomes Robust, Production-Grade Architecture: Successfully operationalize a resilient, self-healing, decoupled WordPress deployment on AWS. Demonstrated Multi-Domain Competency: Proven hands-on proficiency across VPC networking, EC2 compute, RDS databases, S3 object storage, Serverless functions, and Container orchestration. Audit-Ready Internship Deliverables: Comprehensive technical documentation, version-controlled infrastructure code, and rigorous cost-optimization strategies. "
+},
+{
+	"uri": "/5-workshop/5.7-container-ecs-eventbridge/5.7.2-push-image-to-ecr/",
+	"title": "Push Image to Amazon ECR",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to ECR → Create repository, name it wordpress-backup.\nAuthenticate and push image to repository:\naws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin \u0026lt;account-id\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com docker build -t wordpress-backup . docker tag wordpress-backup:latest \u0026lt;account-id\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com/wordpress-backup:latest docker push \u0026lt;account-id\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com/wordpress-backup:latest "
+},
+{
+	"uri": "/5-workshop/5.8-resource-cleanup/5.8.2-delete-high-availability/",
+	"title": "Teardown High Availability Stack",
+	"tags": [],
+	"description": "",
+	"content": " Set Desired = 0 on wordpress-asg, wait for instance termination, then delete ASG. Delete Application Load Balancer wordpress-alb and Target Group wordpress-tg. Delete Launch Template wordpress-launch-template and deregister AMI wordpress-app-ami-v1 (including snapshots). "
 },
 {
 	"uri": "/1-worklog/1.2-week-2/",
@@ -49,6 +147,27 @@
 	"content": "Week 2 Objectives: Learn about AWS Core Services: EC2, S3, IAM. Complete fundamental lessons and hands-on practices on AWS Cloud. Tasks to be carried out this week: Day Task Start Date End Date References Mon Explore AWS Core Services: EC2, S3, IAM 05/05/2026 05/05/2026 AWS Cloud Journey Tue Perform hands-on labs with EC2 and S3 06/05/2026 08/05/2026 AWS Cloud Journey Wed Study theoretical concepts related to Cloud Computing 08/05/2026 11/05/2026 AWS Documentation Achievements for Week 2: Understood AWS core architecture and configured cloud resources successfully. Acquired fundamental cloud concepts and completed introductory modules. "
 },
 {
+	"uri": "/5-workshop/5.5-serverless-backend/5.5.3-api-gateway-rest-api/",
+	"title": "Amazon API Gateway (REST API)",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to API Gateway → Create API → REST API, name it GuestbookAPI.\nCreate Resource /guestbook, Method POST, Integration type: Lambda Function, select GuestbookHandler, enable Lambda Proxy integration.\nSelect /guestbook resource → Actions → Enable CORS.\nActions → Deploy API, create stage prod.\nResult: Invoke URL: https://f1atpevw96.execute-api.ap-southeast-1.amazonaws.com/prod/guestbook. "
+},
+{
+	"uri": "/5-workshop/5.6-high-availability-alb-asg/5.6.3-alb-target-group/",
+	"title": "Application Load Balancer &amp; Target Group",
+	"tags": [],
+	"description": "",
+	"content": " During Auto Scaling Group creation in next step, select Attach to a new load balancer.\nType: Application Load Balancer, Scheme: Internet-facing, name wordpress-alb, select both Public Subnets.\nCreate new Target Group wordpress-tg, Protocol HTTP:80, Health check path /.\n"
+},
+{
+	"uri": "/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.3-aws-cloudtrail/",
+	"title": "AWS CloudTrail",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to CloudTrail → Event history (enabled by default for 90 days, no extra trail required).\nFilter by Event names ModifySecurityGroupRules, PutMetricAlarm, CreateTopic, Subscribe to verify administrative actions.\n"
+},
+{
 	"uri": "/3-blogs-posted/",
 	"title": "Blogs Posted",
 	"tags": [],
@@ -56,11 +175,32 @@
 	"content": "Blogs Posted "
 },
 {
-	"uri": "/5-workshop/5.3-compute-database-storage/",
-	"title": "Compute, Database &amp; Storage (EC2, RDS, S3, IAM)",
+	"uri": "/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.3-iam-role-for-ec2/",
+	"title": "IAM Role for EC2 (Least Privilege)",
 	"tags": [],
 	"description": "",
-	"content": "5.3. Compute, Database \u0026amp; Storage: EC2, RDS, S3, IAM 5.3.1. Web/Application Tier (Amazon EC2) OS: Ubuntu Server 24.04 LTS, Instance type: t3.micro. LAMP Stack: Apache 2.4, PHP 8.3, WordPress. Attached IAM Instance Profile for passwordless, credential-free S3 media synchronization. 📷 Artifact: WordPress administrative home page resolving via EC2 public IP.\n5.3.2. Database Tier (Amazon RDS for MySQL) Engine: MySQL Community, Instance class: db.t4g.micro. Endpoint: wordpress-db.cnwgwiseq95o.ap-southeast-1.rds.amazonaws.com, Database: wordpress. Hosted strictly within Private Subnets without Public IP assignment. 📷 Artifact: RDS Configuration and Connectivity dashboard showing Available status.\n5.3.3. Static Asset Storage (Amazon S3) Bucket: my-portfolio-blog-media-635176221447-ap-southeast-1-an. Synchronized through WP Offload Media Lite plugin. 📷 Artifact: S3 bucket object list containing offloaded WordPress media files.\n5.3.4. Access Security \u0026amp; IAM Roles EC2 IAM Role scoped according to Least Privilege principles. 📷 Artifact: IAM Role permissions policy configuration attached to EC2.\n"
+	"content": " Navigate to IAM → Roles → Create role, Trusted entity: AWS service → EC2.\nAttach policy granting s3:PutObject, s3:GetObject, s3:ListBucket strictly scoped to the S3 bucket created next.\nName the role, return to EC2 → Actions → Security → Modify IAM role, attach the created role to instance.\n"
+},
+{
+	"uri": "/5-workshop/5.7-container-ecs-eventbridge/5.7.3-iam-roles-ecs-task-definition/",
+	"title": "IAM Roles &amp; ECS Task Definition",
+	"tags": [],
+	"description": "",
+	"content": " Create Role ecsTaskExecutionRole, attach managed policy AmazonECSTaskExecutionRolePolicy.\nCreate Policy EcsBackupTaskPolicy (granting s3:PutObject scoped to backups/ prefix), create Role EcsBackupTaskRole attaching this policy.\nNavigate to ECS → Clusters → Create cluster, name wordpress-cluster, Infrastructure: AWS Fargate.\nNavigate to Task definitions → Create, name wordpress-backup-task, CPU 0.25 vCPU, Memory 0.5 GB, assign task execution role and task role.\nContainer: ECR image URI from step 5.7.2, inject all 5 required environment variables (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, S3_BUCKET).\n"
+},
+{
+	"uri": "/5-workshop/5.2-networking-vpc/5.2.3-internet-gateway-route-table/",
+	"title": "Internet Gateway &amp; Route Table",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to Internet Gateways → Create internet gateway, name it my-project-igw → Attach to VPC → select my-project-vpc.\nNavigate to Route Tables, create a route table for Public Subnets, add route 0.0.0.0/0 → Target: created Internet Gateway.\nAssociate this route table with both Public Subnets.\nKeep Private Subnet Route Table at default (local route only), do not add Internet routing.\n"
+},
+{
+	"uri": "/5-workshop/5.8-resource-cleanup/5.8.3-delete-serverless/",
+	"title": "Remove Serverless Stack",
+	"tags": [],
+	"description": "",
+	"content": " Delete API Gateway GuestbookAPI, Lambda GuestbookHandler, DynamoDB table GuestbookMessages, and SNS Guestbook topic (if applicable). "
 },
 {
 	"uri": "/1-worklog/1.3-week-3/",
@@ -70,6 +210,41 @@
 	"content": "Week 3 Objectives: Learn AWS Networking fundamentals: VPC, Subnet, Internet Gateway, Route Table. Design a standard VPC network infrastructure with Public and Private Subnets. Tasks to be carried out this week: Day Task Start Date End Date References Mon Study Amazon VPC theory, CIDR IP blocks, and Subnetting 19/05/2026 20/05/2026 AWS Cloud Journey Tue Build custom VPC, configure Internet Gateway \u0026amp; Route Tables 21/05/2026 22/05/2026 AWS VPC Guide Wed Configure Security Groups, Network ACLs, and test connectivity 23/05/2026 25/05/2026 AWS Networking Achievements for Week 3: Gained a solid understanding of network routing and multi-tier security in VPC. Successfully built an isolated VPC network environment for cloud resources. "
 },
 {
+	"uri": "/5-workshop/5.3-wordpress-ec2-rds-s3-iam/",
+	"title": "WordPress Deployment: EC2, RDS, S3, IAM",
+	"tags": [],
+	"description": "",
+	"content": "Deploy WordPress application using decoupled 2-tier architecture with EC2 Web Server, RDS MySQL Database, S3 Media Storage, and IAM Least Privilege Roles:\n5.3.1. Amazon RDS for MySQL Creation 5.3.2. EC2 Provisioning \u0026amp; WordPress Setup 5.3.3. IAM Role for EC2 (Least Privilege) 5.3.4. Amazon S3 \u0026amp; Media Offloading "
+},
+{
+	"uri": "/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.4-s3-offload-media/",
+	"title": "Amazon S3 &amp; Offload Media",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to S3 → Create bucket, name it my-portfolio-blog-media-635176221447-ap-southeast-1-an.\nIn WordPress, install WP Offload Media Lite plugin, configure target bucket, authenticated via IAM Role (without hardcoding Access Keys).\n"
+},
+{
+	"uri": "/5-workshop/5.6-high-availability-alb-asg/5.6.4-auto-scaling-group/",
+	"title": "Auto Scaling Group",
+	"tags": [],
+	"description": "",
+	"content": " Navigate to Auto Scaling Groups → Create Auto Scaling group, name wordpress-asg, choose Launch Template from 5.6.2.\nNetwork: select VPC and both Public Subnets.\nGroup size: Desired = 1, Min = 1, Max = 2.\nScaling policy: Target tracking, metric Average CPU Utilization, target value 70.\nAfter creation, check Integrations tab to verify Target Group wordpress-tg attachment — if empty, click Edit and re-attach manually.\nResult: Target Group reflects 1 Healthy instance, WordPress is reachable via ALB DNS. "
+},
+{
+	"uri": "/5-workshop/5.8-resource-cleanup/5.8.4-delete-monitoring/",
+	"title": "Delete Monitoring Configuration",
+	"tags": [],
+	"description": "",
+	"content": " Delete CloudWatch Alarm EC2-High-CPU-Utilization, Dashboard WordPress-Production-Dashboard, and SNS Topic ec2-high-cpu-alert. "
+},
+{
+	"uri": "/5-workshop/5.5-serverless-backend/5.5.4-embed-form-wordpress/",
+	"title": "Embed Form into WordPress",
+	"tags": [],
+	"description": "",
+	"content": " Create a new page on WordPress, add a Custom HTML block.\nPaste HTML form markup (Name, Email, Message) and client JavaScript triggering fetch() to the Invoke URL.\nPublish page, test form submission, verify record entry in DynamoDB and email delivery via SNS.\n"
+},
+{
 	"uri": "/4-events-participated/",
 	"title": "Events Participated",
 	"tags": [],
@@ -77,11 +252,25 @@
 	"content": "Events Participated "
 },
 {
-	"uri": "/5-workshop/5.4-monitoring-and-auditing/",
-	"title": "Observability &amp; Auditing (CloudWatch, SNS, CloudTrail)",
+	"uri": "/5-workshop/5.7-container-ecs-eventbridge/5.7.4-manual-test-eventbridge-scheduler/",
+	"title": "Manual Run &amp; EventBridge Scheduler",
 	"tags": [],
 	"description": "",
-	"content": "5.4. Observability \u0026amp; Auditing: CloudWatch, SNS, CloudTrail 5.4.1. CloudWatch Dashboard \u0026amp; Metric Alarms Dashboard: WordPress-Production-Dashboard, tracking CPUUtilization and DatabaseConnections. Alarm: EC2-High-CPU-Utilization, configured at CPUUtilization \u0026gt;= 80%. 📷 Artifact: CloudWatch dashboard metrics graphs and alarm configuration.\n5.4.2. SNS Alerting Notification Topic: ec2-high-cpu-alert with active Email subscription delivery. 📷 Artifact: SNS topic subscriptions and sample email notification.\n5.4.3. Governance \u0026amp; Auditing with AWS CloudTrail Utilized CloudTrail Event History for zero-cost compliance:\nModifySecurityGroupRules: captures security group SSH hardening events (section 5.2.4) with origin IP metadata. PutMetricAlarm, CreateTopic, Subscribe: tracks monitoring infrastructure setup (sections 5.4.1–5.4.2). 📷 Artifact: JSON event records for key management events in CloudTrail.\n"
+	"content": " Manual test execution: Task definitions → wordpress-backup-task → Deploy → Run task, select cluster, Fargate launch type, 1 Public Subnet, Security group ec2-web-sg, Public IP: Turned on.\nInspect CloudWatch Logs (/ecs/wordpress-backup-task) and S3 bucket to verify successful run (Exit code 0).\nNavigate to EventBridge → Scheduler → Create schedule, name wordpress-daily-backup, Recurring schedule, Cron-based: 0 2 * * ? *.\nTarget: Templated targets → Amazon ECS RunTask, select cluster/task definition, configure matching network settings.\nPermissions: create Role EventBridgeSchedulerECSRole (trust policy for scheduler.amazonaws.com, granting ecs:RunTask and iam:PassRole).\nResult: Schedule set to Enabled, automating backup executions at 02:00 AM daily. "
+},
+{
+	"uri": "/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/",
+	"title": "Monitoring &amp; Auditing: CloudWatch, SNS, CloudTrail",
+	"tags": [],
+	"description": "",
+	"content": "Configure end-to-end cloud observability, automated overload alerting, and administrative governance audit logging:\n5.4.1. CloudWatch Dashboard \u0026amp; Alarms 5.4.2. Amazon SNS Notification 5.4.3. AWS CloudTrail Auditing "
+},
+{
+	"uri": "/5-workshop/5.2-networking-vpc/5.2.4-security-groups/",
+	"title": "Security Groups",
+	"tags": [],
+	"description": "",
+	"content": " Create Security Group ec2-web-sg: Inbound allows HTTP (80) from 0.0.0.0/0, HTTPS (443) from 0.0.0.0/0, SSH (22) strictly from administrator\u0026rsquo;s IP (/32).\nCreate Security Group RDS-SG: Inbound strictly allows MySQL/Aurora (3306) with Source set to ec2-web-sg.\n"
 },
 {
 	"uri": "/1-worklog/1.4-week-4/",
@@ -91,11 +280,18 @@
 	"content": "Week 4 Objectives: Learn AWS Lambda and the Serverless paradigm. Practice writing event-driven Lambda functions. Tasks to be carried out this week: Day Task Start Date End Date References Mon Explore Serverless principles and AWS Lambda execution model 26/05/2026 27/05/2026 AWS Cloud Journey Tue Create Lambda functions with designated IAM execution roles 28/05/2026 29/05/2026 AWS Lambda Guide Wed Integrate Lambda with S3 and API Gateway triggers 30/05/2026 01/06/2026 AWS Serverless Achievements for Week 4: Mastered key advantages of serverless architecture regarding cost and scalability. Successfully implemented automated event-driven Lambda workflows. "
 },
 {
-	"uri": "/5-workshop/5.5-serverless-backend/",
-	"title": "Serverless Backend (Lambda, API Gateway, DynamoDB)",
+	"uri": "/5-workshop/5.8-resource-cleanup/5.8.5-delete-database-compute-storage/",
+	"title": "Delete Database, Compute &amp; Storage",
 	"tags": [],
 	"description": "",
-	"content": "5.5. Serverless Backend: Lambda, API Gateway, DynamoDB Independent serverless Guestbook pipeline deployed alongside WordPress.\n5.5.1. DynamoDB Table Provisioning Table: GuestbookMessages, Partition key: id (String), Capacity mode: Provisioned 5 RCU / 5 WCU. 📷 Artifact: DynamoDB table configuration dashboard.\n5.5.2. Scoped IAM Roles for Lambda Policy GuestbookLambdaPolicy: dynamodb:PutItem, sns:Publish, CloudWatch logging. Role: GuestbookLambdaRole. 📷 Artifact: Lambda execution role JSON policy.\n5.5.3. AWS Lambda Function Implementation Function: GuestbookHandler, Runtime Python 3.12. Flow: Parses input payload, validates fields, writes item to DynamoDB, triggers SNS notification. 📷 Artifact: Lambda code console and CloudWatch log execution stream.\n5.5.4. Amazon API Gateway Integration API: GuestbookAPI (REST), resource /guestbook, method POST with CORS enabled. Stage: prod. 📷 Artifact: Method execution overview and API deployment stage URL.\n5.5.5. WordPress Frontend Form Embed Integrated via Custom HTML block calling backend endpoint via JavaScript fetch(). 📷 Artifact: Rendered guestbook submission interface on WordPress frontend.\n5.5.6. End-to-End Validation Form submission verification in DynamoDB table explorer and inbox receipt of SNS alert. 📷 Artifact: DynamoDB item explorer console and delivery notification.\n"
+	"content": " Take final RDS snapshot (optional), then delete RDS instance wordpress-db. Terminate all remaining EC2 instances. Empty and delete S3 bucket my-portfolio-blog-media-.... "
+},
+{
+	"uri": "/5-workshop/5.5-serverless-backend/",
+	"title": "Serverless Backend: Lambda, API Gateway, DynamoDB",
+	"tags": [],
+	"description": "",
+	"content": "Build an independent serverless Guestbook feature running decoupled alongside WordPress:\n5.5.1. DynamoDB Table Creation 5.5.2. IAM Role \u0026amp; Lambda Function 5.5.3. Amazon API Gateway (REST API) 5.5.4. WordPress Frontend Form Embed "
 },
 {
 	"uri": "/1-worklog/1.5-week-5/",
@@ -109,14 +305,21 @@
 	"title": "Workshop",
 	"tags": [],
 	"description": "",
-	"content": "TECHNICAL REPORT End-to-End WordPress Infrastructure on AWS: From 2-Tier Baseline to Serverless, High Availability, and Containerization This document records the entire project implementation sequence chronologically, from foundational infrastructure provisioning to advanced cloud integrations. Each section contains designated artifact placeholders (📷) for attaching implementation evidence.\nWorkshop Chapters: 5.1. Environment Setup \u0026amp; Architectural Overview 5.2. Networking Infrastructure: VPC, Subnets, Internet Gateway 5.3. Compute, Database \u0026amp; Storage: EC2, RDS, S3, IAM 5.4. Observability \u0026amp; Auditing: CloudWatch, SNS, CloudTrail 5.5. Serverless Backend: Lambda, API Gateway, DynamoDB 5.6. High Availability: Application Load Balancer \u0026amp; Auto Scaling 5.7. Containerization \u0026amp; Automation: Docker, ECS Fargate, EventBridge 5.8. Resource Cleanup "
+	"content": "End-to-End WordPress Portfolio Blog Deployment on AWS This document records the complete implementation sequence chronologically, from foundational infrastructure to advanced cloud services. Each section contains designated artifact placeholders (📷) for attaching implementation evidence.\nWorkshop Outline: 5.1. Environment Setup \u0026amp; Region Selection 5.2. Networking Infrastructure (VPC, Subnets, Internet Gateway) 5.2.1. VPC Creation 5.2.2. Subnet Configuration 5.2.3. Internet Gateway \u0026amp; Route Tables 5.2.4. Security Groups 5.3. WordPress Deployment: EC2, RDS, S3, IAM 5.3.1. Amazon RDS for MySQL Creation 5.3.2. EC2 Provisioning \u0026amp; WordPress Setup 5.3.3. IAM Role for EC2 (Least Privilege) 5.3.4. Amazon S3 \u0026amp; Media Offloading 5.4. Monitoring \u0026amp; Auditing: CloudWatch, SNS, CloudTrail 5.4.1. CloudWatch Dashboard \u0026amp; Alarms 5.4.2. Amazon SNS Notification 5.4.3. AWS CloudTrail Auditing 5.5. Serverless Backend: Lambda, API Gateway, DynamoDB 5.5.1. DynamoDB Table Creation 5.5.2. IAM Role \u0026amp; Lambda Function 5.5.3. Amazon API Gateway (REST API) 5.5.4. WordPress Frontend Form Embed 5.6. High Availability: Load Balancer \u0026amp; Auto Scaling 5.6.1. AMI Packaging 5.6.2. Launch Template 5.6.3. Application Load Balancer \u0026amp; Target Group 5.6.4. Auto Scaling Group 5.7. Containerization \u0026amp; Automation: Docker, ECS Fargate, EventBridge 5.7.1. Docker Image Packaging 5.7.2. Push Image to Amazon ECR 5.7.3. IAM Roles \u0026amp; ECS Task Definition 5.7.4. Manual Testing \u0026amp; EventBridge Scheduler 5.8. Resource Cleanup 5.8.1. Delete EventBridge Scheduler \u0026amp; ECS 5.8.2. Teardown High Availability Stack 5.8.3. Remove Serverless Stack 5.8.4. Delete Monitoring Configuration 5.8.5. Delete Database, Compute \u0026amp; Storage 5.8.6. Delete Networking \u0026amp; IAM "
+},
+{
+	"uri": "/5-workshop/5.8-resource-cleanup/5.8.6-delete-networking-iam/",
+	"title": "Delete Networking &amp; IAM",
+	"tags": [],
+	"description": "",
+	"content": " Delete Security Groups (ec2-web-sg, RDS-SG). Delete 4 Subnets, Route Tables, Internet Gateway, and delete VPC my-project-vpc. Finally, delete all created IAM Roles and Policies after ensuring no dependencies remain. "
 },
 {
 	"uri": "/5-workshop/5.6-high-availability-alb-asg/",
-	"title": "High Availability (ALB &amp; Auto Scaling)",
+	"title": "High Availability: Load Balancer &amp; Auto Scaling",
 	"tags": [],
 	"description": "",
-	"content": "5.6. High Availability: Application Load Balancer \u0026amp; Auto Scaling 5.6.1. Golden AMI Packaging AMI: wordpress-app-ami-v1, created from the functional baseline EC2 instance. 📷 Artifact: AMI management console with Available state.\n5.6.2. EC2 Launch Template Configuration Template: wordpress-launch-template configured with t3.micro, ec2-web-sg, and designated key pair. 📷 Artifact: Launch Template configuration details.\n5.6.3. ALB \u0026amp; Target Group Topology ALB: wordpress-alb, Internet-facing, dual Availability Zones. Target Group: wordpress-tg, HTTP:80, Health check path /. 📷 Artifact: ALB DNS name and Target Group health check configurations.\n5.6.4. Auto Scaling Group Deployment ASG: wordpress-asg, Desired: 1, Min: 1, Max: 2. Policy: Target tracking scaling at 70% average CPU utilization. 📷 Artifact: ASG capacity metrics and target tracking policies.\n5.6.5. Real-World Troubleshooting \u0026amp; Root Cause Analysis During integration testing, Target Group registered 0 active targets despite healthy instance execution within ASG. Inspection of Activity History pinpointed missing Target Group associations in ASG Load Balancing integrations. Resolved by attaching wordpress-tg directly under ASG Integrations, immediately registering healthy targets.\n📷 Artifact: Target Group status before (0 targets) vs after remediation (1 Healthy), alongside WordPress resolution over ALB DNS.\n"
+	"content": "Implement fault-tolerant, highly available architecture using Application Load Balancers and Auto Scaling Groups:\n5.6.1. AMI Packaging 5.6.2. Launch Template 5.6.3. Application Load Balancer \u0026amp; Target Group 5.6.4. Auto Scaling Group "
 },
 {
 	"uri": "/6-self-assessment/",
@@ -133,11 +336,11 @@
 	"content": "Week 6 Objectives: Learn Elastic Load Balancing (ELB) and Auto Scaling. Architect high-availability and auto-scaling infrastructure. Tasks to be carried out this week: Day Task Start Date End Date References Mon Explore ALB/NLB architectures and Target Groups 09/06/2026 10/06/2026 AWS Cloud Journey Tue Deploy Application Load Balancer distributing traffic to EC2 11/06/2026 12/06/2026 AWS ELB Guide Wed Set up Auto Scaling Groups with dynamic scaling policies 13/06/2026 15/06/2026 AWS Auto Scaling Guide Achievements for Week 6: Mastered traffic distribution and fault tolerance concepts on AWS. Successfully verified dynamic instance scaling under simulated workloads. "
 },
 {
-	"uri": "/5-workshop/5.7-container-and-automation/",
-	"title": "Containerization &amp; Automation (Docker, ECS, EventBridge)",
+	"uri": "/5-workshop/5.7-container-ecs-eventbridge/",
+	"title": "Containerization &amp; Automation: Docker, ECS Fargate, EventBridge",
 	"tags": [],
 	"description": "",
-	"content": "5.7. Containerization \u0026amp; Automation: Docker, ECS Fargate, EventBridge Scheduler Decoupled database backup routine packaged as a Docker container running on-demand via ECS Fargate.\n5.7.1. Docker Container Packaging Base image: debian:bookworm-slim with default-mysql-client, awscli, and gzip. Execution Script: Parameterized via environment variables without hardcoded secrets. 📷 Artifact: Dockerfile specification and successful build transcript.\n5.7.2. Image Distribution to Amazon ECR Repository: wordpress-backup. aws ecr get-login-password | docker login --username AWS --password-stdin \u0026lt;account\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com docker build -t wordpress-backup . docker tag wordpress-backup:latest \u0026lt;account\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com/wordpress-backup:latest docker push \u0026lt;account\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com/wordpress-backup:latest 📷 Artifact: ECR repository dashboard exhibiting latest image tag.\n5.7.3. Scoped Task Execution Roles ecsTaskExecutionRole: Managed policy for ECR authentication and log ingestion. EcsBackupTaskRole: Dedicated policy granting s3:PutObject strictly to backups/ prefix. 📷 Artifact: IAM role permissions attached to container tasks.\n5.7.4. ECS Task Definition on AWS Fargate Cluster: wordpress-cluster (Serverless Fargate launch type). Task Definition: wordpress-backup-task, 0.25 vCPU, 0.5 GB memory. 📷 Artifact: Task Definition specification showing container and environment variables.\n5.7.5. Testing \u0026amp; Debugging MariaDB/MySQL Client Flags Initial execution failed with Exit code 7 (mysqldump: unknown variable 'set-gtid-purged=OFF') stemming from MariaDB client conventions on Debian. Removed the redundant flag, rebuilt image, and re-pushed to ECR, resulting in Exit code 0 success.\n📷 Artifact: Failed task log vs successful completion with S3 object archive creation.\n5.7.6. Scheduled Execution with Amazon EventBridge Schedule: wordpress-daily-backup, Cron expression: 0 2 * * ? * (2:00 AM daily). Target: ECS RunTask on Fargate (using roles from section 5.7.3). 📷 Artifact: Enabled EventBridge schedule and automated ECS task trigger logs.\n"
+	"content": "Decouple and package database backup scripts as Docker containers, host on Amazon ECR, and execute serverless on-demand via ECS Fargate and EventBridge Scheduler:\n5.7.1. Docker Image Packaging 5.7.2. Push Image to Amazon ECR 5.7.3. IAM Roles \u0026amp; ECS Task Definition 5.7.4. Manual Testing \u0026amp; EventBridge Scheduler "
 },
 {
 	"uri": "/7-sharing-and-feedback/",
@@ -158,7 +361,7 @@
 	"title": "Resource Cleanup",
 	"tags": [],
 	"description": "",
-	"content": "5.8. Resource Cleanup Conducted in reverse sequence of provisioning (Modules 5.7 → 5.1) to release all allocated AWS resources post-grading and avoid recurring costs.\n5.8.1. Delete EventBridge Schedules Delete wordpress-daily-backup schedule to prevent recurring container executions. 5.8.2. Teardown ECS Tasks, Clusters, and ECR Repositories Deregister wordpress-backup-task Task Definition. Delete wordpress-cluster ECS cluster. Remove wordpress-backup ECR repository along with all container tags. 5.8.3. Dismantle High Availability Infrastructure Delete Auto Scaling Group wordpress-asg (set Desired to 0 first, wait for termination, then delete). Remove ALB wordpress-alb and Target Group wordpress-tg. Delete Launch Template and deregister wordpress-app-ami-v1 AMI (including backing EBS snapshots). 5.8.4. Remove Serverless Stack Delete API Gateway GuestbookAPI. Delete Lambda Function GuestbookHandler. Delete DynamoDB table GuestbookMessages. Delete SNS Topic guestbook-new-message (if configured). 5.8.5. Teardown Observability Resources Delete CloudWatch Alarm EC2-High-CPU-Utilization and Dashboard WordPress-Production-Dashboard. Delete SNS Topic ec2-high-cpu-alert. 5.8.6. Delete Database Tier Create final snapshot of RDS wordpress-db (optional) and delete RDS instance. 5.8.7. Terminate Compute \u0026amp; Clear Storage Terminate all remaining EC2 instances. Delete Security Groups: ec2-web-sg, RDS-SG, ALB-SG. Empty and delete S3 bucket my-portfolio-blog-media-.... 5.8.8. Teardown Networking (VPC) Delete Subnets, Route Tables, and detach/delete Internet Gateway. Delete VPC my-project-vpc. 5.8.9. Delete IAM Roles \u0026amp; Policies (Final Step) Delete IAM Roles (EventBridgeSchedulerECSRole, ecsTaskExecutionRole, EcsBackupTaskRole, GuestbookLambdaRole, EC2 Role). Delete corresponding customer-managed policies. "
+	"content": "Execute resource teardown strictly in reverse chronological order (5.7 → 5.2) after grading confirmation to avoid dependency locks:\n5.8.1. Delete EventBridge Scheduler \u0026amp; ECS 5.8.2. Teardown High Availability Stack 5.8.3. Remove Serverless Stack 5.8.4. Delete Monitoring Configuration 5.8.5. Delete Database, Compute \u0026amp; Storage 5.8.6. Delete Networking \u0026amp; IAM "
 },
 {
 	"uri": "/1-worklog/1.8-week-8/",

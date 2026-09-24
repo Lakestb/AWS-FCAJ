@@ -41,7 +41,7 @@ A modern hybrid architecture combining decoupled multi-tier topology with Server
 ### 3. Solution Architecture
 
 #### Overall Architecture Diagram
-*(Architecture diagram placeholder)*
+![Overall Architecture Diagram](/images/2/architecture.png?classes=border,shadow)
 
 #### 4 Core Processing Flows:
 1. **Web & Decoupled Data Flow (EC2 + RDS + S3)**

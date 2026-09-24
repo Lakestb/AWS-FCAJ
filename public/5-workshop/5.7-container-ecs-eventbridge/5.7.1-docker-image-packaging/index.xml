@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Docker Image Packaging on Internship Report</title>
+		<link>/5-workshop/5.7-container-ecs-eventbridge/5.7.1-docker-image-packaging/</link>
+		<description>Recent content in Docker Image Packaging on Internship Report</description>
+		<generator>Hugo</generator>
+		<language>en</language>
+		
+		
+		
+		
+			<lastBuildDate></lastBuildDate>
+		
+			<atom:link href="/5-workshop/5.7-container-ecs-eventbridge/5.7.1-docker-image-packaging/index.xml" rel="self" type="application/rss+xml" />
+	</channel>
+</rss>

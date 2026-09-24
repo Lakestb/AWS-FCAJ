@@ -7,11 +7,53 @@
 	"content": "BÁO CÁO THỰC TẬP "
 },
 {
-	"uri": "/vi/5-workshop/5.1-environment-and-architecture/",
-	"title": "Chuẩn bị môi trường &amp; Kiến trúc tổng quan",
+	"uri": "/vi/5-workshop/5.1-environment-and-region/",
+	"title": "Chuẩn bị môi trường &amp; Chọn Region",
 	"tags": [],
 	"description": "",
-	"content": "5.1. Chuẩn bị môi trường \u0026amp; Kiến trúc tổng quan 5.1.1. Lựa chọn Region và khởi tạo tài khoản thực hành Region sử dụng xuyên suốt dự án: Asia Pacific (Singapore) — ap-southeast-1. Tài khoản IAM sử dụng để thao tác: cloud-admin (không dùng tài khoản root cho các thao tác hàng ngày). 📷 Ảnh minh chứng: Ảnh chọn Region trên Console và thông tin tài khoản IAM đang đăng nhập.\n5.1.2. Kiến trúc tổng thể sau khi hoàn thiện Hệ thống được xây dựng dần theo hướng kết hợp giữa kiến trúc truyền thống (2-Tier: EC2 + RDS) và các thành phần hiện đại (Serverless, Load Balancing, Container hóa), gồm 4 nhóm chính:\nCompute \u0026amp; Database: EC2 (WordPress) + RDS (MySQL) + S3 (lưu trữ media/backup). High Availability: Application Load Balancer + Auto Scaling Group. Serverless Backend: Lambda + API Gateway + DynamoDB (tính năng Guestbook). Automation \u0026amp; Container: Docker + ECS Fargate + EventBridge Scheduler (tự động backup). 📷 Ảnh minh chứng: Sơ đồ kiến trúc tổng thể cuối cùng (vẽ bằng draw.io, thể hiện đủ 4 nhóm trên).\n"
+	"content": " Đăng nhập AWS Console bằng tài khoản IAM cloud-admin (không dùng tài khoản root cho thao tác hàng ngày).\nTại góc trên phải Console, chọn Region Asia Pacific (Singapore) — ap-southeast-1.\nTạo Key Pair mới: vào EC2 → Key Pairs → Create key pair, đặt tên my-ec2-key, định dạng .pem, tải file về máy để dùng SSH sau này.\n"
+},
+{
+	"uri": "/vi/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.1-cloudwatch-dashboard-alarm/",
+	"title": "CloudWatch Dashboard &amp; Alarm",
+	"tags": [],
+	"description": "",
+	"content": " Vào CloudWatch → Dashboards → Create dashboard, đặt tên WordPress-Production-Dashboard.\nThêm widget theo dõi CPUUtilization của EC2 và DatabaseConnections của RDS.\nVào Alarms → Create alarm, chọn metric CPUUtilization của EC2, ngưỡng \u0026gt;= 80%, đặt tên EC2-High-CPU-Utilization.\n"
+},
+{
+	"uri": "/vi/5-workshop/5.7-container-ecs-eventbridge/5.7.1-docker-image-packaging/",
+	"title": "Đóng gói Docker Image",
+	"tags": [],
+	"description": "",
+	"content": " Viết Dockerfile dựa trên debian:bookworm-slim, cài default-mysql-client, awscli, gzip.\nViết script backup_db.sh đọc cấu hình qua biến môi trường (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, S3_BUCKET), thực thi mysqldump (không dùng --set-gtid-purged vì MariaDB client không hỗ trợ), nén và đẩy lên S3.\n"
+},
+{
+	"uri": "/vi/5-workshop/5.6-high-availability-alb-asg/5.6.1-package-ec2-to-ami/",
+	"title": "Đóng gói EC2 thành AMI",
+	"tags": [],
+	"description": "",
+	"content": " Vào EC2 → chọn instance WordPress → Actions → Image and templates → Create image, đặt tên wordpress-app-ami-v1.\n"
+},
+{
+	"uri": "/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.1-create-rds-mysql/",
+	"title": "Khởi tạo Amazon RDS for MySQL",
+	"tags": [],
+	"description": "",
+	"content": " Vào RDS → Create database, chọn engine MySQL, template Free tier.\nDB instance identifier: wordpress-db. Đặt Master username và Master password.\nChọn VPC my-project-vpc, DB Subnet Group gồm 2 Private Subnet, Public access: No.\nSecurity group: chọn RDS-SG.\nKết quả: Endpoint wordpress-db.cnwgwiseq95o.ap-southeast-1.rds.amazonaws.com, trạng thái Available. "
+},
+{
+	"uri": "/vi/5-workshop/5.5-serverless-backend/5.5.1-create-dynamodb-table/",
+	"title": "Khởi tạo bảng DynamoDB",
+	"tags": [],
+	"description": "",
+	"content": " Vào DynamoDB → Create table, tên bảng GuestbookMessages, Partition key id (String).\nCapacity mode: Provisioned, đặt Read/Write capacity đều bằng 5.\n"
+},
+{
+	"uri": "/vi/5-workshop/5.2-networking-vpc/5.2.1-create-vpc/",
+	"title": "Khởi tạo VPC",
+	"tags": [],
+	"description": "",
+	"content": " Tại thanh tìm kiếm, gõ VPC và chọn Your VPCs → Create VPC.\nChọn VPC only, đặt tên my-project-vpc, IPv4 CIDR: 10.0.0.0/16.\nKết quả: VPC ID vpc-0b489eb298393e445. "
 },
 {
 	"uri": "/vi/1-worklog/",
@@ -28,18 +70,67 @@
 	"content": "Mục tiêu tuần 1: Tìm hiểu tổng quan về điện toán đám mây và kiến trúc AWS. Đăng ký và thiết lập tài khoản thực hành AWS (bật MFA, tạo IAM user quản trị). Các công việc cần triển khai trong tuần này: Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 2 Tìm hiểu kiến trúc tổng quan điện toán đám mây AWS 05/05/2026 05/05/2026 AWS Cloud Journey 3 Đăng ký tài khoản AWS Free Tier và thiết lập MFA 06/05/2026 08/05/2026 AWS Documentation 4 Cấu hình bảo mật ban đầu, tạo IAM User quản trị 08/05/2026 11/05/2026 AWS IAM Guide Kết quả đạt được tuần 1: Hiểu rõ mô hình điện toán đám mây và kiến trúc toàn cầu của AWS. Thiết lập thành công tài khoản AWS cá nhân kèm bảo mật MFA đầy đủ. "
 },
 {
+	"uri": "/vi/5-workshop/5.8-resource-cleanup/5.8.1-delete-eventbridge-ecs/",
+	"title": "Xóa EventBridge Scheduler &amp; ECS",
+	"tags": [],
+	"description": "",
+	"content": " Xóa Schedule wordpress-daily-backup. Deregister Task Definition wordpress-backup-task, xóa Cluster wordpress-cluster. Xóa Repository wordpress-backup trên ECR. "
+},
+{
+	"uri": "/vi/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.2-amazon-sns/",
+	"title": "Amazon SNS",
+	"tags": [],
+	"description": "",
+	"content": " Vào SNS → Topics → Create topic, loại Standard, đặt tên ec2-high-cpu-alert.\nTạo Subscription loại Email, nhập email quản trị, xác nhận (Confirm) qua email nhận được.\nQuay lại Alarm ở mục 5.4.1, gắn Action gửi tới SNS Topic này khi Alarm chuyển sang trạng thái ALARM.\n"
+},
+{
 	"uri": "/vi/2-proposal/",
 	"title": "Bản đề xuất",
 	"tags": [],
 	"description": "",
-	"content": "Đề xuất Dự án: Hạ tầng WordPress toàn diện trên AWS: Từ 2-Tier đến Serverless, High Availability và Container hóa 1. Tóm tắt điều hành Đề xuất này trình bày giải pháp hiện đại hóa hệ thống web WordPress trên nền tảng AWS. Thay vì triển khai đơn khối (all-in-one) trên một máy chủ duy nhất gây rủi ro mất an toàn thông tin và gián đoạn dịch vụ, dự án xây dựng hạ tầng phân tầng theo chuẩn AWS Well-Architected:\nTách biệt dữ liệu \u0026amp; lưu trữ (Decoupled 2-Tier): Tách web server (EC2) khỏi cơ sở dữ liệu (RDS MySQL) và đẩy toàn bộ media tĩnh lên Amazon S3. Mở rộng linh hoạt (High Availability): Thiết lập Application Load Balancer (ALB) và Auto Scaling Group (ASG) để tự động cân bằng tải và co giãn theo nhu cầu. Backend Serverless: Xây dựng tính năng Guestbook độc lập chạy bằng API Gateway, Lambda và DynamoDB. Tự động hóa bằng Container: Đóng gói tác vụ sao lưu định kỳ bằng Docker, chạy serverless trên ECS Fargate qua EventBridge Scheduler thay thế cron truyền thống trên EC2. 2. Tuyên bố vấn đề Vấn đề hiện tại Đơn điểm lỗi (SPOF): Chạy cả web server và database trên cùng một máy chủ khiến hệ thống sập toàn bộ nếu ứng dụng gặp sự cố tràn RAM hoặc nghẽn CPU. Rủi ro bảo mật: Cổng cơ sở dữ liệu và SSH thường mở rộng ra ngoài Internet; lưu trữ access key tĩnh trong mã nguồn tiềm ẩn nguy cơ lộ credential. Thiếu khả năng tự động co giãn: Máy chủ đơn lẻ không thể tự mở rộng khi lượng truy cập tăng vọt, gây nghẽn mạng hoặc chết dịch vụ. Sao lưu phụ thuộc cục bộ: Tác vụ backup chạy bằng cron job trên chính EC2; nếu instance bị lỗi hoặc bị xóa, quy trình sao lưu và dữ liệu backup cục bộ cũng biến mất. Giải pháp đề xuất Hệ thống kết hợp giữa mô hình phân tầng truyền thống và các công nghệ Serverless / Container hiện đại:\nFlow Core (2-Tier \u0026amp; Storage): Tách web server sang EC2 (Public Subnet) và database sang RDS (Private Subnet); dùng IAM Role để phân quyền đọc/ghi S3 không cần access key. Flow HA (Load Balancing \u0026amp; Auto Scaling): ALB phân phối lưu lượng vào Auto Scaling Group; tự động tăng giảm instance theo ngưỡng CPU. Flow Serverless (Guestbook Service): Tách module gửi phản hồi khách hàng ra một backend phi máy chủ độc lập (API Gateway → Lambda → DynamoDB). Flow Container (Automated Scheduled Backup): Container hóa script backup database bằng Docker, lưu trên Amazon ECR, chạy tự động theo lịch trên ECS Fargate kích hoạt bởi EventBridge. 3. Kiến trúc giải pháp Sơ đồ kiến trúc tổng thể (Vị trí chèn ảnh sơ đồ kiến trúc draw.io)\nChi tiết 4 luồng xử lý chính trong kiến trúc: Flow Web \u0026amp; Decoupled Data (EC2 + RDS + S3)\nNgười dùng truy cập WordPress qua IP/DNS của Web Server trên EC2. EC2 đọc/ghi dữ liệu có cấu trúc sang Amazon RDS MySQL đặt cô lập trong Private Subnet qua cổng 3306. Toàn bộ media và ảnh tải lên được plugin đồng bộ trực tiếp lên Amazon S3 qua IAM Instance Profile. Flow High Availability (ALB + ASG)\nApplication Load Balancer tiếp nhận lưu lượng HTTP/HTTPS tại tầng biên công khai, phân phối đều tới các instance EC2 trong Target Group. Auto Scaling Group tự động thay thế instance lỗi thông qua Health Check và tự động kích hoạt tạo thêm máy chủ khi CPU trung bình vượt ngưỡng 70%. Flow Serverless Guestbook (API Gateway + Lambda + DynamoDB)\nGiao diện form nhúng trên WordPress gửi request POST tới Amazon API Gateway. API Gateway kích hoạt AWS Lambda (Python 3.12) để xác thực dữ liệu và ghi bản ghi vào bảng DynamoDB. Lambda phát thông báo email tức thời qua Amazon SNS khi có lời nhắn mới. Flow Containerized Scheduled Backup (Docker + ECS Fargate + EventBridge)\nAmazon EventBridge Scheduler kích hoạt tác vụ sao lưu vào 02:00 AM hàng ngày. ECS Fargate kéo Docker Image từ Amazon ECR, khởi chạy container thực thi tác vụ dump dữ liệu từ RDS, nén tệp và tải lên thư mục backups/ trên S3. Dịch vụ AWS sử dụng Amazon VPC: Phân chia mạng cô lập với 2 Public Subnets và 2 Private Subnets trên 2 AZs. Amazon EC2 \u0026amp; Auto Scaling: Cung cấp năng lực tính toán linh hoạt. Amazon RDS (MySQL): Quản trị cơ sở dữ liệu quan hệ độc lập. Amazon S3: Lưu trữ đối tượng phân tán cho media và các bản backup. Application Load Balancer: Cân bằng tải ứng dụng đa vùng. API Gateway, Lambda, DynamoDB: Xây dựng backend serverless cho form phản hồi. Amazon ECR \u0026amp; ECS Fargate: Lưu trữ image và vận hành container không máy chủ. CloudWatch, SNS \u0026amp; CloudTrail: Giám sát chỉ số, cảnh báo tức thì và kiểm toán thao tác quản trị. 4. Triển khai kỹ thuật Các giai đoạn triển khai Giai đoạn 1: Mạng VPC \u0026amp; Cấu hình bảo mật Khởi tạo VPC 10.0.0.0/16, tạo 2 Public Subnets và 2 Private Subnets phân bổ trên 2 Availability Zones (ap-southeast-1a, ap-southeast-1b). Gắn Internet Gateway cho Public Subnet; Private Subnet chỉ định tuyến local. Siết chặt Security Group SSH theo IP quản trị. Giai đoạn 2: Nền tảng 2-Tier \u0026amp; Dỡ tải Media Cài đặt LAMP stack và WordPress trên EC2. Khởi tạo Amazon RDS MySQL trong DB Subnet Group private. Cấu hình S3 Bucket, gắn IAM Role cho EC2 để dỡ tải media lên S3. Giai đoạn 3: Giám sát, Cảnh báo \u0026amp; Kiểm toán Tạo CloudWatch Dashboard theo dõi CPUUtilization và DatabaseConnections. Thiết lập Alarm kích hoạt gửi email qua SNS khi tải CPU $\\ge$ 80%. Rà soát nhật ký kiểm toán trên CloudTrail Event History. Giai đoạn 4: Mở rộng tính năng Serverless (Guestbook) Tạo bảng DynamoDB GuestbookMessages ở chế độ Provisioned. Viết hàm AWS Lambda (Python 3.12) và tạo REST API trên API Gateway có bật CORS. Nhúng mã form vào giao diện WordPress để gọi API. Giai đoạn 5: Cấu hình Khả dụng cao (ALB + ASG) Đóng gói EC2 thành AMI và tạo Launch Template. Thiết lập ALB kèm Target Group (Health Check path /) và liên kết vào Auto Scaling Group. Giai đoạn 6: Tự động hóa Backup bằng Container \u0026amp; Lập lịch Viết Dockerfile đóng gói script backup, đẩy image lên Amazon ECR. Tạo ECS Fargate Task Definition và cấu hình EventBridge Scheduler chạy định kỳ lúc 02:00 AM. Yêu cầu kỹ thuật \u0026amp; Bảo mật Phân tầng mạng nghiêm ngặt: Database nằm hoàn toàn trong Private Subnet, không gán Public IP. Bảo mật không dùng khóa tĩnh: Sử dụng IAM Instance Profile và ECS Task Role, tuyệt đối không lưu access key trên mã nguồn. Nguyên tắc đặc quyền tối thiểu (Least Privilege): Mỗi dịch vụ (Lambda, ECS, EventBridge) chỉ được cấp đúng quyền tài nguyên cần thao tác. 5. Lộ trình \u0026amp; Mốc triển khai +-----------------------------------------------------------------------------------+ | Tuần 1 - 3: Thiết kế mạng VPC \u0026amp; Triển khai nền tảng 2-Tier | | - Thiết kế VPC, Subnet, Route Table, siết Security Group SSH | | - Triển khai EC2 (LAMP), kết nối RDS MySQL và cấu hình S3 Media Offload | +-----------------------------------------------------------------------------------+ │ ▼ +-----------------------------------------------------------------------------------+ | Tuần 4 - 5: Serverless Backend \u0026amp; Giám sát vận hành | | - Phát triển API Gateway + Lambda + DynamoDB cho tính năng Guestbook | | - Thiết lập CloudWatch Dashboard, SNS Email Alarm và kiểm toán CloudTrail | +-----------------------------------------------------------------------------------+ │ ▼ +-----------------------------------------------------------------------------------+ | Tuần 6 - 8: High Availability, Container hóa tác vụ \u0026amp; Tổng kết | | - Đóng gói AMI, cấu hình Application Load Balancer và Auto Scaling Group | | - Đóng gói Docker backup, đẩy lên ECR, lập lịch chạy trên ECS Fargate | | - Kiểm thử tích hợp toàn diện, nghiệm thu và thực hiện dọn dẹp tài nguyên | +-----------------------------------------------------------------------------------+ 6. Ước tính ngân sách Dự án được cấu hình bám sát giới hạn của AWS Free Tier và định mức Always Free:\nDịch vụ AWS Cấu hình / Quy mô sử dụng Chi phí ước tính / Tháng (USD) Amazon EC2 1 instance t3.micro (750 giờ/tháng) $0.00 (Free Tier) Amazon RDS 1 instance db.t4g.micro, 20GB SSD $0.00 (Free Tier) Amazon S3 Lưu trữ media và backup (\u0026lt; 5GB) $0.00 (Free Tier) AWS Lambda \u0026lt; 10,000 requests/tháng $0.00 (Always Free) Amazon DynamoDB Chế độ Provisioned: 5 RCU / 5 WCU $0.00 (Always Free) Amazon ECS Fargate 0.25 vCPU / 0.5 GB RAM, chạy ~2 phút/ngày \u0026lt; $0.05 CloudWatch \u0026amp; CloudTrail 1 Dashboard, 1 Alarm, Event History 90 ngày $0.00 (Free Tier) Application Load Balancer Chạy kiểm thử ngắn hạn và chụp minh chứng ~$0.50 - $1.00 Tổng chi phí ước tính Toàn bộ môi trường thực hành và kiểm thử \u0026lt; $1.50 USD / Tháng Điểm tối ưu chi phí: Không duy trì Load Balancer hay NAT Gateway chạy ngầm liên tục cả tháng. Tận dụng triệt để định mức miễn phí của RDS, DynamoDB và Lambda để đưa chi phí thực tế về gần mức $0.\n7. Đánh giá rủi ro Rủi ro tiềm ẩn Mức độ ảnh hưởng Xác suất Chiến lược giảm thiểu Phát sinh phí duy trì tài nguyên Cao Trung bình Thiết lập AWS Budget cảnh báo ngưỡng $5.00/tháng. Xóa ALB và dọn dẹp tài nguyên theo quy trình ngay sau khi hoàn thành nghiệm thu. Lỗi Target Group trên ALB (0 targets) Trung bình Trung bình Kiểm tra mục Load Balancing trong Integrations của ASG để đảm bảo đã gắn đúng Target Group. Xung đột client công cụ backup Thấp Thấp Tinh chỉnh lệnh mysqldump trong Docker container cho phù hợp với đặc tính của Debian/MariaDB client khi giao tiếp với RDS MySQL. Lỗi phân quyền IAM (AccessDenied) Trung bình Thấp Cấu hình đúng Trust Policy cho scheduler.amazonaws.com và gắn policy tối thiểu theo nguyên tắc Least Privilege. 8. Kết quả kỳ vọng Hạ tầng hoàn chỉnh, hoạt động thực tế: Triển khai thành công ứng dụng WordPress phân tầng ổn định, có khả năng tự phục hồi, co giãn tự động và tách biệt hoàn toàn dữ liệu. Làm chủ công nghệ Cloud đa dạng: Chứng minh năng lực ứng dụng thực tế các mảng kiến thức cốt lõi: Mạng VPC, Máy chủ EC2, Cơ sở dữ liệu RDS, Lưu trữ S3, Phi máy chủ (Lambda/DynamoDB) và Container (Docker/ECS Fargate). Sẵn sàng cho báo cáo và kiểm toán: Hồ sơ thực tập đầy đủ gồm báo cáo kỹ thuật minh chứng thực tế, mã nguồn Git rõ ràng và quy trình quản trị hạ tầng an toàn, tối ưu chi phí. "
+	"content": "Đề xuất Dự án: Hạ tầng WordPress toàn diện trên AWS: Từ 2-Tier đến Serverless, High Availability và Container hóa 1. Tóm tắt điều hành Đề xuất này trình bày giải pháp hiện đại hóa hệ thống web WordPress trên nền tảng AWS. Thay vì triển khai đơn khối (all-in-one) trên một máy chủ duy nhất gây rủi ro mất an toàn thông tin và gián đoạn dịch vụ, dự án xây dựng hạ tầng phân tầng theo chuẩn AWS Well-Architected:\nTách biệt dữ liệu \u0026amp; lưu trữ (Decoupled 2-Tier): Tách web server (EC2) khỏi cơ sở dữ liệu (RDS MySQL) và đẩy toàn bộ media tĩnh lên Amazon S3. Mở rộng linh hoạt (High Availability): Thiết lập Application Load Balancer (ALB) và Auto Scaling Group (ASG) để tự động cân bằng tải và co giãn theo nhu cầu. Backend Serverless: Xây dựng tính năng Guestbook độc lập chạy bằng API Gateway, Lambda và DynamoDB. Tự động hóa bằng Container: Đóng gói tác vụ sao lưu định kỳ bằng Docker, chạy serverless trên ECS Fargate qua EventBridge Scheduler thay thế cron truyền thống trên EC2. 2. Tuyên bố vấn đề Vấn đề hiện tại Đơn điểm lỗi (SPOF): Chạy cả web server và database trên cùng một máy chủ khiến hệ thống sập toàn bộ nếu ứng dụng gặp sự cố tràn RAM hoặc nghẽn CPU. Rủi ro bảo mật: Cổng cơ sở dữ liệu và SSH thường mở rộng ra ngoài Internet; lưu trữ access key tĩnh trong mã nguồn tiềm ẩn nguy cơ lộ credential. Thiếu khả năng tự động co giãn: Máy chủ đơn lẻ không thể tự mở rộng khi lượng truy cập tăng vọt, gây nghẽn mạng hoặc chết dịch vụ. Sao lưu phụ thuộc cục bộ: Tác vụ backup chạy bằng cron job trên chính EC2; nếu instance bị lỗi hoặc bị xóa, quy trình sao lưu và dữ liệu backup cục bộ cũng biến mất. Giải pháp đề xuất Hệ thống kết hợp giữa mô hình phân tầng truyền thống và các công nghệ Serverless / Container hiện đại:\nFlow Core (2-Tier \u0026amp; Storage): Tách web server sang EC2 (Public Subnet) và database sang RDS (Private Subnet); dùng IAM Role để phân quyền đọc/ghi S3 không cần access key. Flow HA (Load Balancing \u0026amp; Auto Scaling): ALB phân phối lưu lượng vào Auto Scaling Group; tự động tăng giảm instance theo ngưỡng CPU. Flow Serverless (Guestbook Service): Tách module gửi phản hồi khách hàng ra một backend phi máy chủ độc lập (API Gateway → Lambda → DynamoDB). Flow Container (Automated Scheduled Backup): Container hóa script backup database bằng Docker, lưu trên Amazon ECR, chạy tự động theo lịch trên ECS Fargate kích hoạt bởi EventBridge. 3. Kiến trúc giải pháp Sơ đồ kiến trúc tổng thể Chi tiết 4 luồng xử lý chính trong kiến trúc: Flow Web \u0026amp; Decoupled Data (EC2 + RDS + S3)\nNgười dùng truy cập WordPress qua IP/DNS của Web Server trên EC2. EC2 đọc/ghi dữ liệu có cấu trúc sang Amazon RDS MySQL đặt cô lập trong Private Subnet qua cổng 3306. Toàn bộ media và ảnh tải lên được plugin đồng bộ trực tiếp lên Amazon S3 qua IAM Instance Profile. Flow High Availability (ALB + ASG)\nApplication Load Balancer tiếp nhận lưu lượng HTTP/HTTPS tại tầng biên công khai, phân phối đều tới các instance EC2 trong Target Group. Auto Scaling Group tự động thay thế instance lỗi thông qua Health Check và tự động kích hoạt tạo thêm máy chủ khi CPU trung bình vượt ngưỡng 70%. Flow Serverless Guestbook (API Gateway + Lambda + DynamoDB)\nGiao diện form nhúng trên WordPress gửi request POST tới Amazon API Gateway. API Gateway kích hoạt AWS Lambda (Python 3.12) để xác thực dữ liệu và ghi bản ghi vào bảng DynamoDB. Lambda phát thông báo email tức thời qua Amazon SNS khi có lời nhắn mới. Flow Containerized Scheduled Backup (Docker + ECS Fargate + EventBridge)\nAmazon EventBridge Scheduler kích hoạt tác vụ sao lưu vào 02:00 AM hàng ngày. ECS Fargate kéo Docker Image từ Amazon ECR, khởi chạy container thực thi tác vụ dump dữ liệu từ RDS, nén tệp và tải lên thư mục backups/ trên S3. Dịch vụ AWS sử dụng Amazon VPC: Phân chia mạng cô lập với 2 Public Subnets và 2 Private Subnets trên 2 AZs. Amazon EC2 \u0026amp; Auto Scaling: Cung cấp năng lực tính toán linh hoạt. Amazon RDS (MySQL): Quản trị cơ sở dữ liệu quan hệ độc lập. Amazon S3: Lưu trữ đối tượng phân tán cho media và các bản backup. Application Load Balancer: Cân bằng tải ứng dụng đa vùng. API Gateway, Lambda, DynamoDB: Xây dựng backend serverless cho form phản hồi. Amazon ECR \u0026amp; ECS Fargate: Lưu trữ image và vận hành container không máy chủ. CloudWatch, SNS \u0026amp; CloudTrail: Giám sát chỉ số, cảnh báo tức thì và kiểm toán thao tác quản trị. 4. Triển khai kỹ thuật Các giai đoạn triển khai Giai đoạn 1: Mạng VPC \u0026amp; Cấu hình bảo mật Khởi tạo VPC 10.0.0.0/16, tạo 2 Public Subnets và 2 Private Subnets phân bổ trên 2 Availability Zones (ap-southeast-1a, ap-southeast-1b). Gắn Internet Gateway cho Public Subnet; Private Subnet chỉ định tuyến local. Siết chặt Security Group SSH theo IP quản trị. Giai đoạn 2: Nền tảng 2-Tier \u0026amp; Dỡ tải Media Cài đặt LAMP stack và WordPress trên EC2. Khởi tạo Amazon RDS MySQL trong DB Subnet Group private. Cấu hình S3 Bucket, gắn IAM Role cho EC2 để dỡ tải media lên S3. Giai đoạn 3: Giám sát, Cảnh báo \u0026amp; Kiểm toán Tạo CloudWatch Dashboard theo dõi CPUUtilization và DatabaseConnections. Thiết lập Alarm kích hoạt gửi email qua SNS khi tải CPU $\\ge$ 80%. Rà soát nhật ký kiểm toán trên CloudTrail Event History. Giai đoạn 4: Mở rộng tính năng Serverless (Guestbook) Tạo bảng DynamoDB GuestbookMessages ở chế độ Provisioned. Viết hàm AWS Lambda (Python 3.12) và tạo REST API trên API Gateway có bật CORS. Nhúng mã form vào giao diện WordPress để gọi API. Giai đoạn 5: Cấu hình Khả dụng cao (ALB + ASG) Đóng gói EC2 thành AMI và tạo Launch Template. Thiết lập ALB kèm Target Group (Health Check path /) và liên kết vào Auto Scaling Group. Giai đoạn 6: Tự động hóa Backup bằng Container \u0026amp; Lập lịch Viết Dockerfile đóng gói script backup, đẩy image lên Amazon ECR. Tạo ECS Fargate Task Definition và cấu hình EventBridge Scheduler chạy định kỳ lúc 02:00 AM. Yêu cầu kỹ thuật \u0026amp; Bảo mật Phân tầng mạng nghiêm ngặt: Database nằm hoàn toàn trong Private Subnet, không gán Public IP. Bảo mật không dùng khóa tĩnh: Sử dụng IAM Instance Profile và ECS Task Role, tuyệt đối không lưu access key trên mã nguồn. Nguyên tắc đặc quyền tối thiểu (Least Privilege): Mỗi dịch vụ (Lambda, ECS, EventBridge) chỉ được cấp đúng quyền tài nguyên cần thao tác. 5. Lộ trình \u0026amp; Mốc triển khai +-----------------------------------------------------------------------------------+ | Tuần 1 - 3: Thiết kế mạng VPC \u0026amp; Triển khai nền tảng 2-Tier | | - Thiết kế VPC, Subnet, Route Table, siết Security Group SSH | | - Triển khai EC2 (LAMP), kết nối RDS MySQL và cấu hình S3 Media Offload | +-----------------------------------------------------------------------------------+ │ ▼ +-----------------------------------------------------------------------------------+ | Tuần 4 - 5: Serverless Backend \u0026amp; Giám sát vận hành | | - Phát triển API Gateway + Lambda + DynamoDB cho tính năng Guestbook | | - Thiết lập CloudWatch Dashboard, SNS Email Alarm và kiểm toán CloudTrail | +-----------------------------------------------------------------------------------+ │ ▼ +-----------------------------------------------------------------------------------+ | Tuần 6 - 8: High Availability, Container hóa tác vụ \u0026amp; Tổng kết | | - Đóng gói AMI, cấu hình Application Load Balancer và Auto Scaling Group | | - Đóng gói Docker backup, đẩy lên ECR, lập lịch chạy trên ECS Fargate | | - Kiểm thử tích hợp toàn diện, nghiệm thu và thực hiện dọn dẹp tài nguyên | +-----------------------------------------------------------------------------------+ 6. Ước tính ngân sách Dự án được cấu hình bám sát giới hạn của AWS Free Tier và định mức Always Free:\nDịch vụ AWS Cấu hình / Quy mô sử dụng Chi phí ước tính / Tháng (USD) Amazon EC2 1 instance t3.micro (750 giờ/tháng) $0.00 (Free Tier) Amazon RDS 1 instance db.t4g.micro, 20GB SSD $0.00 (Free Tier) Amazon S3 Lưu trữ media và backup (\u0026lt; 5GB) $0.00 (Free Tier) AWS Lambda \u0026lt; 10,000 requests/tháng $0.00 (Always Free) Amazon DynamoDB Chế độ Provisioned: 5 RCU / 5 WCU $0.00 (Always Free) Amazon ECS Fargate 0.25 vCPU / 0.5 GB RAM, chạy ~2 phút/ngày \u0026lt; $0.05 CloudWatch \u0026amp; CloudTrail 1 Dashboard, 1 Alarm, Event History 90 ngày $0.00 (Free Tier) Application Load Balancer Chạy kiểm thử ngắn hạn và chụp minh chứng ~$0.50 - $1.00 Tổng chi phí ước tính Toàn bộ môi trường thực hành và kiểm thử \u0026lt; $1.50 USD / Tháng Điểm tối ưu chi phí: Không duy trì Load Balancer hay NAT Gateway chạy ngầm liên tục cả tháng. Tận dụng triệt để định mức miễn phí của RDS, DynamoDB và Lambda để đưa chi phí thực tế về gần mức $0.\n7. Đánh giá rủi ro Rủi ro tiềm ẩn Mức độ ảnh hưởng Xác suất Chiến lược giảm thiểu Phát sinh phí duy trì tài nguyên Cao Trung bình Thiết lập AWS Budget cảnh báo ngưỡng $5.00/tháng. Xóa ALB và dọn dẹp tài nguyên theo quy trình ngay sau khi hoàn thành nghiệm thu. Lỗi Target Group trên ALB (0 targets) Trung bình Trung bình Kiểm tra mục Load Balancing trong Integrations của ASG để đảm bảo đã gắn đúng Target Group. Xung đột client công cụ backup Thấp Thấp Tinh chỉnh lệnh mysqldump trong Docker container cho phù hợp với đặc tính của Debian/MariaDB client khi giao tiếp với RDS MySQL. Lỗi phân quyền IAM (AccessDenied) Trung bình Thấp Cấu hình đúng Trust Policy cho scheduler.amazonaws.com và gắn policy tối thiểu theo nguyên tắc Least Privilege. 8. Kết quả kỳ vọng Hạ tầng hoàn chỉnh, hoạt động thực tế: Triển khai thành công ứng dụng WordPress phân tầng ổn định, có khả năng tự phục hồi, co giãn tự động và tách biệt hoàn toàn dữ liệu. Làm chủ công nghệ Cloud đa dạng: Chứng minh năng lực ứng dụng thực tế các mảng kiến thức cốt lõi: Mạng VPC, Máy chủ EC2, Cơ sở dữ liệu RDS, Lưu trữ S3, Phi máy chủ (Lambda/DynamoDB) và Container (Docker/ECS Fargate). Sẵn sàng cho báo cáo và kiểm toán: Hồ sơ thực tập đầy đủ gồm báo cáo kỹ thuật minh chứng thực tế, mã nguồn Git rõ ràng và quy trình quản trị hạ tầng an toàn, tối ưu chi phí. "
+},
+{
+	"uri": "/vi/5-workshop/5.7-container-ecs-eventbridge/5.7.2-push-image-to-ecr/",
+	"title": "Đẩy Image lên Amazon ECR",
+	"tags": [],
+	"description": "",
+	"content": " Vào ECR → Create repository, tên wordpress-backup.\nĐăng nhập và đẩy image lên repository bằng chuỗi lệnh:\naws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin \u0026lt;account-id\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com docker build -t wordpress-backup . docker tag wordpress-backup:latest \u0026lt;account-id\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com/wordpress-backup:latest docker push \u0026lt;account-id\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com/wordpress-backup:latest "
 },
 {
 	"uri": "/vi/5-workshop/5.2-networking-vpc/",
-	"title": "Hạ tầng mạng (VPC, Subnet, IGW)",
+	"title": "Hạ tầng mạng (VPC, Subnet, Internet Gateway)",
 	"tags": [],
 	"description": "",
-	"content": "5.2. Hạ tầng mạng (Networking): VPC, Subnet, Internet Gateway 5.2.1. Khởi tạo VPC VPC: my-project-vpc (vpc-0b489eb298393e445), CIDR 10.0.0.0/16. 5.2.2. Thiết kế Subnet theo mô hình đa tầng (Multi-Tier) Public Subnet 1: subnet-011686e77c0d42601 — 10.0.0.0/20 — ap-southeast-1a (chứa EC2, sau này chứa cả ALB/ECS Task). Public Subnet 2: subnet-037a8c50b5e7ec755 — 10.0.16.0/20 — ap-southeast-1b (dùng cho ALB, đảm bảo yêu cầu tối thiểu 2 AZ). Private Subnet 1: subnet-008f0d773c67a3970 — 10.0.128.0/20 — ap-southeast-1a (chứa RDS). Private Subnet 2: subnet-0a953901b7b370b78 — 10.0.144.0/20 — ap-southeast-1b (DB Subnet Group, dự phòng Multi-AZ). 📷 Ảnh minh chứng: Bảng danh sách Subnet trong VPC Console, thể hiện đủ CIDR và AZ như trên.\n5.2.3. Internet Gateway \u0026amp; Route Table Internet Gateway gắn vào VPC, Route Table của Public Subnet có tuyến 0.0.0.0/0 trỏ tới IGW. Route Table của Private Subnet chỉ có tuyến local, không có đường ra Internet — cô lập tầng Database. 📷 Ảnh minh chứng: Route Table của Public Subnet (có route tới IGW) và Private Subnet (chỉ có local route).\n5.2.4. Security Groups ec2-web-sg (sg-043b5223abc256608): mở HTTP (80) từ 0.0.0.0/0, HTTPS (443) từ 0.0.0.0/0, SSH (22) chỉ cho phép từ IP quản trị cá nhân (/32) — không mở SSH cho toàn Internet. RDS-SG: chỉ cho phép port 3306 từ nguồn là chính ec2-web-sg (không mở theo IP tĩnh). 📷 Ảnh minh chứng: Cấu hình Inbound rules của ec2-web-sg (đặc biệt rule SSH giới hạn theo IP) và RDS-SG.\n"
+	"content": "Trong phần này, chúng ta sẽ thiết kế và khởi tạo hạ tầng mạng cô lập trên AWS bao gồm VPC, 4 Subnet trên 2 Availability Zones, Internet Gateway, Route Tables và Security Groups:\n5.2.1. Khởi tạo VPC 5.2.2. Tạo 4 Subnet 5.2.3. Internet Gateway \u0026amp; Route Table 5.2.4. Security Groups "
+},
+{
+	"uri": "/vi/5-workshop/5.5-serverless-backend/5.5.2-iam-role-lambda-function/",
+	"title": "IAM Role &amp; Hàm AWS Lambda",
+	"tags": [],
+	"description": "",
+	"content": " Vào IAM → Policies → Create policy, JSON cấp quyền dynamodb:PutItem trên bảng GuestbookMessages, sns:Publish trên topic liên quan, và quyền ghi CloudWatch Logs. Đặt tên GuestbookLambdaPolicy.\nTạo Role GuestbookLambdaRole, Trusted entity: Lambda, gắn policy vừa tạo.\nVào Lambda → Create function, tên GuestbookHandler, Runtime Python 3.12, chọn Execution role đã tạo.\nDán code xử lý: nhận request POST, validate dữ liệu, ghi vào DynamoDB, gửi SNS (tùy chọn).\n"
+},
+{
+	"uri": "/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.2-create-ec2-install-wordpress/",
+	"title": "Khởi tạo EC2 và cài đặt WordPress",
+	"tags": [],
+	"description": "",
+	"content": " Vào EC2 → Launch instance, chọn AMI Ubuntu Server 24.04 LTS, Instance type t3.micro.\nNetwork: chọn my-project-vpc, Public Subnet 1, Auto-assign public IP: Enable.\nKey pair: my-ec2-key. Security group: ec2-web-sg.\nSau khi Instance chuyển sang Running, SSH vào bằng user ubuntu, cài đặt LAMP stack (Apache 2.4, PHP 8.3, các module php-mysql, php-curl, php-gd, php-xml, php-mbstring).\nTải WordPress, giải nén vào /var/www/html, tạo file wp-config.php trỏ tới RDS endpoint ở mục 5.3.1.\n"
+},
+{
+	"uri": "/vi/5-workshop/5.6-high-availability-alb-asg/5.6.2-launch-template/",
+	"title": "Launch Template",
+	"tags": [],
+	"description": "",
+	"content": " Vào Launch Templates → Create launch template, tên wordpress-launch-template.\nChọn AMI vừa tạo (tab My AMIs), Instance type t3.micro, Key pair my-ec2-key, Security group ec2-web-sg.\n"
+},
+{
+	"uri": "/vi/5-workshop/5.2-networking-vpc/5.2.2-create-subnets/",
+	"title": "Tạo 4 Subnet",
+	"tags": [],
+	"description": "",
+	"content": " Vào Subnets → Create subnet, chọn VPC vừa tạo.\nTạo lần lượt 4 subnet:\nmy-project-subnet-public1-ap-southeast-1a — AZ ap-southeast-1a — CIDR 10.0.0.0/20. my-project-subnet-public2-ap-southeast-1b — AZ ap-southeast-1b — CIDR 10.0.16.0/20. my-project-subnet-private1-ap-southeast-1a — AZ ap-southeast-1a — CIDR 10.0.128.0/20. my-project-subnet-private2-ap-southeast-1b — AZ ap-southeast-1b — CIDR 10.0.144.0/20. "
 },
 {
 	"uri": "/vi/1-worklog/1.2-week-2/",
@@ -49,6 +140,34 @@
 	"content": "Mục tiêu tuần 2: Tìm hiểu các dịch vụ cốt lõi (AWS Core Services): EC2, S3, IAM. Hoàn thành các bài học và thực hành cơ bản về Điện toán đám mây và AWS. Các công việc cần triển khai trong tuần này: Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 2 Tìm hiểu AWS Core Services: EC2, S3, IAM 05/05/2026 05/05/2026 AWS Cloud Journey 3 Thực hiện các bài học về AWS, Cloud 06/05/2026 08/05/2026 AWS Cloud Journey 4 Tìm hiểu các lý thuyết liên quan đến Cloud Computing 08/05/2026 11/05/2026 AWS Documentation Kết quả đạt được tuần 2: Hiểu tổng quan kiến trúc AWS và tạo tài khoản thực hành thành công. Tiếp thu lý thuyết cơ bản về Cloud và hoàn thành các bài học nhập môn. "
 },
 {
+	"uri": "/vi/5-workshop/5.8-resource-cleanup/5.8.2-delete-high-availability/",
+	"title": "Xóa hạ tầng Khả dụng cao",
+	"tags": [],
+	"description": "",
+	"content": " Đặt Desired = 0 cho ASG wordpress-asg, đợi terminate hết instance, rồi xóa ASG. Xóa Load Balancer wordpress-alb và Target Group wordpress-tg. Xóa Launch Template wordpress-launch-template và AMI wordpress-app-ami-v1 (kèm Snapshot liên quan). "
+},
+{
+	"uri": "/vi/5-workshop/5.5-serverless-backend/5.5.3-api-gateway-rest-api/",
+	"title": "Amazon API Gateway (REST API)",
+	"tags": [],
+	"description": "",
+	"content": " Vào API Gateway → Create API → REST API, đặt tên GuestbookAPI.\nTạo Resource /guestbook, Method POST, Integration type: Lambda Function, chọn GuestbookHandler, bật Lambda Proxy integration.\nChọn resource /guestbook → Actions → Enable CORS.\nActions → Deploy API, tạo stage prod.\nKết quả: Invoke URL: https://f1atpevw96.execute-api.ap-southeast-1.amazonaws.com/prod/guestbook. "
+},
+{
+	"uri": "/vi/5-workshop/5.6-high-availability-alb-asg/5.6.3-alb-target-group/",
+	"title": "Application Load Balancer &amp; Target Group",
+	"tags": [],
+	"description": "",
+	"content": " Trong quá trình tạo Auto Scaling Group ở mục sau, chọn Attach to a new load balancer.\nLoại: Application Load Balancer, Scheme: Internet-facing, tên wordpress-alb, chọn cả 2 Public Subnet.\nTạo Target Group mới wordpress-tg, Protocol HTTP:80, Health check path /.\n"
+},
+{
+	"uri": "/vi/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/5.4.3-aws-cloudtrail/",
+	"title": "AWS CloudTrail",
+	"tags": [],
+	"description": "",
+	"content": " Vào CloudTrail → Event history (đã bật sẵn miễn phí, lưu 90 ngày, không cần tạo Trail mới).\nLọc theo Event name ModifySecurityGroupRules, PutMetricAlarm, CreateTopic, Subscribe để tìm đúng các sự kiện đã thực hiện.\n"
+},
+{
 	"uri": "/vi/3-blogs-posted/",
 	"title": "Các bài blogs đã đăng",
 	"tags": [],
@@ -56,11 +175,32 @@
 	"content": "Các bài blogs đã đăng "
 },
 {
-	"uri": "/vi/5-workshop/5.3-compute-database-storage/",
-	"title": "Nền tảng Compute, Database &amp; Storage",
+	"uri": "/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.3-iam-role-for-ec2/",
+	"title": "IAM Role cho EC2 (Least Privilege)",
 	"tags": [],
 	"description": "",
-	"content": "5.3. Nền tảng Compute, Database \u0026amp; Storage: EC2, RDS, S3, IAM 5.3.1. Web/Application Tier (Amazon EC2) Hệ điều hành: Ubuntu Server 24.04 LTS, Instance type: t3.micro (Free Tier). Tech stack LAMP: Apache 2.4, PHP 8.3, WordPress (CMS). IAM Role gắn vào EC2 Instance Profile để truy cập S3 mà không cần lưu Access Key trong code/file cấu hình. 📷 Ảnh minh chứng: Giao diện WordPress chạy thành công qua IP công khai của EC2.\n5.3.2. Database Tier (Amazon RDS for MySQL) Engine: MySQL Community (Managed), Instance class: db.t4g.micro (Free Tier). Endpoint: wordpress-db.cnwgwiseq95o.ap-southeast-1.rds.amazonaws.com, Database name: wordpress. Đặt trong Private Subnet, không cấp Public IP, chỉ nhận kết nối từ ec2-web-sg. 📷 Ảnh minh chứng: Trang Configuration/Connectivity của RDS thể hiện endpoint và trạng thái Available.\n5.3.3. Lưu trữ tài nguyên tĩnh (Amazon S3) Bucket: my-portfolio-blog-media-635176221447-ap-southeast-1-an. Tích hợp qua plugin WP Offload Media Lite, ảnh upload từ WordPress tự động đồng bộ lên S3. 📷 Ảnh minh chứng: Nội dung bucket S3 với các file media đã upload từ WordPress.\n5.3.4. Bảo mật quyền truy cập (IAM) IAM Role gắn cho EC2 tuân thủ nguyên tắc Least Privilege, tránh dùng chính sách quyền rộng không cần thiết. 📷 Ảnh minh chứng: Chính sách IAM Role gắn cho EC2 (Permissions tab).\n"
+	"content": " Vào IAM → Roles → Create role, Trusted entity: AWS service → EC2.\nGắn policy cho phép s3:PutObject, s3:GetObject, s3:ListBucket trên đúng bucket S3 sẽ tạo ở bước sau.\nĐặt tên role, quay lại EC2 → Actions → Security → Modify IAM role, gắn role vừa tạo vào instance.\n"
+},
+{
+	"uri": "/vi/5-workshop/5.7-container-ecs-eventbridge/5.7.3-iam-roles-ecs-task-definition/",
+	"title": "IAM Roles &amp; ECS Task Definition",
+	"tags": [],
+	"description": "",
+	"content": " Tạo Role ecsTaskExecutionRole, gắn policy có sẵn AmazonECSTaskExecutionRolePolicy.\nTạo Policy EcsBackupTaskPolicy (chỉ cho phép s3:PutObject vào đúng thư mục backups/), tạo Role EcsBackupTaskRole gắn policy này.\nVào ECS → Clusters → Create cluster, tên wordpress-cluster, Infrastructure: AWS Fargate.\nVào Task definitions → Create, tên wordpress-backup-task, CPU 0.25 vCPU, Memory 0.5 GB, Task execution role và Task role chọn 2 role vừa tạo.\nContainer: image URI của ECR ở mục 5.7.2, thêm đủ 5 biến môi trường (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, S3_BUCKET).\n"
+},
+{
+	"uri": "/vi/5-workshop/5.2-networking-vpc/5.2.3-internet-gateway-route-table/",
+	"title": "Internet Gateway &amp; Route Table",
+	"tags": [],
+	"description": "",
+	"content": " Vào Internet Gateways → Create internet gateway, đặt tên my-project-igw → Attach to VPC → chọn my-project-vpc.\nVào Route Tables, tạo route table cho Public Subnet, thêm route 0.0.0.0/0 → Target: Internet Gateway vừa tạo.\nAssociate route table này với cả 2 Public Subnet.\nRoute Table của Private Subnet giữ nguyên mặc định (chỉ có route local), không thêm route ra Internet.\n"
+},
+{
+	"uri": "/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/",
+	"title": "Triển khai WordPress: EC2, RDS, S3, IAM",
+	"tags": [],
+	"description": "",
+	"content": "Triển khai ứng dụng WordPress theo mô hình 2-Tier phân tách tầng Web/Application, cơ sở dữ liệu quan hệ RDS MySQL, lưu trữ media tĩnh trên Amazon S3 và bảo mật quyền truy cập qua IAM Role:\n5.3.1. Khởi tạo Amazon RDS for MySQL 5.3.2. Khởi tạo EC2 và cài đặt WordPress 5.3.3. IAM Role cho EC2 (Least Privilege) 5.3.4. Amazon S3 \u0026amp; Offload Media "
 },
 {
 	"uri": "/vi/1-worklog/1.3-week-3/",
@@ -70,6 +210,27 @@
 	"content": "Mục tiêu tuần 3: Tìm hiểu AWS Networking: VPC, Subnet, Internet Gateway, Route Table. Tự thiết kế một hạ tầng mạng VPC chuẩn có Public Subnet và Private Subnet. Các công việc cần triển khai trong tuần này: Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 2 Tìm hiểu lý thuyết về Amazon VPC, dải IP CIDR và Subnet 19/05/2026 20/05/2026 AWS Cloud Journey 3 Thực hành tạo VPC tùy chỉnh, cấu hình Internet Gateway \u0026amp; Route Table 21/05/2026 22/05/2026 AWS VPC Guide 4 Cấu hình Security Group, Network ACL và kết nối kiểm thử 23/05/2026 25/05/2026 AWS Networking Kết quả đạt được tuần 3: Hiểu rõ cơ chế định tuyến mạng và bảo mật đa tầng trong VPC. Xây dựng hoàn chỉnh môi trường mạng VPC cô lập cho các tài nguyên. "
 },
 {
+	"uri": "/vi/5-workshop/5.8-resource-cleanup/5.8.3-delete-serverless/",
+	"title": "Xóa hạ tầng Serverless",
+	"tags": [],
+	"description": "",
+	"content": " Xóa API Gateway GuestbookAPI, Lambda GuestbookHandler, bảng DynamoDB GuestbookMessages, SNS Topic Guestbook (nếu có). "
+},
+{
+	"uri": "/vi/5-workshop/5.3-wordpress-ec2-rds-s3-iam/5.3.4-s3-offload-media/",
+	"title": "Amazon S3 &amp; Offload Media",
+	"tags": [],
+	"description": "",
+	"content": " Vào S3 → Create bucket, đặt tên my-portfolio-blog-media-635176221447-ap-southeast-1-an.\nTrên WordPress, cài plugin WP Offload Media Lite, cấu hình trỏ tới bucket vừa tạo, xác thực qua IAM Role (không nhập Access Key).\n"
+},
+{
+	"uri": "/vi/5-workshop/5.6-high-availability-alb-asg/5.6.4-auto-scaling-group/",
+	"title": "Auto Scaling Group",
+	"tags": [],
+	"description": "",
+	"content": " Vào Auto Scaling Groups → Create Auto Scaling group, tên wordpress-asg, chọn Launch Template ở mục 5.6.2.\nNetwork: chọn VPC và cả 2 Public Subnet.\nGroup size: Desired = 1, Min = 1, Max = 2.\nScaling policy: Target tracking, metric Average CPU Utilization, target value 70.\nSau khi tạo, vào tab Integrations kiểm tra mục Load balancing đã gắn đúng Target Group wordpress-tg chưa — nếu để trống, bấm Edit và gắn lại thủ công.\nKết quả: Target Group chuyển sang 1 Healthy, website truy cập được qua DNS của ALB. "
+},
+{
 	"uri": "/vi/4-events-participated/",
 	"title": "Các events đã tham gia",
 	"tags": [],
@@ -77,11 +238,32 @@
 	"content": "Các events đã tham gia "
 },
 {
-	"uri": "/vi/5-workshop/5.4-monitoring-and-auditing/",
+	"uri": "/vi/5-workshop/5.7-container-ecs-eventbridge/5.7.4-manual-test-eventbridge-scheduler/",
+	"title": "Chạy thử và Amazon EventBridge Scheduler",
+	"tags": [],
+	"description": "",
+	"content": " Chạy thử thủ công: Task definitions → wordpress-backup-task → Deploy → Run task, chọn cluster, Launch type Fargate, 1 Public Subnet, Security group ec2-web-sg, Public IP: Turned on.\nKiểm tra CloudWatch Logs (/ecs/wordpress-backup-task) và file backup mới trên S3 để xác nhận chạy thành công (Exit code 0).\nVào EventBridge → Scheduler → Create schedule, tên wordpress-daily-backup, Recurring schedule, Cron-based: 0 2 * * ? *.\nTarget: Templated targets → Amazon ECS RunTask, chọn cluster/task definition, cấu hình network giống bước chạy thử.\nPermissions: tạo Role EventBridgeSchedulerECSRole (Custom trust policy cho scheduler.amazonaws.com, policy cho phép ecs:RunTask và iam:PassRole).\nKết quả: Schedule ở trạng thái Enabled, tự động chạy backup lúc 2:00 sáng hàng ngày. "
+},
+{
+	"uri": "/vi/5-workshop/5.4-monitoring-cloudwatch-sns-cloudtrail/",
 	"title": "Giám sát &amp; Kiểm toán: CloudWatch, SNS, CloudTrail",
 	"tags": [],
 	"description": "",
-	"content": "5.4. Giám sát \u0026amp; Kiểm toán: CloudWatch, SNS, CloudTrail 5.4.1. CloudWatch Dashboard \u0026amp; Alarm Dashboard: WordPress-Production-Dashboard, theo dõi CPUUtilization của EC2 và DatabaseConnections của RDS. Alarm: EC2-High-CPU-Utilization, kích hoạt khi CPUUtilization \u0026gt;= 80%. 📷 Ảnh minh chứng: Dashboard CloudWatch và cấu hình chi tiết của Alarm.\n5.4.2. Thông báo qua Amazon SNS Topic: ec2-high-cpu-alert, Subscription qua Email, tự động gửi cảnh báo khi Alarm kích hoạt. 📷 Ảnh minh chứng: Cấu hình SNS Topic/Subscription và email cảnh báo nhận được.\n5.4.3. Kiểm toán hoạt động với AWS CloudTrail Sử dụng CloudTrail Event History (miễn phí, lưu 90 ngày) — không dùng CloudTrail Lake vì không cần thiết và tính phí:\nSự kiện ModifySecurityGroupRules: ghi lại đúng thời điểm chỉnh sửa rule SSH ở mục 5.2.4, thể hiện rõ user, IP nguồn, nội dung thay đổi. Sự kiện PutMetricAlarm, CreateTopic, Subscribe: minh chứng cho việc thiết lập CloudWatch/SNS ở mục 5.4.1–5.4.2. 📷 Ảnh minh chứng: Chi tiết (JSON) của sự kiện ModifySecurityGroupRules và PutMetricAlarm trong CloudTrail Event History.\n"
+	"content": "Thiết lập hệ thống quan sát tài nguyên toàn diện, gửi thông báo cảnh báo tự động khi quá tải và kiểm toán nhật ký thao tác quản trị:\n5.4.1. CloudWatch Dashboard \u0026amp; Alarm 5.4.2. Amazon SNS 5.4.3. AWS CloudTrail "
+},
+{
+	"uri": "/vi/5-workshop/5.5-serverless-backend/5.5.4-embed-form-wordpress/",
+	"title": "Nhúng Form vào WordPress",
+	"tags": [],
+	"description": "",
+	"content": " Tạo trang mới trên WordPress, thêm khối Custom HTML (không dùng khối Code).\nDán HTML form (Tên, Email, Lời nhắn) và đoạn JavaScript gọi fetch() tới Invoke URL ở mục 5.5.3.\nPublish trang, kiểm thử gửi form, xác nhận dữ liệu xuất hiện trong DynamoDB và email SNS nhận được.\n"
+},
+{
+	"uri": "/vi/5-workshop/5.2-networking-vpc/5.2.4-security-groups/",
+	"title": "Security Groups",
+	"tags": [],
+	"description": "",
+	"content": " Tạo Security Group ec2-web-sg: Inbound cho phép HTTP (80) từ 0.0.0.0/0, HTTPS (443) từ 0.0.0.0/0, SSH (22) chỉ từ IP quản trị cá nhân (/32).\nTạo Security Group RDS-SG: Inbound chỉ cho phép MySQL/Aurora (3306) với Source là chính ec2-web-sg.\n"
 },
 {
 	"uri": "/vi/1-worklog/1.4-week-4/",
@@ -91,11 +273,18 @@
 	"content": "Mục tiêu tuần 4: Tìm hiểu AWS Lambda và mô hình Serverless. Thực hành viết hàm Lambda đơn giản xử lý sự kiện (Event-driven). Các công việc cần triển khai trong tuần này: Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 2 Tìm hiểu khái niệm Serverless và cơ chế hoạt động của AWS Lambda 26/05/2026 27/05/2026 AWS Cloud Journey 3 Thực hành tạo Function Lambda và phân quyền IAM Role 28/05/2026 29/05/2026 AWS Lambda Guide 4 Kết hợp Lambda với trigger sự kiện từ S3 và API Gateway 30/05/2026 01/06/2026 AWS Serverless Kết quả đạt được tuần 4: Hiểu ưu điểm của kiến trúc Serverless về chi phí và khả năng tự mở rộng. Viết và kích hoạt thành công hàm Lambda xử lý dữ liệu tự động. "
 },
 {
-	"uri": "/vi/5-workshop/5.5-serverless-backend/",
-	"title": "Backend Serverless: Lambda, API Gateway, DynamoDB",
+	"uri": "/vi/5-workshop/5.8-resource-cleanup/5.8.4-delete-monitoring/",
+	"title": "Xóa cấu hình Giám sát",
 	"tags": [],
 	"description": "",
-	"content": "5.5. Backend Serverless: Lambda, API Gateway, DynamoDB Xây dựng thêm tính năng Guestbook (lời nhắn khách) — một backend serverless độc lập, chạy song song với WordPress, không ảnh hưởng tới kiến trúc chính.\n5.5.1. Khởi tạo bảng DynamoDB Bảng: GuestbookMessages, Partition key: id (String), Capacity mode: Provisioned 5 RCU / 5 WCU (nằm trong Free Tier). 📷 Ảnh minh chứng: Cấu hình bảng DynamoDB GuestbookMessages.\n5.5.2. IAM Role cho Lambda (Least Privilege) Policy GuestbookLambdaPolicy: chỉ cấp quyền dynamodb:PutItem trên đúng bảng GuestbookMessages, sns:Publish trên đúng topic, và quyền ghi CloudWatch Logs. Role: GuestbookLambdaRole, gắn policy trên. 📷 Ảnh minh chứng: Nội dung Policy JSON và Role đã tạo.\n5.5.3. Hàm AWS Lambda xử lý Guestbook Function: GuestbookHandler, Runtime Python 3.12. Logic: nhận request POST, validate dữ liệu (tên, email, nội dung), ghi vào DynamoDB, gửi thông báo qua SNS (tùy chọn). 📷 Ảnh minh chứng: Code Lambda trong Console và kết quả log CloudWatch của lần chạy thành công (dòng REPORT RequestId).\n5.5.4. Amazon API Gateway (REST API) API: GuestbookAPI, resource /guestbook, method POST, tích hợp Lambda Proxy. Bật CORS để WordPress (khác domain) có thể gọi API. Stage triển khai: prod, Invoke URL: https://f1atpevw96.execute-api.ap-southeast-1.amazonaws.com/prod/guestbook. 📷 Ảnh minh chứng: Cấu hình method POST, CORS đã bật, và màn hình Deploy API với Invoke URL.\n5.5.5. Nhúng giao diện vào WordPress Sử dụng khối Custom HTML (không dùng khối Code, tránh bị hiển thị dạng văn bản thô) trong trình soạn thảo WordPress. Form gồm: Tên, Email (không bắt buộc), Lời nhắn — gọi API qua JavaScript fetch(). 📷 Ảnh minh chứng: Form Guestbook hiển thị đúng trên trang WordPress công khai.\n5.5.6. Kiểm thử end-to-end Gửi thử form → xác nhận dữ liệu xuất hiện trong DynamoDB → xác nhận nhận được email SNS. 📷 Ảnh minh chứng: Dữ liệu trong DynamoDB (Explore table items) và email cảnh báo nhận được.\n"
+	"content": " Xóa CloudWatch Alarm EC2-High-CPU-Utilization, Dashboard WordPress-Production-Dashboard, SNS Topic ec2-high-cpu-alert. "
+},
+{
+	"uri": "/vi/5-workshop/5.5-serverless-backend/",
+	"title": "Serverless Backend: Lambda, API Gateway, DynamoDB",
+	"tags": [],
+	"description": "",
+	"content": "Xây dựng thêm tính năng Guestbook (lời nhắn khách) — một backend serverless độc lập, chạy song song với WordPress, không ảnh hưởng tới kiến trúc chính:\n5.5.1. Khởi tạo bảng DynamoDB 5.5.2. IAM Role \u0026amp; Hàm AWS Lambda 5.5.3. Amazon API Gateway (REST API) 5.5.4. Nhúng Form vào WordPress "
 },
 {
 	"uri": "/vi/1-worklog/1.5-week-5/",
@@ -109,14 +298,21 @@
 	"title": "Workshop",
 	"tags": [],
 	"description": "",
-	"content": "BÁO CÁO KỸ THUẬT Triển khai hạ tầng WordPress toàn diện trên AWS: từ kiến trúc 2-Tier cơ bản đến Serverless, High Availability và Container hóa Tài liệu này ghi lại toàn bộ quá trình triển khai dự án theo đúng trình tự thời gian thực hiện, từ bước chuẩn bị hạ tầng ban đầu đến khi hoàn thiện đầy đủ các dịch vụ AWS đã học. Mỗi mục có ghi chú vị trí cần chèn ảnh minh chứng (📷) — người thực hiện tự chụp và chèn ảnh tương ứng vào đúng vị trí khi hoàn thiện báo cáo cuối cùng.\nDanh sách các chương thực hành (Workshop): 5.1. Chuẩn bị môi trường \u0026amp; Kiến trúc tổng quan 5.2. Hạ tầng mạng (Networking): VPC, Subnet, Internet Gateway 5.3. Nền tảng Compute, Database \u0026amp; Storage: EC2, RDS, S3, IAM 5.4. Giám sát \u0026amp; Kiểm toán: CloudWatch, SNS, CloudTrail 5.5. Backend Serverless: Lambda, API Gateway, DynamoDB 5.6. Khả dụng cao: Application Load Balancer \u0026amp; Auto Scaling 5.7. Container hóa \u0026amp; Tự động hóa: Docker, ECS Fargate, EventBridge Scheduler 5.8. Dọn dẹp tài nguyên (Resource Cleanup) "
+	"content": "Triển khai WordPress Portfolio Blog toàn diện trên AWS Tài liệu này ghi lại toàn bộ quá trình triển khai dự án theo đúng trình tự thời gian thực hiện, từ bước chuẩn bị hạ tầng ban đầu đến khi hoàn thiện đầy đủ các dịch vụ AWS đã học. Mỗi mục có ghi chú vị trí cần chèn ảnh minh chứng (📷) — người thực hiện tự chụp và chèn ảnh tương ứng vào đúng vị trí khi hoàn thiện báo cáo cuối cùng.\nDanh sách các nội dung thực hành: 5.1. Chuẩn bị môi trường \u0026amp; Chọn Region 5.2. Hạ tầng mạng (VPC, Subnet, Internet Gateway) 5.2.1. Khởi tạo VPC 5.2.2. Tạo 4 Subnet 5.2.3. Internet Gateway \u0026amp; Route Table 5.2.4. Security Groups 5.3. Triển khai WordPress: EC2, RDS, S3, IAM 5.3.1. Khởi tạo Amazon RDS for MySQL 5.3.2. Khởi tạo EC2 và cài đặt WordPress 5.3.3. IAM Role cho EC2 (Least Privilege) 5.3.4. Amazon S3 \u0026amp; Offload Media 5.4. Giám sát \u0026amp; Kiểm toán: CloudWatch, SNS, CloudTrail 5.4.1. CloudWatch Dashboard \u0026amp; Alarm 5.4.2. Amazon SNS 5.4.3. AWS CloudTrail 5.5. Serverless Backend: Lambda, API Gateway, DynamoDB 5.5.1. Khởi tạo bảng DynamoDB 5.5.2. IAM Role \u0026amp; Hàm AWS Lambda 5.5.3. Amazon API Gateway (REST API) 5.5.4. Nhúng Form vào WordPress 5.6. Khả dụng cao: Load Balancer \u0026amp; Auto Scaling 5.6.1. Đóng gói EC2 thành AMI 5.6.2. Launch Template 5.6.3. Application Load Balancer \u0026amp; Target Group 5.6.4. Auto Scaling Group 5.7. Container hóa \u0026amp; Tự động hóa: Docker, ECS Fargate, EventBridge 5.7.1. Đóng gói Docker Image 5.7.2. Đẩy Image lên Amazon ECR 5.7.3. IAM Roles \u0026amp; ECS Task Definition 5.7.4. Chạy thử và Amazon EventBridge Scheduler 5.8. Dọn dẹp tài nguyên 5.8.1. Xóa EventBridge Scheduler \u0026amp; ECS 5.8.2. Xóa hạ tầng Khả dụng cao 5.8.3. Xóa hạ tầng Serverless 5.8.4. Xóa cấu hình Giám sát 5.8.5. Xóa Database, Compute \u0026amp; Storage 5.8.6. Xóa hạ tầng mạng \u0026amp; IAM "
+},
+{
+	"uri": "/vi/5-workshop/5.8-resource-cleanup/5.8.5-delete-database-compute-storage/",
+	"title": "Xóa Database, Compute &amp; Storage",
+	"tags": [],
+	"description": "",
+	"content": " Tạo Final Snapshot cho RDS (nếu cần lưu), sau đó xóa RDS wordpress-db. Terminate toàn bộ EC2 Instance còn lại. Làm rỗng và xóa Bucket S3 my-portfolio-blog-media-.... "
 },
 {
 	"uri": "/vi/5-workshop/5.6-high-availability-alb-asg/",
-	"title": "Khả dụng cao: ALB &amp; Auto Scaling",
+	"title": "Khả dụng cao: Load Balancer &amp; Auto Scaling",
 	"tags": [],
 	"description": "",
-	"content": "5.6. Khả dụng cao: Application Load Balancer \u0026amp; Auto Scaling 5.6.1. Đóng gói EC2 hiện tại thành AMI AMI: wordpress-app-ami-v1, tạo từ EC2 WordPress đang chạy ổn định. 📷 Ảnh minh chứng: Trạng thái AMI chuyển sang Available trong EC2 → AMIs.\n5.6.2. Launch Template Template: wordpress-launch-template — dùng AMI trên, instance type t3.micro, Security Group ec2-web-sg, key pair my-ec2-key. 📷 Ảnh minh chứng: Chi tiết cấu hình Launch Template.\n5.6.3. Application Load Balancer \u0026amp; Target Group ALB: wordpress-alb, Internet-facing, 2 Availability Zones (Public Subnet 1 \u0026amp; 2). Target Group: wordpress-tg, HTTP:80, Health check path /, ngưỡng 5 lần thành công/thất bại liên tiếp, interval 30s. 📷 Ảnh minh chứng: DNS name của ALB và cấu hình Target Group/Health check.\n5.6.4. Auto Scaling Group ASG: wordpress-asg, Desired = 1, Min = 1, Max = 2. Scaling Policy: Target tracking theo Average CPU Utilization, ngưỡng 70%. Health check type: EC2, ELB — kết hợp cả kiểm tra trạng thái máy ảo lẫn kết quả Health Check từ Target Group. 📷 Ảnh minh chứng: Cấu hình Desired/Min/Max và Scaling Policy của ASG.\n5.6.5. Kiểm thử và xử lý sự cố thực tế Trong quá trình kiểm thử, phát hiện Target Group liên tục báo 0 target dù instance đã ở trạng thái Healthy trong ASG. Qua kiểm tra Activity History, Instance Management và đối chiếu cấu hình, xác định nguyên nhân: ASG được tạo ra nhưng thiếu bước gắn Target Group (mục Load balancing trong tab Integrations của ASG để trống). Khắc phục bằng cách vào ASG → Integrations → Edit → gắn đúng Target Group wordpress-tg, sau đó instance được tự động đăng ký và chuyển sang trạng thái Healthy.\n📷 Ảnh minh chứng: Target Group trước khi sửa (0 targets) và sau khi sửa (1 Healthy), cùng ảnh trang web WordPress truy cập thành công qua DNS của ALB.\n"
+	"content": "Cấu hình kiến trúc phân phối tải và tự động mở rộng chịu lỗi cao (High Availability) bằng Application Load Balancer và Auto Scaling Group:\n5.6.1. Đóng gói EC2 thành AMI 5.6.2. Launch Template 5.6.3. Application Load Balancer \u0026amp; Target Group 5.6.4. Auto Scaling Group "
 },
 {
 	"uri": "/vi/6-self-assessment/",
@@ -133,6 +329,13 @@
 	"content": "Mục tiêu tuần 6: Tìm hiểu Elastic Load Balancer (ELB) và Auto Scaling. Xây dựng kiến trúc có tính sẵn sàng cao (High Availability) và tự động mở rộng theo tải. Các công việc cần triển khai trong tuần này: Thứ Công việc Ngày bắt đầu Ngày hoàn thành Nguồn tài liệu 2 Tìm hiểu các loại Load Balancer (ALB, NLB) và Target Group 09/06/2026 10/06/2026 AWS Cloud Journey 3 Thực hành cấu hình Application Load Balancer chia tải cho EC2 11/06/2026 12/06/2026 AWS ELB Guide 4 Cấu hình Auto Scaling Group (Launch Template, Scaling Policy) 13/06/2026 15/06/2026 AWS Auto Scaling Guide Kết quả đạt được tuần 6: Hiểu nguyên lý phân tải và tính chịu lỗi (Fault Tolerance). Kiểm thử thành công hệ thống tự tăng/giảm số lượng EC2 theo tải thực tế. "
 },
 {
+	"uri": "/vi/5-workshop/5.8-resource-cleanup/5.8.6-delete-networking-iam/",
+	"title": "Xóa hạ tầng mạng &amp; IAM",
+	"tags": [],
+	"description": "",
+	"content": " Xóa Security Groups (ec2-web-sg, RDS-SG). Xóa 4 Subnet, Route Table, Internet Gateway, sau đó xóa VPC my-project-vpc. Cuối cùng, xóa toàn bộ IAM Role và Policy đã tạo (EventBridgeSchedulerECSRole, ecsTaskExecutionRole, EcsBackupTaskRole, GuestbookLambdaRole, Role gắn cho EC2) sau khi chắc chắn không còn tài nguyên nào tham chiếu tới. "
+},
+{
 	"uri": "/vi/7-sharing-and-feedback/",
 	"title": "Chia sẻ, đóng góp ý kiến",
 	"tags": [],
@@ -140,11 +343,11 @@
 	"content": "Trải qua kỳ thực tập First Cloud AI Journey đầy ý nghĩa, tôi xin chia sẻ những ý kiến cá nhân và đóng góp phản hồi dưới đây nhằm góp phần hoàn thiện chương trình cho các khóa sau:\nĐánh giá chung về chương trình 1. Môi trường học tập và làm việc Chương trình được tổ chức rất chuyên nghiệp và bài bản. Hệ thống tài liệu hướng dẫn học tập rõ ràng, sơ đồ lộ trình (roadmap) chi tiết giúp thực tập sinh dễ dàng theo dõi tiến độ của bản thân qua từng tuần. Sự kết hợp giữa tự học và các buổi workshop giúp tăng tính linh hoạt tối đa.\n2. Sự hỗ trợ từ Mentor \u0026amp; Đội ngũ Admin Đội ngũ Mentor rất giàu kinh nghiệm và nhiệt huyết. Khi tôi gặp khó khăn trong việc cấu hình mạng bảo mật hoặc gỡ lỗi CI/CD, các Mentor luôn hướng dẫn phương pháp tư duy kiểm tra log hệ thống thay vì đưa ra đáp án có sẵn, giúp tôi cải thiện kỹ năng giải quyết vấn đề. Ban Admin cũng hỗ trợ kỹ thuật và cấp phát tài khoản thực hành AWS Free Tier rất nhanh chóng.\n3. Sự phù hợp với chuyên ngành học Là sinh viên chuyên ngành An Ninh Mạng của Đại học HUTECH, tôi thấy các nội dung thực hành rất sát với thực tế ngành. Việc tự tay cấu hình VPC Isolation, Public/Private Subnets, thiết lập Security Groups, Network ACLs và kiểm soát quyền hạn tối thiểu (Least Privilege) với IAM Policy giúp tôi hiểu sâu sắc cách bảo mật hạ tầng đám mây.\n4. Cơ hội học hỏi \u0026amp; Phát triển kỹ năng Chương trình là cơ hội lớn để tôi tiếp cận với các công nghệ đám mây hiện đại như Serverless (Lambda, API Gateway), Container (Docker, ECS) và hạ tầng dưới dạng mã (Terraform, CloudFormation). Ngoài kỹ năng chuyên môn, tôi còn cải thiện kỹ năng viết báo cáo kỹ thuật và quản lý thời gian.\n5. Văn hóa \u0026amp; Tinh thần đồng đội Văn hóa chia sẻ kiến thức (knowledge sharing) tại AWS Study Group hoạt động rất sôi nổi. Mọi người đều cởi mở, không ngại đặt câu hỏi và tích cực giúp đỡ lẫn nhau vượt qua các bài lab khó.\nTrả lời câu hỏi khảo sát Điều bạn hài lòng nhất trong thời gian thực tập?\nĐó là việc được cấp tài khoản AWS thực hành trực tiếp (hands-on) trên các dịch vụ đám mây thực tế, giúp biến các kiến thức lý thuyết trừu tượng thành sản phẩm thực tế chạy được.\nĐiều bạn nghĩ chương trình cần cải thiện cho các khóa sau?\nNên bổ sung thêm một số buổi thảo luận nhóm nhỏ (study group check-in) định kỳ hàng tuần để các thực tập sinh có thể giao lưu trực tiếp và chia sẻ các lỗi cấu hình thường gặp.\nBạn có khuyên bạn bè tham gia chương trình này không?\nChắc chắn có. Đây là chương trình thực hành đám mây bài bản nhất giúp sinh viên rút ngắn khoảng cách giữa nhà trường và doanh nghiệp.\nĐề xuất \u0026amp; Mong muốn Đề xuất: Ban tổ chức có thể thiết kế thêm các buổi chia sẻ chuyên sâu (Deep Dive) về các sự cố bảo mật thực tế trên cloud để sinh viên ngành An ninh mạng có thêm góc nhìn thực tiễn. Mong muốn: Mong muốn được tiếp tục đồng hành và tham gia các hoạt động cộng đồng của AWS Study Group trong tương lai để tiếp tục cập nhật công nghệ mới. "
 },
 {
-	"uri": "/vi/5-workshop/5.7-container-and-automation/",
-	"title": "Container hóa &amp; Tự động hóa: Docker, ECS, EventBridge",
+	"uri": "/vi/5-workshop/5.7-container-ecs-eventbridge/",
+	"title": "Container hóa &amp; Tự động hóa: Docker, ECS Fargate, EventBridge",
 	"tags": [],
 	"description": "",
-	"content": "5.7. Container hóa \u0026amp; Tự động hóa: Docker, ECS Fargate, EventBridge Scheduler Tách logic sao lưu cơ sở dữ liệu (trước đây chạy bằng cron trên EC2) thành một tác vụ độc lập, đóng gói bằng Docker và chạy theo lịch trên ECS Fargate — không phụ thuộc vòng đời của EC2.\n5.7.1. Đóng gói Docker Image Base image: debian:bookworm-slim, cài đặt default-mysql-client, awscli, gzip. Script backup_db.sh: đọc cấu hình qua biến môi trường (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, S3_BUCKET) — không hardcode thông tin nhạy cảm trong code. 📷 Ảnh minh chứng: Dockerfile và kết quả docker build chạy thành công.\n5.7.2. Đẩy Image lên Amazon ECR Repository: wordpress-backup. aws ecr get-login-password | docker login --username AWS --password-stdin \u0026lt;account\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com docker build -t wordpress-backup . docker tag wordpress-backup:latest \u0026lt;account\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com/wordpress-backup:latest docker push \u0026lt;account\u0026gt;.dkr.ecr.ap-southeast-1.amazonaws.com/wordpress-backup:latest 📷 Ảnh minh chứng: Repository wordpress-backup trên ECR Console với image tag latest.\n5.7.3. IAM Roles cho ECS Task ecsTaskExecutionRole: gắn policy có sẵn AmazonECSTaskExecutionRolePolicy, cho phép kéo image từ ECR và ghi log. EcsBackupTaskRole: gắn policy tự viết EcsBackupTaskPolicy, chỉ cho phép s3:PutObject vào đúng thư mục backups/ của bucket — nguyên tắc Least Privilege. 📷 Ảnh minh chứng: 2 IAM Role và policy đã gắn.\n5.7.4. ECS Cluster \u0026amp; Task Definition Cluster: wordpress-cluster (AWS Fargate — serverless, không cần quản lý máy chủ). Task Definition: wordpress-backup-task, 0.25 vCPU / 0.5 GB, container backup-container, image lấy từ ECR. Biến môi trường: DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, S3_BUCKET — cấu hình trực tiếp trong Task Definition, tách biệt khỏi source code. 📷 Ảnh minh chứng: Cấu hình Task Definition, đặc biệt phần Environment variables (che mờ giá trị mật khẩu khi chụp ảnh).\n5.7.5. Kiểm thử thủ công và xử lý sự cố Lần chạy thử đầu tiên thất bại với Exit code 7, log CloudWatch ghi rõ lỗi: mysqldump: unknown variable 'set-gtid-purged=OFF'. Nguyên nhân: gói default-mysql-client trên Debian cài đặt MariaDB client, vốn không hỗ trợ tùy chọn --set-gtid-purged đặc thù của MySQL. Khắc phục bằng cách loại bỏ tùy chọn này khỏi script (không cần thiết cho một tác vụ backup đơn giản, không dùng replication), build lại image, đẩy lại lên ECR. Lần chạy thử thứ hai cho kết quả Exit code 0 — thành công.\n📷 Ảnh minh chứng: Task chạy lỗi (Exit code 7, log lỗi mysqldump) và Task chạy thành công sau khi sửa (Exit code 0), cùng file backup mới xuất hiện trên S3.\n5.7.6. Lên lịch tự động với Amazon EventBridge Scheduler Schedule: wordpress-daily-backup, Cron: 0 2 * * ? * (2:00 sáng hàng ngày, giờ Việt Nam). Target: ECS RunTask trên wordpress-cluster / wordpress-backup-task, mạng: Public Subnet 1, Security Group ec2-web-sg, Auto-assign Public IP: Enabled. Execution Role riêng: EventBridgeSchedulerECSRole (Custom trust policy cho scheduler.amazonaws.com, gắn policy EventBridgeSchedulerEcsPolicy cho phép ecs:RunTask và iam:PassRole trên 2 Role ở mục 5.7.3). Đã kiểm thử bằng cách tạm đổi giờ chạy sang thời điểm gần, xác nhận Task tự động xuất hiện trong ECS (cột Started by ghi scheduler.amazonaws.com) và chạy thành công, trước khi đổi lại đúng lịch 2h sáng. 📷 Ảnh minh chứng: Schedule ở trạng thái Enabled, và Task được khởi chạy tự động bởi Scheduler (cột Started by).\n"
+	"content": "Đóng gói logic sao lưu cơ sở dữ liệu thành container Docker độc lập, lưu trữ trên Amazon ECR và vận hành theo lịch trình serverless với ECS Fargate và EventBridge Scheduler:\n5.7.1. Đóng gói Docker Image 5.7.2. Đẩy Image lên Amazon ECR 5.7.3. IAM Roles \u0026amp; ECS Task Definition 5.7.4. Chạy thử và Amazon EventBridge Scheduler "
 },
 {
 	"uri": "/vi/1-worklog/1.7-week-7/",
@@ -155,10 +358,10 @@
 },
 {
 	"uri": "/vi/5-workshop/5.8-resource-cleanup/",
-	"title": "Dọn dẹp tài nguyên (Resource Cleanup)",
+	"title": "Dọn dẹp tài nguyên",
 	"tags": [],
 	"description": "",
-	"content": "5.8. Dọn dẹp tài nguyên (Resource Cleanup) Thực hiện sau khi đã hoàn tất chụp đầy đủ minh chứng và được xác nhận đã chấm điểm, nhằm tránh phát sinh chi phí duy trì không cần thiết trên tài khoản AWS. Thứ tự xóa đi theo chiều ngược lại với thứ tự tạo (mục 5.7 → 5.1), đảm bảo không xóa nhầm tài nguyên đang được tài nguyên khác phụ thuộc.\n5.8.1. Xóa EventBridge Scheduler Xóa Schedule wordpress-daily-backup trước tiên, để không còn tác vụ nào tự động kích hoạt ECS trong lúc dọn dẹp các bước sau. 5.8.2. Xóa ECS Task Definition, Cluster và ECR Repository Deregister Task Definition wordpress-backup-task. Xóa Cluster wordpress-cluster (Fargate không có instance nền tảng cần tắt riêng). Xóa Repository wordpress-backup trên ECR (xóa toàn bộ image bên trong trước hoặc dùng tùy chọn force-delete). 5.8.3. Xóa hạ tầng High Availability Xóa Auto Scaling Group wordpress-asg (đặt Desired=0 trước, đợi terminate hết instance, rồi xóa ASG). Xóa Application Load Balancer wordpress-alb và Target Group wordpress-tg. Xóa Launch Template wordpress-launch-template và AMI wordpress-app-ami-v1 (kèm Snapshot EBS liên quan để tránh phí lưu trữ dư). 5.8.4. Xóa hạ tầng Serverless Xóa API Gateway GuestbookAPI. Xóa Lambda Function GuestbookHandler. Xóa bảng DynamoDB GuestbookMessages. Xóa SNS Topic guestbook-new-message (nếu có sử dụng). 5.8.5. Xóa cấu hình Giám sát Xóa CloudWatch Alarm EC2-High-CPU-Utilization và Dashboard WordPress-Production-Dashboard. Xóa SNS Topic ec2-high-cpu-alert. Log group CloudTrail Event History không cần xóa thủ công (không phát sinh phí, tự hết hạn theo policy 90 ngày). 5.8.6. Xóa Database Tạo Final Snapshot của RDS wordpress-db trước khi xóa (nếu muốn lưu trữ dữ liệu tham khảo sau này). Xóa RDS Instance wordpress-db. 5.8.7. Xóa Compute \u0026amp; Storage Terminate toàn bộ EC2 Instance còn lại (cả bản gốc đã Stop và bản do ASG tạo nếu còn sót). Xóa Security Groups ec2-web-sg, RDS-SG, ALB-SG (sau khi không còn tài nguyên nào tham chiếu tới). Làm rỗng và xóa Bucket S3 my-portfolio-blog-media-... (nếu không cần giữ lại dữ liệu backup/media). 5.8.8. Xóa hạ tầng mạng (VPC) Xóa Subnet (2 Public, 2 Private), Route Table, Internet Gateway. Xóa VPC my-project-vpc. 5.8.9. Xóa IAM Roles \u0026amp; Policies (thực hiện cuối cùng) Xóa lần lượt: EventBridgeSchedulerECSRole, ecsTaskExecutionRole, EcsBackupTaskRole, GuestbookLambdaRole, IAM Role gắn cho EC2. Xóa các Custom Policy tương ứng: EventBridgeSchedulerEcsPolicy, EcsBackupTaskPolicy, GuestbookLambdaPolicy. ⚠️ Lưu ý: Chỉ xóa IAM Role/Policy sau khi chắc chắn không còn tài nguyên nào (Lambda, ECS Task, EC2\u0026hellip;) đang tham chiếu tới, để tránh lỗi phụ thuộc.\n"
+	"content": "Thực hiện sau khi đã hoàn tất chụp minh chứng và được xác nhận chấm điểm. Thứ tự xóa đi ngược lại với thứ tự tạo (5.7 → 5.2) để tránh lỗi phụ thuộc giữa các tài nguyên:\n5.8.1. Xóa EventBridge Scheduler \u0026amp; ECS 5.8.2. Xóa hạ tầng Khả dụng cao 5.8.3. Xóa hạ tầng Serverless 5.8.4. Xóa cấu hình Giám sát 5.8.5. Xóa Database, Compute \u0026amp; Storage 5.8.6. Xóa hạ tầng mạng \u0026amp; IAM "
 },
 {
 	"uri": "/vi/1-worklog/1.8-week-8/",

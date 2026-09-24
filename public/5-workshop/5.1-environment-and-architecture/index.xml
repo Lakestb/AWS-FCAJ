@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Environment Setup &amp; Architectural Overview on Internship Report</title>
-		<link>/5-workshop/5.1-environment-and-architecture/</link>
+		<link>//localhost:1313/5-workshop/5.1-environment-and-architecture/</link>
 		<description>Recent content in Environment Setup &amp; Architectural Overview on Internship Report</description>
 		<generator>Hugo</generator>
 		<language>en</language>
@@ -12,6 +12,6 @@
 		
 			<lastBuildDate></lastBuildDate>
 		
-			<atom:link href="/5-workshop/5.1-environment-and-architecture/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="//localhost:1313/5-workshop/5.1-environment-and-architecture/index.xml" rel="self" type="application/rss+xml" />
 	</channel>
 </rss>

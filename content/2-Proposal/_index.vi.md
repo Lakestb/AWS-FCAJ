@@ -41,7 +41,7 @@ Hệ thống kết hợp giữa mô hình phân tầng truyền thống và các
 ### 3. Kiến trúc giải pháp
 
 #### Sơ đồ kiến trúc tổng thể
-*(Vị trí chèn ảnh sơ đồ kiến trúc draw.io)*
+![Sơ đồ kiến trúc tổng thể](/images/2/architecture.png?classes=border,shadow)
 
 #### Chi tiết 4 luồng xử lý chính trong kiến trúc:
 

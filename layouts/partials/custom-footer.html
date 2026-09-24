@@ -6,5 +6,84 @@
 
   ga('create', 'UA-158079754-2', 'auto');
   ga('send', 'pageview');
+</script>
 
+<!-- Auto-preserve & auto-scroll sidebar position to active item -->
+<script>
+(function() {
+  function adjustSidebarScroll() {
+    var container = document.querySelector('#sidebar .highlightable');
+    if (!container) return;
+
+    var active = document.querySelector('#sidebar li.active');
+    var savedPos = sessionStorage.getItem('sidebar-scroll-top');
+
+    // 1. Restore previous scroll position if present
+    if (savedPos !== null) {
+      container.scrollTop = parseInt(savedPos, 10);
+    }
+
+    // 2. Ensure active element is always comfortably in view
+    if (active) {
+      var cRect = container.getBoundingClientRect();
+      var aRect = active.getBoundingClientRect();
+
+      var isOutOfView = (aRect.top < cRect.top + 20) || (aRect.bottom > cRect.bottom - 20);
+      if (isOutOfView || savedPos === null) {
+        var offset = aRect.top - cRect.top;
+        container.scrollTop = Math.max(0, container.scrollTop + offset - 80);
+      }
+    }
+
+    // 3. Update perfectScrollbar plugin if initialized
+    if (window.jQuery && typeof jQuery(container).perfectScrollbar === 'function') {
+      jQuery(container).perfectScrollbar('update');
+    }
+  }
+
+  // Save scroll position when user clicks links or scrolls
+  function initSidebarScrollListeners() {
+    var container = document.querySelector('#sidebar .highlightable');
+    var sidebar = document.getElementById('sidebar');
+    if (!container || !sidebar) return;
+
+    sidebar.addEventListener('click', function(e) {
+      var targetLink = e.target.closest('a');
+      if (targetLink) {
+        sessionStorage.setItem('sidebar-scroll-top', container.scrollTop);
+      }
+    }, true);
+
+    var scrollTimer = null;
+    container.addEventListener('scroll', function() {
+      if (scrollTimer) clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function() {
+        sessionStorage.setItem('sidebar-scroll-top', container.scrollTop);
+      }, 100);
+    }, { passive: true });
+
+    window.addEventListener('beforeunload', function() {
+      sessionStorage.setItem('sidebar-scroll-top', container.scrollTop);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      initSidebarScrollListeners();
+      adjustSidebarScroll();
+      setTimeout(adjustSidebarScroll, 150);
+      setTimeout(adjustSidebarScroll, 400);
+    });
+  } else {
+    initSidebarScrollListeners();
+    adjustSidebarScroll();
+    setTimeout(adjustSidebarScroll, 150);
+    setTimeout(adjustSidebarScroll, 400);
+  }
+
+  window.addEventListener('load', function() {
+    adjustSidebarScroll();
+    setTimeout(adjustSidebarScroll, 200);
+  });
+})();
 </script>

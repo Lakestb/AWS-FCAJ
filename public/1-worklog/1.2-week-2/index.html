@@ -12,21 +12,21 @@
     <title>Week 2 Worklog :: Internship Report</title>
 
     
-    <link href="/css/nucleus.css?1790240289" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1790240289" rel="stylesheet">
-    <link href="/css/hybrid.css?1790240289" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1790240289" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1790240289" rel="stylesheet">
-    <link href="/css/auto-complete.css?1790240289" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1790240289" rel="stylesheet">
-    <link href="/css/theme.css?1790240289" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1790240289" rel="stylesheet">
+    <link href="/css/nucleus.css?1790243497" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1790243497" rel="stylesheet">
+    <link href="/css/hybrid.css?1790243497" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1790243497" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1790243497" rel="stylesheet">
+    <link href="/css/auto-complete.css?1790243497" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1790243497" rel="stylesheet">
+    <link href="/css/theme.css?1790243497" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1790243497" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1790240289" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1790243497" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1790240289"></script>
+    <script src="/js/jquery-3.3.1.min.js?1790243497"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1790240289"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1790240289"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1790243497"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1790243497"></script>
 <script type="text/javascript">
     
         var baseurl = "\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1790240289"></script>
+<script type="text/javascript" src="/js/search.js?1790243497"></script>
 
     
   </div>
@@ -2752,19 +2752,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1790240289"></script>
-    <script src="/js/perfect-scrollbar.min.js?1790240289"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1790240289"></script>
-    <script src="/js/jquery.sticky.js?1790240289"></script>
-    <script src="/js/featherlight.min.js?1790240289"></script>
-    <script src="/js/highlight.pack.js?1790240289"></script>
+    <script src="/js/clipboard.min.js?1790243497"></script>
+    <script src="/js/perfect-scrollbar.min.js?1790243497"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1790243497"></script>
+    <script src="/js/jquery.sticky.js?1790243497"></script>
+    <script src="/js/featherlight.min.js?1790243497"></script>
+    <script src="/js/highlight.pack.js?1790243497"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1790240289"></script>
-    <script src="/js/learn.js?1790240289"></script>
-    <script src="/js/hugo-learn.js?1790240289"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1790243497"></script>
+    <script src="/js/learn.js?1790243497"></script>
+    <script src="/js/hugo-learn.js?1790243497"></script>
 
-    <link href="/mermaid/mermaid.css?1790240289" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1790240289"></script>
+    <link href="/mermaid/mermaid.css?1790243497" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1790243497"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
@@ -2776,7 +2776,86 @@
 
   ga('create', 'UA-158079754-2', 'auto');
   ga('send', 'pageview');
+</script>
 
+
+<script>
+(function() {
+  function adjustSidebarScroll() {
+    var container = document.querySelector('#sidebar .highlightable');
+    if (!container) return;
+
+    var active = document.querySelector('#sidebar li.active');
+    var savedPos = sessionStorage.getItem('sidebar-scroll-top');
+
+    
+    if (savedPos !== null) {
+      container.scrollTop = parseInt(savedPos, 10);
+    }
+
+    
+    if (active) {
+      var cRect = container.getBoundingClientRect();
+      var aRect = active.getBoundingClientRect();
+
+      var isOutOfView = (aRect.top < cRect.top + 20) || (aRect.bottom > cRect.bottom - 20);
+      if (isOutOfView || savedPos === null) {
+        var offset = aRect.top - cRect.top;
+        container.scrollTop = Math.max(0, container.scrollTop + offset - 80);
+      }
+    }
+
+    
+    if (window.jQuery && typeof jQuery(container).perfectScrollbar === 'function') {
+      jQuery(container).perfectScrollbar('update');
+    }
+  }
+
+  
+  function initSidebarScrollListeners() {
+    var container = document.querySelector('#sidebar .highlightable');
+    var sidebar = document.getElementById('sidebar');
+    if (!container || !sidebar) return;
+
+    sidebar.addEventListener('click', function(e) {
+      var targetLink = e.target.closest('a');
+      if (targetLink) {
+        sessionStorage.setItem('sidebar-scroll-top', container.scrollTop);
+      }
+    }, true);
+
+    var scrollTimer = null;
+    container.addEventListener('scroll', function() {
+      if (scrollTimer) clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function() {
+        sessionStorage.setItem('sidebar-scroll-top', container.scrollTop);
+      }, 100);
+    }, { passive: true });
+
+    window.addEventListener('beforeunload', function() {
+      sessionStorage.setItem('sidebar-scroll-top', container.scrollTop);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      initSidebarScrollListeners();
+      adjustSidebarScroll();
+      setTimeout(adjustSidebarScroll, 150);
+      setTimeout(adjustSidebarScroll, 400);
+    });
+  } else {
+    initSidebarScrollListeners();
+    adjustSidebarScroll();
+    setTimeout(adjustSidebarScroll, 150);
+    setTimeout(adjustSidebarScroll, 400);
+  }
+
+  window.addEventListener('load', function() {
+    adjustSidebarScroll();
+    setTimeout(adjustSidebarScroll, 200);
+  });
+})();
 </script>
   </body>
 </html>

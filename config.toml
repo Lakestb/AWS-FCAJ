@@ -17,39 +17,42 @@ home = [ "HTML", "RSS", "JSON"]
   showVisitedLinks = true
   disableBreadcrumb = false
   disableNextPrev = false
-  
-[Languages]
-[Languages.en]
-title = "Internship Report"
-weight = 1
-label = "English"
 
-[[Languages.en.menu.shortcuts]]
+[languages]
+[languages.en]
+title = "Internship Report"
+languageName = "English"
+weight = 1
+  [languages.en.params]
+    label = "English"
+
+[[languages.en.menu.shortcuts]]
 name = "<i class='fab fa-aws'></i> AWS Study Group - Blog"
 identifier = "AWS Study Group"
 url = "https://aws.amazon.com/blogs"
 weight = 20
 
-[[Languages.en.menu.shortcuts]]
+[[languages.en.menu.shortcuts]]
 name = "<i class='fab fa-facebook'></i> AWS Study Group - FB Group"
 identifier = "AWS Study Group FB"
 url = "https://www.facebook.com/groups/awsstudygroupfcj"
 weight = 20
 
-[Languages.vi]
+[languages.vi]
 title = "Báo cáo thực tập"
+languageName = "Tiếng Việt"
 weight = 2
-label = "Tiếng Việt"
+  [languages.vi.params]
+    label = "Tiếng Việt"
 
-[[Languages.vi.menu.shortcuts]]
+[[languages.vi.menu.shortcuts]]
 name = "<i class='fab fa-aws'></i> AWS Study Group - Blog"
 identifier = "AWS Study Group"
 url = "http://awsstudygroup.com"
 weight = 20
 
-[[Languages.vi.menu.shortcuts]]
+[[languages.vi.menu.shortcuts]]
 name = "<i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB"
 identifier = "AWS Study Group FB"
 url = "https://www.facebook.com/groups/awsstudygroupfcj"
 weight = 20
-

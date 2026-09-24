@@ -17,7 +17,9 @@
 {{- /* Nếu là link ngoài (http/https) thì giữ nguyên, nếu là link nội bộ thì cho qua relURL để tự cộng đúng baseURL/subpath */ -}}
 {{- $url := $destination -}}
 {{- if not (or (strings.HasPrefix $destination "http://") (strings.HasPrefix $destination "https://")) -}}
-  {{- $url = $destination | relURL -}}
+  {{- /* relURL/absURL bỏ qua subpath của baseURL nếu chuỗi đầu vào đã có dấu / ở đầu, nên cần bỏ dấu / trước khi xử lý */ -}}
+  {{- $trimmed := strings.TrimPrefix "/" $destination -}}
+  {{- $url = $trimmed | relURL -}}
 {{- end -}}
 
 <img src="{{ $url }}" alt="{{ .Text }}"{{ with $classes }} class="{{ . }}"{{ end }}{{ with .Title }} title="{{ . }}"{{ end }} />

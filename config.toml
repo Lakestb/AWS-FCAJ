@@ -1,3 +1,5 @@
+baseURL = "https://Lakestb.github.io/AWS-FCAJ/"
+
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
 
